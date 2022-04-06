@@ -1,0 +1,72 @@
+@import "custom-variables";
+@import "custom-animations";
+
+body,html{
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  overflow: overlay;
+  font-size: 18px;
+  height: 100%;
+}
+
+hr:not([size]){
+  height: 1px;
+  opacity: 1;
+}
+
+
+//imitating button
+.btn-pointer{
+  cursor: pointer;
+}
+
+//number input
+.primary-number-input::-webkit-inner-spin-button,.primary-number-input::-webkit-outer-spin-button{
+  -webkit-appearance: none;
+}
+
+.rounded-card-10{
+  border-radius: 10px;
+}
+
+.rounded-start-10{
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+.rounded-end-10{
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+#nav-dropdown{
+  color: $primary ;
+  border: 1px solid $primary ;
+  border-radius: 10px;
+  text-decoration: none;
+}
+
+#nav-dropdown:hover{
+  color: $light;
+  background-image: linear-gradient(to right, $primary 0% 50%, $dark 85% 100%)
+}
+
+#nav-toggle{
+  background-color: $light !important;
+}
+
+.light-navLink:hover{
+  border: $light 1px solid;
+  background-color: $dark !important;
+  //background-image: linear-gradient(to left, $dark 0 65%, $light 90% 100%) ;
+  color: $light !important;
+}
+
+.dark-navLink:hover{
+  border: $dark 1px solid;
+  background-color: $light !important;
+  //background-image: linear-gradient(to right, $light 0 65%, $dark 90% 100%) ;
+  color: $dark !important;
+}

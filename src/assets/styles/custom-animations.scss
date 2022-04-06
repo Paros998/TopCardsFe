@@ -1,0 +1,24 @@
+@import "custom-variables";
+
+@keyframes gradient-color {
+  0%, 100% {color: $primary;}
+  50% {color: $light;}
+}
+
+@keyframes spin-around {
+  from {transform: rotate(0deg);}
+  to {transform: rotate(360deg);}
+}
+
+@keyframes light-to-dark {
+  from {background-color: $light;}
+  to {background-color: $dark;}
+}
+
+.gradient-color{
+  animation: gradient-color 5s infinite ease-in-out;
+}
+
+.spin-around{
+  animation: spin-around 10s infinite ease-in-out;
+}

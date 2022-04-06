@@ -1,11 +1,24 @@
 import React from 'react';
+import {useCurrentUser} from "../contexts/UserContext/CurrentUserContext";
+import Pending from "../components/Pending/Pending";
+import {Roles} from "../interfaces/enums/Roles";
+import ClientViews from "./AuthorisedViews/Client/ClientViews";
+import AdminViews from "./AuthorisedViews/Admin/AdminViews";
+import UnauthorisedViews from "./UnauthorisedViews/UnauthorisedViews";
 
 const Views = () => {
-  return (
-    <div>
+    const user = useCurrentUser();
 
-    </div>
-  );
+    if(user?.isPending)
+        return <Pending/>
+
+    if(user?.currentUser?.appUserRole === Roles.RoleClient)
+        return <ClientViews/>
+
+    if(user?.currentUser?.appUserRole === Roles.RoleAdmin)
+        return <AdminViews/>
+
+    return <UnauthorisedViews/>
 };
 
 export default Views;

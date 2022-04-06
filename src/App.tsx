@@ -3,11 +3,14 @@ import './App.css';
 import {ToastContainer} from "react-toastify";
 import {ToasterProps} from "./constants/ToasterProps";
 import Views from "./views/Views";
+import CurrentUserProvider from "./contexts/UserContext/CurrentUserContext";
 
 function App() {
   return (
     <>
-      <Views/>
+      <CurrentUserProvider>
+        <Views/>
+      </CurrentUserProvider>
 
       <ToastContainer {...ToasterProps}/>
     </>
