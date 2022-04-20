@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="db02069d-553d-4ef9-8dca-9f79cea6876c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/top-cards.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/images/admin_avatar.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/images/advert/BZ_WBK_Chuck_Norris_Outdoor_1.d2cbdd99.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/images/cards/ROG-STRIX-RTX3090-O24G-GAMING.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/images/cards/RTX-3090-VENTUS-3X-24G-OC.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/images/cat2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/images/notification.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/images/product_avatar.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/images/user_avatar.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/styles/custom-fonts.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/styles/custom-medias.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/styles/custom-utils.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Buttons/FilterButton.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Buttons/ImageButtonDropdown.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Card/CardTemplate.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Card/LoginCard/LoginCard.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Card/MainPageCards/MainPageCards.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Card/ObservedCardsCard/ObservedCardsCard.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Card/ProfileCard/ProfileCard.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Card/RegisterCard/RegisterCard.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Card/SuggestedCards/SuggestedCards.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Card/UserCard.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/FollowedStar/FollowStar.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Footer/AuthorizedFooter.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Footer/Footer.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Footer/UnauthorizedFooter.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Forms/FilterCardsForm.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Forms/LoginForm.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Forms/ProfileCardForm.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Forms/RegisterForm.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/GraphicCard/BasicCardInfo.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/GraphicCard/ObservedCardInfo.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/InnerNavbar/UserNavBar.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/MainContainer/MainContainer.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Notification/BasicNotification.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Notification/Notification.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Notification/Notifications.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/OfCanvas/FilterCanvas.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/OfCanvas/NotificationCanvas.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/SubmitButton/SubmitButton.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/TextWithDiamon/TextWithDiamond.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/TopNavbar/AdminNavBar.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/TopNavbar/ClientNavBar.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/TopNavbar/UnauthorizedNavBar.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/advertisment/AdvertImage.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/constants/CardsModels/BasicCards.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/constants/InitialValues/FilterCardsInitialValues.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/constants/InitialValues/LoginFormikInitialValues.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/constants/InitialValues/RegisterFormikInitialValues.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/constants/Notifications/NotificationsArray.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/constants/validators/LoginFormValidationSchema.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/constants/validators/RegisterFormValidationSchema.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/hooks/useFetchRawData.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/interfaces/formik/FilterCardsFormikValues.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/interfaces/formik/LoginFormikValues.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/interfaces/formik/RegisterFormikValues.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/interfaces/models/BasicCardModel.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/interfaces/models/CardModel.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/interfaces/models/NotificationModel.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sites/Admin/ManageCards.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sites/Admin/ManageSuggested.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sites/Admin/ManageUsers.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sites/HomePage/HomePage.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sites/Login/Login.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sites/Register/Register.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sites/User/History.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sites/User/NotificationOptions.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sites/User/ObservedCards.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sites/User/Profile.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/AuthorisedViews/ClientViews.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/styles/custom-animations.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/styles/custom-animations.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/styles/custom-index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/styles/custom-index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/styles/custom-scrolls.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/styles/custom-scrolls.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/styles/custom-variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/styles/custom-variables.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/styles/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/styles/index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Sandbox.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Sandbox.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/TopNavbar/TopNavbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TopNavbar/TopNavbar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/constants/Admin.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/Auth/Admin.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/constants/Customer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/Auth/Customer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/constants/Users.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/Auth/Users.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/contexts/UserContext/CurrentUserContext.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/contexts/UserContext/CurrentUserContext.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/useFetchCurrentUser.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/useFetchCurrentUser.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/models/UserModel.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/models/UserModel.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/AuthorisedViews/Admin/AdminViews.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/AuthorisedViews/AdminViews.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/AuthorisedViews/Client/ClientViews.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/UnauthorisedViews/CardDetails/CardDetails.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/sites/CardDetails/CardDetails.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/UnauthorisedViews/HomePage/HomePage.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/UnauthorisedViews/Login/Login.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/UnauthorisedViews/Register/Register.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/UnauthorisedViews/UnauthorisedViews.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/UnauthorisedViews/UnauthorisedViews.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/Views.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Views.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript File" />
+        <option value="TypeScript JSX File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="ProjectId" id="27hxfVUbYadhyGndabP72ik1JCC" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="js.last.introduce.type" value="LET" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/assets/images" />
+    <property name="nodejs_package_manager_path" value="yarn" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="ts.external.directory.path" value="C:\Users\part4\Desktop\WKCK\top-cards\node_modules\typescript\lib" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\part4\Desktop\WKCK\top-cards\src\assets\images" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\part4\Desktop\WKCK\top-cards\src\components\GraphicCard" />
+      <recent name="C:\Users\part4\Desktop\WKCK\top-cards\src\views\SubViews" />
+      <recent name="C:\Users\part4\Desktop\WKCK\top-cards\src\components\Buttons" />
+      <recent name="C:\Users\part4\Desktop\WKCK\top-cards\src\components\OfCanvas" />
+      <recent name="C:\Users\part4\Desktop\WKCK\top-cards\src\views\AuthorisedViews" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.start" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="db02069d-553d-4ef9-8dca-9f79cea6876c" name="Changes" comment="" />
+      <created>1649786222847</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1649786222847</updated>
+      <workItem from="1649786227246" duration="13173000" />
+      <workItem from="1649851924434" duration="10702000" />
+      <workItem from="1649864447004" duration="1955000" />
+      <workItem from="1649881079002" duration="5809000" />
+      <workItem from="1650011256768" duration="1253000" />
+      <workItem from="1650012536166" duration="16514000" />
+      <workItem from="1650108772092" duration="9100000" />
+      <workItem from="1650366710115" duration="21914000" />
+      <workItem from="1650444620179" duration="13532000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+</project>
