@@ -15,9 +15,14 @@
 }
 
 ::-webkit-scrollbar-thumb{
-  background-color: $light;
+  background-color: $primary;
   border-radius: 8px;
 }
+
+.thumb-slim::-webkit-scrollbar{
+  width: 6px;
+}
+
 
 ::-webkit-scrollbar-corner{
   background-color: transparent;
@@ -41,6 +46,9 @@
 }
 .thumb-primary::-webkit-scrollbar-thumb{
   background-color: $primary;
+}
+.thumb-primary-light::-webkit-scrollbar-thumb{
+  background-color: $primary-light;
 }
 .thumb-dark::-webkit-scrollbar-thumb{
   background-color: $dark;
@@ -75,4 +83,14 @@
 }
 .thumb-berry-red::-webkit-scrollbar-thumb {
   background-color: $berry-red;
+}
+
+.overflow-y-scroll{
+  overflow-y: scroll !important;
+  overflow-x: hidden !important;
+}
+
+.hr-1{
+  height: 1px !important;
+  padding-top: 1px !important;
 }

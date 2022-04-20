@@ -2,8 +2,8 @@ import React from 'react';
 import {useCurrentUser} from "../contexts/UserContext/CurrentUserContext";
 import Pending from "../components/Pending/Pending";
 import {Roles} from "../interfaces/enums/Roles";
-import ClientViews from "./AuthorisedViews/Client/ClientViews";
-import AdminViews from "./AuthorisedViews/Admin/AdminViews";
+import ClientViews from "./AuthorisedViews/ClientViews";
+import AdminViews from "./AuthorisedViews/AdminViews";
 import UnauthorisedViews from "./UnauthorisedViews/UnauthorisedViews";
 
 const Views = () => {

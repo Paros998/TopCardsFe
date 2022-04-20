@@ -1,0 +1,411 @@
+@import "custom-index";
+
+@media screen and (max-width:460px){
+  .filter-canvas{
+    width: 100% !important;
+  }
+
+  .card-sm-w-100{
+    width: 100% !important;
+  }
+
+  .login-card{
+    width: 100% !important;
+  }
+
+  .notification-span{
+    right: 2rem;
+    bottom: 0.5rem;
+  }
+
+  .notification-canvas{
+    width: 100%;
+  }
+
+}
+
+@media screen and (max-width:560px) and (min-width: 460px){
+  .login-card{
+    width: 80% !important;
+  }
+}
+
+@media screen and (max-width:650px){
+
+  .filter-button{
+    position: relative !important;
+    transform: rotate(0deg) !important;
+  }
+
+  .inner-nav-media{
+    font-size: $fs-7 !important;
+  }
+
+  .editable-button{
+    width: 40% !important;
+  }
+
+  .profile-inputs{
+    font-size: $fs-6 !important;
+    width: 100% !important;
+    justify-content: center !important;
+  }
+
+  .img-profile-input{
+    width: 100% !important;
+    justify-content: center !important;
+    margin-bottom: 1rem !important;
+  }
+
+  .profile-avatar{
+    width: 6rem !important;
+    height: 6rem !important;
+  }
+
+  .top-profile-stack{
+    flex-direction: column !important;
+  }
+
+  .observed-card-info{
+    font-size: $fs-8 !important;
+  }
+
+}
+
+@media screen and (max-width:767px) and (min-width: 560px){
+  .login-card{
+    width: 70% !important;
+  }
+}
+
+@media screen and (max-width:767px) and (min-width: 460px){
+  .filter-canvas{
+    width: 50% !important;
+  }
+
+  .spin-around{
+    font-size: 15rem !important;
+  }
+
+  .card-sm-w-100{
+    width: 100% !important;
+  }
+
+  .notification-span{
+    right: 4rem;
+    bottom: 0.5rem;
+  }
+
+}
+
+@media screen and (max-width:767px){
+  .card-section{
+    justify-content: center !important;
+  }
+
+  .register-control{
+    width: 90% !important;
+  }
+
+  .card-title{
+    height: 10% !important;
+  }
+
+
+}
+
+@media screen and (max-width:1000px) and (min-width:650px){
+
+  .inner-nav-media{
+    font-size: $fs-6 !important;
+  }
+
+  .editable-button{
+    width: 30% !important;
+  }
+
+  .observed-card-info{
+    font-size: $fs-7 !important;
+  }
+
+}
+
+@media screen and (max-width:1000px) and (min-width: 767px){
+  .card-sm-w-100{
+    width: 85% !important;
+  }
+
+  .login-card{
+    width: 60% !important;
+  }
+
+  .notification-span{
+    right: 1rem;
+  }
+
+}
+@media screen and (max-width:1000px) {
+  .observed-card-info{
+    width: 80% !important;
+  }
+
+  .observed-card-text{
+    white-space: pre-wrap !important;
+  }
+}
+
+@media screen and (max-width:1200px) and (min-width: 1000px) {
+
+  .filter-canvas{
+    width: 25% !important;
+  }
+
+  .card-sm-w-100{
+    width: 85% !important;
+  }
+
+  .login-card{
+    width: 40% !important;
+  }
+
+  .inner-nav-media{
+    font-size: $fs-5 !important;
+  }
+
+  .editable-button{
+    width: 20% !important;
+  }
+
+  .observed-card-info{
+    font-size: $fs-8 !important;
+  }
+
+  .observed-card-text{
+    white-space: pre-wrap !important;
+  }
+}
+
+@media screen and (max-width:1200px) {
+
+  .client-img-dropdown{
+    width: 50% !important;
+    margin-left: 1rem;
+    margin-top: 0.3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .client-img{
+    position: absolute;
+  }
+
+  .client-dropdown{
+    position: absolute;
+    top: 10rem;
+  }
+
+  .user-img-dropdown{
+    width: 25% !important;
+  }
+
+  .user-img{
+    left: 3rem;
+  }
+
+  .admin-img-dropdown{
+    width: 25% !important;
+    margin-left: 1rem;
+    margin-top: 0.3rem;
+  }
+
+  .admin-img{
+    left: 2rem;
+  }
+
+  .footer{
+    height: 10%;
+  }
+
+  .spin-around{
+    font-size: 20rem;
+  }
+
+  .light-navLink{
+    margin-top: 0.5rem;
+    border: 1px solid $dark !important;
+    border-radius: 10px;
+    width: 50%;
+    margin-inline: 0.5rem;
+    padding-bottom: 0.4rem !important;
+    padding-top: 0.2rem !important;
+  }
+
+  .dark-navLink{
+    margin-top: 0.5rem;
+    border-radius: 10px;
+    width: 50%;
+    margin-inline: 0.5rem;
+    padding-bottom: 0.2rem !important;
+    padding-top: 0.2rem !important;
+  }
+
+  .filter-canvas.rounded-end-10 {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+
+  .navbar-collapse{
+    align-items: center;
+    background: $dark !important;
+    z-index: 2;
+  }
+
+  .container{
+    padding-inline: 0 !important;
+  }
+
+  .navbar-nav{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .dropdown{
+    width: 50%;
+    margin-inline: 0.5rem;
+  }
+
+  .main-container{
+    padding-bottom: 83px !important;
+  }
+
+}
+
+@media screen and (min-width: 1200px){
+  .login-card{
+    width: 40% !important;
+  }
+
+  .user-dropdown{
+    right: 3rem;
+  }
+
+  .admin-dropdown{
+    right: 8rem;
+  }
+
+  .client-dropdown{
+    right: 6rem;
+  }
+
+
+}
+
+
+@media screen and (min-width: 1200px) and (max-width: 1400px){
+  .observed-card-info{
+    font-size: $fs-7 !important;
+  }
+}
+
+@media screen and (min-width: 1400px){
+  .user-dropdown{
+    right: 7rem;
+  }
+
+  .admin-dropdown{
+    right: 17rem;
+  }
+
+  .client-dropdown{
+    right: 9rem;
+  }
+
+}
+
+@media screen and (min-width: 1500px){
+
+  .contact{
+    position: relative;
+    width: 50%;
+    left: 20%;
+  }
+
+  .filter-canvas{
+    width: 20% !important;
+  }
+
+  .login-card{
+    width: 30% !important;
+  }
+}
+
+//height for paddings
+
+@media screen and (min-height: 725px) and (max-width: 460px){
+  .filter-canvas{
+    top: 10% !important;
+    height: 80% !important;
+  }
+
+  .notification-span{
+    right: 2rem;
+    bottom: 1.7rem;
+  }
+
+
+}
+
+@media screen and (min-height: 725px){
+  .main-container{
+    padding-top: 103px !important;
+  }
+
+}
+
+@media screen and (min-height: 725px) and (min-width: 1200px){
+  .main-container{
+    padding-top: 103px !important;
+    padding-bottom: 43px !important;
+  }
+
+  .filter-canvas{
+    margin-top: 1.55rem !important;
+    top: 8% !important;
+    height: 84.4% !important;
+  }
+}
+
+@media screen and (min-height: 725px) and (max-width:1200px) {
+  .main-container{
+    padding-bottom: 103px !important;
+  }
+
+}
+
+@media screen and (min-height: 725px) and (max-width:767px) and (min-width: 460px){
+  .notification-span{
+    right: 2rem;
+    bottom: 1.7rem;
+  }
+
+}
+
+@media screen and (min-height: 725px) and (max-width:1200px) and (min-width: 460px){
+  .main-container{
+    padding-bottom: 103px !important;
+  }
+
+  .filter-canvas{
+    margin-top: 1.55rem !important;
+    top: 8% !important;
+    height: 78% !important;
+  }
+
+}
+
+
+
+

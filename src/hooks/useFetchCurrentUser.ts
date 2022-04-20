@@ -2,12 +2,12 @@ import {useCallback, useEffect, useState} from "react";
 import {UserModel} from "../interfaces/models/UserModel";
 import {JwtUser} from "../interfaces/JwtUser";
 import jwtDecode from "jwt-decode";
-import {Users} from "../constants/Users";
+import {Users} from "../constants/Auth/Users";
 
 export function useFetchCurrentUser() {
 
   const [currentUser, setCurrentUser] = useState<UserModel>();
-  const [role, setRole] = useState<string>("");
+  const [role, setRole] = useState<string | undefined>(undefined);
   const [isPending, setIsPending] = useState<boolean>(false);
 
   const fetchUser = useCallback(async () => {
@@ -39,5 +39,5 @@ export function useFetchCurrentUser() {
     }, [fetchUser]
   );
 
-  return {currentUser, setCurrentUser, isPending, setIsPending, fetchUser, role};
+  return {currentUser, setCurrentUser, isPending, setIsPending, fetchUser, role, setRole};
 }

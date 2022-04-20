@@ -43,14 +43,21 @@ hr:not([size]){
 
 #nav-dropdown{
   color: $primary ;
+  background-color: $light;
   border: 1px solid $primary ;
   border-radius: 10px;
   text-decoration: none;
 }
 
+#nav-dropdown:focus{
+  color: $light;
+  background-image: linear-gradient(to right, $primary 0% 50%, $dark 85% 100%);
+}
+
 #nav-dropdown:hover{
   color: $light;
-  background-image: linear-gradient(to right, $primary 0% 50%, $dark 85% 100%)
+  animation: nav-dropdown-fill-gradient 0.25s ease-in;
+  background-image: linear-gradient(to right, $primary 0% 50%, $dark 85% 100%);
 }
 
 #nav-toggle{
@@ -58,15 +65,116 @@ hr:not([size]){
 }
 
 .light-navLink:hover{
-  border: $light 1px solid;
+  animation: fill-bg-dark-light-left 0.25s ease-in;
   background-color: $dark !important;
-  //background-image: linear-gradient(to left, $dark 0 65%, $light 90% 100%) ;
   color: $light !important;
+  border: 1px solid $light !important;
 }
 
 .dark-navLink:hover{
-  border: $dark 1px solid;
+  animation: fill-bg-light-dark-right 0.25s ease-in;
   background-color: $light !important;
-  //background-image: linear-gradient(to right, $light 0 65%, $dark 90% 100%) ;
   color: $dark !important;
+}
+
+.filter-canvas{
+  z-index: 2;
+}
+
+.navbar{
+  z-index: 20;
+}
+
+.main-container{
+  padding: 90px 1.1rem 55px 1.1rem;
+}
+
+.z-index-1000{
+  z-index: 1000;
+}
+
+.z-index-1{
+  z-index: 1 !important;
+}
+
+.background-light-hover:hover{
+  background-color: $dark !important;
+  color: $light !important;
+}
+
+.background-danger-hover:hover{
+  background-color: $primary-dark !important;
+  color: $light !important;
+}
+
+.login-card{
+  height: 90%;
+  width: 30%;
+}
+
+.register-card{
+  height: 90%;
+  width: 80%;
+}
+
+.light-button-hover:hover{
+  border: 1px solid $light !important;
+  background-color: $dark !important;
+  color: $light !important;
+}
+
+.card-title{
+  height: 20%;
+}
+
+.select-all{
+  color: $primary-light !important;
+}
+
+.select-all:hover{
+  color: $primary-light !important;
+  text-decoration: underline !important;
+}
+
+.check-pointer > input:hover {
+  cursor: pointer;
+  border: 1px solid $primary;
+}
+
+.check-pointer > label {
+  color: $primary-light;
+}
+
+.notification-span{
+  right: 2rem;
+}
+
+.star-hover:hover{
+  color: gold !important;
+}
+
+.active-nav{
+  background-color: $secondary !important;
+  color: $light !important;
+}
+
+.inner-nav{
+  border-radius: 0 !important;
+}
+
+.inner-nav:hover{
+  background-color: $light !important;
+  color: $dark !important;
+}
+
+.profile-form-control:disabled{
+  border: 0 !important;
+}
+
+.observed-card-info{
+  filter: drop-shadow(0px 6px 6px rgba(0, 0, 0, 0.65));
+}
+
+.observed-card-info:hover{
+  filter: drop-shadow(0px 6px 6px rgba(255, 255, 255, 0.45));
 }

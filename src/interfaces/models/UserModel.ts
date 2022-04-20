@@ -6,4 +6,5 @@ export interface UserModel {
   password: string;
   email: string;
   appUserRole: Roles;
+  avatarFile:string;
 }

@@ -3,6 +3,7 @@ import {CurrentUserContextModel} from "../../interfaces/models/CurrentUserContex
 import {useFetchCurrentUser} from "../../hooks/useFetchCurrentUser";
 import axios from 'axios';
 import {toast} from "react-toastify";
+import {useNavigate} from "react-router-dom";
 
 const CurrentUserContext = createContext<any>(undefined);
 
@@ -16,13 +17,16 @@ interface CurrentUserProviderProps {
 
 function CurrentUserProvider({children}: CurrentUserProviderProps){
 
+  const navigate = useNavigate();
   const data = useFetchCurrentUser();
 
   const handleLogout = () => {
     localStorage.removeItem('JWT_USER_TOKEN');
     data.setCurrentUser(undefined);
+    data.setRole(undefined);
     delete axios.defaults.headers.common["Authorization"];
     toast.info("We hope to see you again soon");
+    navigate(`login`);
   };
 
   return (

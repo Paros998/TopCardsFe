@@ -1,0 +1,41 @@
+@import "custom-variables";
+
+.font-weight-bold{
+  font-weight: bold;
+}
+
+.font-weight-extra-bold{
+  font-weight: bolder;
+}
+
+.font-weight-extra-normal{
+  font-weight: 500;
+}
+
+.font-italic{
+  font-style: italic;
+}
+
+.font-poppins{
+  font-family: "Poppins", serif;
+}
+
+.font-size-2rm{
+  font-size: 2rem;
+}
+
+.fs-7{
+  font-size: $fs-7;
+}
+.fs-8{
+  font-size: 0.6rem;
+}
+.fs-9{
+  font-size: 0.5rem;
+}
+.fs-10{
+  font-size: 0.4rem;
+}
+.fs-11{
+  font-size: 0.2rem;
+}
