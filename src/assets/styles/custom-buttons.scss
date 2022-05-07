@@ -1,0 +1,61 @@
+@import "custom-variables";
+
+.dark-info{
+  background-color: $dark;
+  border: 1px solid $info;
+  color: $info;
+}
+
+.dark-info:hover{
+  background-color: $info;
+  border: 1px solid $dark;
+  color: $dark;
+}
+
+.dark-danger{
+  background-color: $dark;
+  border: 1px solid $danger;
+  color: $danger;
+}
+
+.dark-danger:hover{
+  background-color: $danger;
+  border: 1px solid $dark;
+  color: $dark;
+}
+
+.dark-warning{
+  background-color: $dark;
+  border: 1px solid $warning;
+  color: $warning;
+}
+
+.dark-warning:hover{
+  background-color: $warning;
+  border: 1px solid $dark;
+  color: $dark;
+}
+
+.dark-success{
+  background-color: $dark;
+  border: 1px solid $success;
+  color: $success;
+}
+
+.dark-success:hover{
+  background-color: $success;
+  border: 1px solid $dark;
+  color: $dark;
+}
+
+.dark-light{
+  background-color: $dark;
+  border: 1px solid $light;
+  color: $light;
+}
+
+.dark-light:hover{
+  background-color: $light;
+  border: 1px solid $dark;
+  color: $dark;
+}

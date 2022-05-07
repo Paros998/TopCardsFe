@@ -8,5 +8,6 @@ export const Customer:UserModel = {
   password: "halllllllo",
   userId: "6334551451123",
   username: "Paros998",
-  avatarFile: Cat
+  avatarFile: Cat,
+  blocked: false
 }

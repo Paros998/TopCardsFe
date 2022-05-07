@@ -37,7 +37,7 @@ export const BasicCards: BasicCardModel[] = [
     onlineStoresNumber: 0
   },
   {
-    id:"KLSA-15141-FSAVc",
+    id:"403b02cc-c188-11ec-9d64-0242ac120002",
     title: "Zotac Gaming GeForce GTX 1660 Super Twin Fan 6GB",
     availableLocal: true,
     localStoresNumber: 8,
@@ -47,7 +47,7 @@ export const BasicCards: BasicCardModel[] = [
     onlineStoresNumber: 0
   },
 {
-    id:"1231151-Afa-231-FAs",
+    id:"4b2dff4a-c188-11ec-9d64-0242ac120002",
     title: "MSI GeForce RTX 3090 VENTUS 3X 24G OC",
     cardPhoto: MSI,
     availableLocal: true,
@@ -58,7 +58,7 @@ export const BasicCards: BasicCardModel[] = [
     onlineStoresNumber: 5
   },
   {
-    id:"KLSA-15141-FSAVc",
+    id:"53f63962-c188-11ec-9d64-0242ac120002",
     title: "Zotac Gaming GeForce GTX 1660 Super Twin Fan 6GB",
     availableLocal: true,
     localStoresNumber: 8,
@@ -68,7 +68,7 @@ export const BasicCards: BasicCardModel[] = [
     onlineStoresNumber: 0
   },
   {
-    id:"LAS123-Asfp1245-ALPMG",
+    id:"5d14485e-c188-11ec-9d64-0242ac120002",
     title: "ASUS ROG STRIX RTX 3090 24GB OC",
     cardPhoto: ASUS,
     availableLocal: false,
@@ -79,7 +79,7 @@ export const BasicCards: BasicCardModel[] = [
     onlineStoresNumber: 0
   },
   {
-    id:"KLSA-15141-FSAVc",
+    id:"630fed26-c188-11ec-9d64-0242ac120002",
     title: "Zotac Gaming GeForce GTX 1660 Super Twin Fan 6GB",
     availableLocal: true,
     localStoresNumber: 8,
@@ -89,7 +89,7 @@ export const BasicCards: BasicCardModel[] = [
     onlineStoresNumber: 0
   },
 {
-    id:"1231151-Afa-231-FAs",
+    id:"69863930-c188-11ec-9d64-0242ac120002",
     title: "MSI GeForce RTX 3090 VENTUS 3X 24G OC",
     cardPhoto: MSI,
     availableLocal: true,
@@ -100,7 +100,7 @@ export const BasicCards: BasicCardModel[] = [
     onlineStoresNumber: 5
   },
   {
-    id:"KLSA-15141-FSAVc",
+    id:"6f29b970-c188-11ec-9d64-0242ac120002",
     title: "Zotac Gaming GeForce GTX 1660 Super Twin Fan 6GB",
     availableLocal: true,
     localStoresNumber: 8,
@@ -110,7 +110,7 @@ export const BasicCards: BasicCardModel[] = [
     onlineStoresNumber: 0
   },
   {
-    id:"LAS123-Asfp1245-ALPMG",
+    id:"75e7b960-c188-11ec-9d64-0242ac120002",
     title: "ASUS ROG STRIX RTX 3090 24GB OC",
     cardPhoto: ASUS,
     availableLocal: false,
@@ -121,7 +121,7 @@ export const BasicCards: BasicCardModel[] = [
     onlineStoresNumber: 0
   },
   {
-    id:"KLSA-15141-FSAVc",
+    id:"7b64411a-c188-11ec-9d64-0242ac120002",
     title: "Zotac Gaming GeForce GTX 1660 Super Twin Fan 6GB",
     availableLocal: true,
     localStoresNumber: 8,

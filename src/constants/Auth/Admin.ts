@@ -8,6 +8,7 @@ export const Admin:UserModel = {
   password: "hallllllo",
   userId: "12154123123123",
   username: "Paros998Admin",
-  avatarFile: Avatar
+  avatarFile: Avatar,
+  blocked: false
 
 }

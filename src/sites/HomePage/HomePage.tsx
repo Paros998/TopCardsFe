@@ -36,7 +36,7 @@ const HomePage = () => {
           <FilterButton onClick={handleShow}
                         className={`d-none d-md-block mx-2 me-lg-3`}/>
 
-          <SuggestedCards className={`${cardClassName}`} cards={BasicCards}/>
+          <SuggestedCards className={`${cardClassName}`} />
         </div>
 
         <div className={`w-100 h-70 row pt-1 flex-md-nowrap  ms-0 justify-content-end card-section`}>

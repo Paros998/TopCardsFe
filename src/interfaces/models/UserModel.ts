@@ -7,4 +7,5 @@ export interface UserModel {
   email: string;
   appUserRole: Roles;
   avatarFile:string;
+  blocked: boolean;
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import {Route, Routes} from "react-router-dom";
-import CardDetails from "../../sites/CardDetails/CardDetails";
+import CardDetails from "../../sites/Cards/CardDetails";
 import NotFound from "../../components/NotFound/NotFound";
 import HomePage from "../../sites/HomePage/HomePage";
 import {useCurrentUser} from "../../contexts/UserContext/CurrentUserContext";

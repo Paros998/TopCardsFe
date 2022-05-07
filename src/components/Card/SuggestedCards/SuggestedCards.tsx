@@ -7,18 +7,25 @@ import AdvertImage from "../../advertisment/AdvertImage";
 import {useCurrentUser} from "../../../contexts/UserContext/CurrentUserContext";
 import {Roles} from "../../../interfaces/enums/Roles";
 import {useNavigate} from "react-router-dom";
+import {BasicCards} from "../../../constants/CardsModels/BasicCards";
+import {SuggestedCardsIds} from "../../../constants/CardsModels/SuggestedCardsIds";
 
 interface SuggestedCardsProps {
   className?: string;
-  cards: BasicCardModel[] | [];
 }
 
-const SuggestedCards: FC<SuggestedCardsProps> = ({className, cards}) => {
+const SuggestedCards: FC<SuggestedCardsProps> = ({className}) => {
 
   const {role} = useCurrentUser();
   const navigate = useNavigate();
 
-  const editColClassName = `text-end me-4 ${role === Roles.RoleAdmin ? `d-block` : `d-none`}`
+  const editColClassName = `text-end me-4 ${role === Roles.RoleAdmin ? `d-block` : `d-none`}`;
+
+  let cards: BasicCardModel[] = [];
+
+  SuggestedCardsIds.map(id => {
+    cards.push(BasicCards.find(card => card.id === id) as BasicCardModel)
+  });
 
   return (
     <CardTemplate className={`bg-secondary-dark fs-6 ${className}`}>
@@ -32,7 +39,7 @@ const SuggestedCards: FC<SuggestedCardsProps> = ({className, cards}) => {
           <Col className={editColClassName}>
             <Button
               className={`py-0 px-3`}
-              onClick={() => navigate(`/suggested`)}
+              onClick={() => navigate(`admin/suggested`)}
               variant={`outline-danger`}
             >
               Change
@@ -55,11 +62,13 @@ const SuggestedCards: FC<SuggestedCardsProps> = ({className, cards}) => {
                   xxl={3}
                   className={`mb-1 btn-pointer h-100`}
                 >
+
                   <BasicCardInfo card={value} className={`bg-danger fs-8 h-100 background-danger-hover`}
                                  unavailableColor={`text-dark`}
                                  cardPhotoSize={`sm`}
                                  followed={index % 4 === 0}
                   />
+
                 </Col>
 
                 {

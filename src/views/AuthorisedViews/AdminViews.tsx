@@ -1,6 +1,6 @@
 import React from 'react';
 import {Route, Routes} from "react-router-dom";
-import CardDetails from "../../sites/CardDetails/CardDetails";
+import CardDetails from "../../sites/Cards/CardDetails";
 import NotFound from "../../components/NotFound/NotFound";
 import HomePage from "../../sites/HomePage/HomePage";
 import Profile from "../../sites/User/Profile";
@@ -10,6 +10,8 @@ import NotificationOptions from "../../sites/User/NotificationOptions";
 import ManageCards from "../../sites/Admin/ManageCards";
 import ManageSuggested from "../../sites/Admin/ManageSuggested";
 import ManageUsers from "../../sites/Admin/ManageUsers";
+import NewCard from "../../sites/Cards/NewCard";
+import EditCard from "../../sites/Cards/EditCard";
 
 
 const AdminViews = () => {
@@ -30,7 +32,6 @@ const AdminViews = () => {
       </Route>
 
       <Route path={`/admin`}
-             element={<ManageCards/>}
       >
         <Route path={`suggested`} element={<ManageSuggested/>}/>
         <Route path={`cards`} element={<ManageCards/>}/>
@@ -38,9 +39,12 @@ const AdminViews = () => {
       </Route>
 
       <Route
-        path='/card/:cardId'
-        element={<CardDetails/>}
-      />
+        path={'/card'}
+      >
+        <Route path={`:cardId`} element={<CardDetails/>}/>
+        <Route path={`new`} element={<NewCard/>}/>
+        <Route path={`edit/:cardId`} element={<EditCard/>}/>
+      </Route>
 
       <Route
         path='*'

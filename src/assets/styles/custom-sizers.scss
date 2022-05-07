@@ -48,7 +48,7 @@
   min-height: 300px;
 }
 .mnh-200px{
-  min-height: 200px;
+  min-height: 200px !important;
 }
 .mnh-400px{
   min-height: 400px;
@@ -137,4 +137,8 @@
 }
 .w-75px{
   width: 75px;
+}
+
+.h-1px{
+  height: 2px !important;
 }

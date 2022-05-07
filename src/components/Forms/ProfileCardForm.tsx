@@ -1,6 +1,6 @@
 import React, {ChangeEvent, useRef, useState} from 'react';
-import {Button, Col, Form as FormBoot, Form, Row} from "react-bootstrap";
-import {useFormikContext} from "formik";
+import {Button, Col, Form as FormBoot, Row} from "react-bootstrap";
+import {Form, FormikState, useFormikContext} from "formik";
 import {RegisterFormikValues} from "../../interfaces/formik/RegisterFormikValues";
 
 const ProfileCardForm = () => {
@@ -26,7 +26,7 @@ const ProfileCardForm = () => {
   const fileRef = useRef<HTMLInputElement>(null);
 
   return (
-    <Form className={`${hStackClass} flex-column h-80 justify-content-around`}>
+    <Form className={`${hStackClass} flex-column h-80 justify-content-around mt-3 mt-sm-0 profile-form`}>
       <div className={`${hStackClass} top-profile-stack`}>
 
         <div className={`w-50 d-flex justify-content-end img-profile-input`}>
@@ -50,12 +50,12 @@ const ProfileCardForm = () => {
 
         <div className={`d-flex flex-md-column flex-wrap gap-3 ms-5 fs-4 fw-light w-50 profile-inputs`}>
 
-          <Form.Group as={Row} className={`w-100`}>
-            <Form.Label className={colClass}>
+          <FormBoot.Group as={Row} className={`w-100`}>
+            <FormBoot.Label className={colClass}>
               Email
-            </Form.Label>
+            </FormBoot.Label>
             <Col className={`pe-0`}>
-              <Form.Control
+              <FormBoot.Control
                 className={formClassName}
                 type={`text`}
                 name={`email`}
@@ -67,14 +67,14 @@ const ProfileCardForm = () => {
               />
             </Col>
             <Col xs={1} md={4}/>
-          </Form.Group>
+          </FormBoot.Group>
 
-          <Form.Group as={Row} className={`w-100`}>
-            <Form.Label className={colClass}>
+          <FormBoot.Group as={Row} className={`w-100`}>
+            <FormBoot.Label className={colClass}>
               Username
-            </Form.Label>
+            </FormBoot.Label>
             <Col className={`pe-0`}>
-              <Form.Control
+              <FormBoot.Control
                 className={formClassName}
                 type={`text`}
                 name={`username`}
@@ -86,18 +86,18 @@ const ProfileCardForm = () => {
               />
             </Col>
             <Col xs={1} md={4}/>
-          </Form.Group>
+          </FormBoot.Group>
 
-          <Form.Group as={Row} className={`w-100`}>
-            <Form.Label className={colClass}>
+          <FormBoot.Group as={Row} className={`w-100`}>
+            <FormBoot.Label className={colClass}>
               Password
-            </Form.Label>
+            </FormBoot.Label>
             <Col className={`pe-0`}>
-              <Form.Control
+              <FormBoot.Control
                 className={formClassName}
-                type={`text`}
+                type={`password`}
                 name={`password`}
-                defaultValue={`**********************`}
+                defaultValue={values.password}
                 onChange={handleChange}
                 isInvalid={touched.password && !!errors.password}
                 isValid={touched.password && !errors.password}
@@ -105,8 +105,7 @@ const ProfileCardForm = () => {
               />
             </Col>
             <Col xs={1} md={4}/>
-          </Form.Group>
-
+          </FormBoot.Group>
 
         </div>
 

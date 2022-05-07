@@ -30,7 +30,7 @@ const MainPageCards: FC<MainPageCardsProps> = ({className, cards}) => {
           <Col className={editColClassName}>
             <Button
               className={`py-0 px-4`}
-              onClick={() => navigate(`/cards`)}
+              onClick={() => navigate(`admin/cards`)}
               variant={`outline-light`}
             >
               Edit
