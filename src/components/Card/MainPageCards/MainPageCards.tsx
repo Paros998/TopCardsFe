@@ -1,82 +1,65 @@
-import React, {FC} from 'react';
+import React, { FC, SetStateAction } from 'react';
 import CardTemplate from "../CardTemplate";
-import {BasicCardModel} from "../../../interfaces/models/BasicCardModel";
-import BasicCardInfo from "../../GraphicCard/BasicCardInfo";
-import {Button, Col, Container, Pagination, Row} from "react-bootstrap";
-import {useCurrentUser} from "../../../contexts/UserContext/CurrentUserContext";
-import {useNavigate} from "react-router-dom";
-import {Roles} from "../../../interfaces/enums/Roles";
+import { BasicCardModel } from "../../../interfaces/models/BasicCardModel";
+import { Button, Col, Container, Row } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+import { Roles } from "../../../interfaces/enums/Roles";
+import { useCurrentUser } from "../../../contexts/UserContext/UserContext";
+import Pagination from '@mui/material/Pagination'
+import BasicCards from "../../Cards/BasicCards";
 
 interface MainPageCardsProps {
   className?: string;
   cards: BasicCardModel[] | [];
+  isPending: boolean;
+  page: number;
+  totalPages: number;
+  setPage: React.Dispatch<SetStateAction<number>>;
 }
 
-const MainPageCards: FC<MainPageCardsProps> = ({className, cards}) => {
+const MainPageCards: FC<MainPageCardsProps> = ( { className, cards, isPending, page, setPage, totalPages } ) => {
 
-  const {role} = useCurrentUser();
+  const { role } = useCurrentUser();
   const navigate = useNavigate();
 
-  const editColClassName = `text-end me-4 ${role === Roles.RoleAdmin ? `d-block` : `d-none`}`
+  const editColClassName = `text-end me-4 ${ role === Roles.RoleAdmin ? `d-block` : `d-none` }`
 
   return (
-    <CardTemplate className={`bg-secondary-dark fs-6 pt-0 ${className}`}>
-      <Container className={`p-0 m-0 h-100 align-items-center`} fluid>
-        <Row className={`h-10 align-items-center`}>
-          <Col xs={6} className={`ms-1 ms-md-3 fs-5 font-weight-extra-normal`}>
+    <CardTemplate className={ `bg-secondary-dark fs-6 pt-0 ${ className }` }>
+      <Container className={ `p-0 m-0 h-100 align-items-center` } fluid>
+        <Row className={ `h-10 align-items-center` }>
+          <Col xs={ 6 } className={ `ms-1 ms-md-3 fs-5 font-weight-extra-normal` }>
             All cards
           </Col>
 
-          <Col className={editColClassName}>
+          <Col className={ editColClassName }>
             <Button
-              className={`py-0 px-4`}
-              onClick={() => navigate(`admin/cards`)}
-              variant={`outline-light`}
+              className={ `py-0 px-4` }
+              onClick={ () => navigate( `admin/cards` ) }
+              variant={ `outline-light` }
             >
               Edit
             </Button>
           </Col>
         </Row>
 
-        <Row className={`p-0 mx-1 h-80 overflow-y-scroll thumb-light thumb-slim`}>
-          {
-            cards.map((value, index) =>
-              <Col
-                key={index}
-                xs={12}
-                sm={12}
-                md={6}
-                lg={4}
-                xl={4}
-                xxl={3}
-                className={`mb-1 mb-md-2 btn-pointer `}
-              >
-                <BasicCardInfo card={value} className={`text-dark background-light-hover`} followed={index % 3 === 0}/>
-              </Col>
-            )
-          }
+        <Row className={ `p-0 mx-1 h-80 overflow-y-scroll thumb-light thumb-slim` }>
+
+          <BasicCards cards={ cards } isPending={ isPending }/>
 
         </Row>
 
-        <Row className={`h-10 align-items-center`}>
-          <Col className={`align-items-center`}>
-            <Pagination className={`my-0 bottom-50 justify-content-center float-none px-0 `} size={`sm`}>
-              <Pagination.First className={`d-none d-md-block z-index-1`}/>
-              <Pagination.Prev className={`d-none d-md-block z-index-1`}/>
-              <Pagination.Item className={`z-index-1`}>{1}</Pagination.Item>
-              <Pagination.Ellipsis className={`z-index-1`}/>
+        <Row className={ `h-10 align-items-center` }>
+          <Col className={ `d-flex align-items-center justify-content-center` }>
 
-              <Pagination.Item className={`z-index-1`}>{10}</Pagination.Item>
-              <Pagination.Item className={`z-index-1`}>{11}</Pagination.Item>
-              <Pagination.Item className={`z-index-1`} active >{12}</Pagination.Item>
-              <Pagination.Item className={`z-index-1`}>{13}</Pagination.Item>
-              <Pagination.Item className={`z-index-1`} disabled>{14}</Pagination.Item>
+            <Pagination
+              count={ totalPages }
+              className={ `bg-light rounded-card-10` }
+              color={ "primary" }
+              page={ page }
+              onChange={ ( event, newPage ) => setPage( newPage ) }
+            />
 
-              <Pagination.Ellipsis className={`z-index-1`}/>
-              <Pagination.Item className={`z-index-1`}>{20}</Pagination.Item>
-              <Pagination.Next  className={`d-none d-md-block z-index-1`}/>
-              <Pagination.Last className={`d-none d-md-block z-index-1`}/>
-            </Pagination>
           </Col>
         </Row>
 

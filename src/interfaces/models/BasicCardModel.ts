@@ -10,4 +10,6 @@ export interface BasicCardModel {
   availableOnline:boolean
   onlineStoresNumber:number;
   onlineStoresLowestPrice:number
+
+  isFollowed: boolean;
 }

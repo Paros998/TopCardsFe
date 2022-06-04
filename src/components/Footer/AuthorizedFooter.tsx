@@ -6,7 +6,9 @@ import Notification from "../Notification/Notification";
 const AuthorizedFooter = () => {
   return (
     <footer
-      className={`py-2 py-md-0 text-light bg-dark d-flex flex-column flex-md-row align-items-center min-vw-100 position-absolute bottom-0 px-1 font-italic footer`}>
+      className={`py-2 py-md-0 text-light bg-dark d-flex flex-column flex-md-row
+       align-items-center min-vw-100 position-absolute bottom-0 px-1 font-italic
+        footer`}>
 
       <span className={`ms-md-4 font-weight-extra-normal `}>
         © 2022 P.Grzywacz Dev.

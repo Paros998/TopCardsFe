@@ -1,8 +1,9 @@
 import React from 'react';
-import {useCurrentUser} from "../../contexts/UserContext/CurrentUserContext";
-import {Roles} from "../../interfaces/enums/Roles";
+
+import { Roles } from "../../interfaces/enums/Roles";
 import AuthorizedFooter from "./AuthorizedFooter";
 import UnauthorizedFooter from "./UnauthorizedFooter";
+import { useCurrentUser } from "../../contexts/UserContext/UserContext";
 
 
 const Footer = () => {

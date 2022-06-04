@@ -1,16 +1,20 @@
-import React, {FC, useRef} from 'react';
-import {HistoryModel} from "../../interfaces/models/HistoryModel";
-import {Col, Row} from "react-bootstrap";
-import {Trash3Fill} from "react-bootstrap-icons";
-import {useNavigate} from "react-router-dom";
-import {BasicCards} from "../../constants/CardsModels/BasicCards";
+import React, { FC, useMemo, useRef } from 'react';
+import { HistoryModel } from "../../interfaces/models/HistoryModel";
+import { Col, Row } from "react-bootstrap";
+import { Trash3Fill } from "react-bootstrap-icons";
+import { useNavigate } from "react-router-dom";
+import { BasicCards } from "../../constants/CardsModels/BasicCards";
+import { toast } from "react-toastify";
+import Axios from "axios";
+import { useFetchData } from "../../hooks/useFetchData";
 
 interface HistoryRecordProps {
   record: HistoryModel;
+  fetchRecords: () => Promise<void>;
 }
 
-function getTheme(action: "unfollow" | "follow" | "checkCard" | "checkOffer" | "opinion") {
-  switch (action) {
+function getTheme( action: "unfollow" | "follow" | "checkCard" | "checkOffer" | "opinion" ) {
+  switch ( action ) {
     case "unfollow":
       return `warning`;
     case "follow":
@@ -25,8 +29,8 @@ function getTheme(action: "unfollow" | "follow" | "checkCard" | "checkOffer" | "
 
 }
 
-function getHeader(action: "unfollow" | "follow" | "checkCard" | "checkOffer" | "opinion") {
-  switch (action) {
+function getHeader( action: "unfollow" | "follow" | "checkCard" | "checkOffer" | "opinion" ) {
+  switch ( action ) {
     case "unfollow":
       return `UnFollow `;
     case "follow":
@@ -40,62 +44,76 @@ function getHeader(action: "unfollow" | "follow" | "checkCard" | "checkOffer" | 
   }
 }
 
-const HistoryRecord: FC<HistoryRecordProps> = ({record}) => {
+const HistoryRecord: FC<HistoryRecordProps> = ( { record, fetchRecords } ) => {
 
-  const {cardId, id, action, link} = record;
+  const { cardId, id, action, link } = record;
   const navigate = useNavigate();
 
-  const theme = getTheme(action);
-  const header = getHeader(action);
-  const rowClass = `border border-1 border-${theme} rounded-card-10 my-2 w-75`;
+  const theme = getTheme( action );
+  const header = getHeader( action );
 
   const isOfferRecord = action === "checkOffer";
 
-  const deleteRecord = () => {
+  const deleteRecord = async () => {
 
+    try {
+
+      await Axios.delete( `/history/${ id }` );
+
+      await fetchRecords();
+
+    } catch ( e: any ) {
+
+      toast.error( e );
+
+    }
   }
 
   const onClick = () => {
-    if (isOfferRecord)
+    if ( isOfferRecord )
       aHref.current?.click();
     else
-      navigate(`/card/${cardId}`);
+      navigate( `/card/${ cardId }` );
   }
 
-  const aHref = useRef<HTMLAnchorElement>(null);
+  const aHref = useRef<HTMLAnchorElement>( null );
 
-  const message = isOfferRecord ? link : `ID: ${cardId} - Card: ${BasicCards.find(value => value.id === cardId)?.title}`
+  const [ title ] = useFetchData<string>( `/cards/${ cardId }/title` );
+
+  const message = isOfferRecord ? link : `ID: ${ cardId } - Card: ${ title ? title : `Fetching title...` }`
+
+  const rowClass = `border border-1 border-${ theme } rounded-card-10 my-2 w-75`;
 
   return (
-    <Row className={rowClass}>
+    <Row className={ rowClass }>
 
-      <a className={`d-none`} href={link} target={`_blank`} ref={aHref}>NothingHere</a>
+      <a className={ `d-none` } href={ link } target={ `_blank` } ref={ aHref }>NothingHere</a>
 
-      <Col xs={3}
-           className={`hstack gap-1 btn-pointer`}
-           onClick={onClick}>
+      <Col xs={ 2 }
+           className={ `hstack gap-1 btn-pointer` }
+           onClick={ onClick }>
 
-        <span className={`text-${theme}`}>
-          {header}
+        <span className={ `text-${ theme }` }>
+          { header }
         </span>
 
-        <span className={`d-none d-lg-block`}>
-          {` of ${isOfferRecord ? ` offer:` : ` card:`}`}
+        <span className={ `d-none d-lg-block` }>
+          { ` of ${ isOfferRecord ? ` offer:` : ` card:` }` }
         </span>
 
       </Col>
 
-      <Col xs={7}
-           md={8}
-           className={`${!isOfferRecord && `text-decoration-underline`} text-truncate text-${theme} btn-pointer`}
-           onClick={onClick}>
-        {message}
+      <Col xs={ 8 }
+           md={ 9 }
+           className={ `${ !isOfferRecord && `text-decoration-underline` } text-truncate text-${ theme } btn-pointer` }
+           onClick={ onClick }>
+        { message }
       </Col>
 
-      <Col xs={2}
-           md={1}
-           className={`text-danger d-flex justify-content-center align-items-center`}>
-        <Trash3Fill onClick={deleteRecord} className={`btn-pointer`}/>
+      <Col xs={ 2 }
+           md={ 1 }
+           className={ `text-danger d-flex justify-content-center align-items-center` }>
+        <Trash3Fill onClick={ deleteRecord } className={ `btn-pointer` }/>
       </Col>
 
     </Row>

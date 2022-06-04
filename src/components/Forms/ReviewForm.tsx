@@ -1,8 +1,9 @@
-import React, {Dispatch, FC, SetStateAction} from 'react';
-import {Button, FloatingLabel, Form, Modal} from "react-bootstrap";
+import React, { FC, SetStateAction} from 'react';
+import {Button, FloatingLabel, Form as FormBoot, Modal} from "react-bootstrap";
 import StarRatings from "react-star-ratings";
-import {useFormikContext} from "formik";
+import {useFormikContext,Form} from "formik";
 import {ReviewModel} from "../../interfaces/models/ReviewModel";
+import SubmitButton from "../SubmitButton/SubmitButton";
 
 interface ReviewFormProps {
   userHasReview: boolean;
@@ -30,7 +31,7 @@ const ReviewForm:FC<ReviewFormProps> = ({userHasReview,setShowModal}) => {
         />
 
         <FloatingLabel controlId="floatingTextarea2" label="Review Opinion" className={`bg-dark w-80`}>
-          <Form.Control
+          <FormBoot.Control
             name={`opinion`}
             as="textarea"
             className={`mh-500px mnh-200px bg-dark text-light`}
@@ -50,14 +51,13 @@ const ReviewForm:FC<ReviewFormProps> = ({userHasReview,setShowModal}) => {
           Cancel
         </Button>
 
-        <Button
+        <SubmitButton
           variant={`outline-${userHasReview ? `success` : `info`}`}
-          type={"submit"}
         >
           {
             userHasReview ? `Update` : `Save`
           }
-        </Button>
+        </SubmitButton>
 
       </Modal.Footer>
 

@@ -4,7 +4,6 @@ export interface ReviewModel {
   opinion: string;
   score: number;
   username?: string;
-  avatar?: string;
   date: string;
   censored: boolean;
   userId?: string;

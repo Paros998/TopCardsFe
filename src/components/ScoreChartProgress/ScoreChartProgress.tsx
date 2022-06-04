@@ -1,37 +1,31 @@
-import React, {FC} from 'react';
-import {ReviewModel} from "../../interfaces/models/ReviewModel";
-import {Col} from "react-bootstrap";
+import React, { FC } from 'react';
+import { Col } from "react-bootstrap";
 import ScoreProgress from "./ScoreProgress";
+import { ScoreChartModel } from "../../interfaces/models/ScoreChartModel";
 
 interface ScoreChartProgressProps {
-  reviews: ReviewModel[] | [];
-  xs:number;
+  chart: ScoreChartModel;
+  xs: number;
 }
 
-function countScore(reviews: ReviewModel[], score: number): number {
+const ScoreChartProgress: FC<ScoreChartProgressProps> = ( { chart, xs } ) => {
 
-  return reviews.filter(review => review.score === score).length;
-
-}
-
-const ScoreChartProgress: FC<ScoreChartProgressProps> = ({reviews,xs}) => {
-
-  const count = reviews.length;
+  const { totalCount, count } = chart || { totalCount: 0, count: [ 0, 0, 0, 0, 0, 0 ] };
 
   return (
-    <Col xs={xs} className={`vstack align-items-center justify-content-center`}>
+    <Col xs={ xs } className={ `vstack align-items-center justify-content-center` }>
 
-      <ScoreProgress score={5} totalCount={count} count={countScore(reviews,5)}/>
+      <ScoreProgress score={ 5 } totalCount={ totalCount } count={ count[ 5 ] }/>
 
-      <ScoreProgress score={4} totalCount={count} count={countScore(reviews,4)}/>
+      <ScoreProgress score={ 4 } totalCount={ totalCount } count={ count[ 4 ] }/>
 
-      <ScoreProgress score={3} totalCount={count} count={countScore(reviews,3)}/>
+      <ScoreProgress score={ 3 } totalCount={ totalCount } count={ count[ 3 ] }/>
 
-      <ScoreProgress score={2} totalCount={count} count={countScore(reviews,2)}/>
+      <ScoreProgress score={ 2 } totalCount={ totalCount } count={ count[ 2 ] }/>
 
-      <ScoreProgress score={1} totalCount={count} count={countScore(reviews,1)}/>
+      <ScoreProgress score={ 1 } totalCount={ totalCount } count={ count[ 1 ] }/>
 
-      <ScoreProgress score={0} totalCount={count} count={countScore(reviews,0)}/>
+      <ScoreProgress score={ 0 } totalCount={ totalCount } count={ count[ 0 ] }/>
 
     </Col>
   );

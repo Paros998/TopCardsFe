@@ -22,7 +22,7 @@ const EditCard = () => {
 
   }
 
-  const card = DetailedCards.find(card => card.id === cardId)
+  const card = DetailedCards.find(card => card.cardId === cardId)
 
   if (!card)
     return (

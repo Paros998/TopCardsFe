@@ -1,9 +1,9 @@
 import React from 'react';
-import {useCurrentUser} from "../../contexts/UserContext/CurrentUserContext";
 import UnauthorizedNavBar from "./UnauthorizedNavBar";
 import {Roles} from "../../interfaces/enums/Roles";
 import ClientNavBar from "./ClientNavBar";
 import AdminNavBar from "./AdminNavBar";
+import { useCurrentUser } from "../../contexts/UserContext/UserContext";
 
 const TopNavbar = () => {
   const {role} = useCurrentUser();

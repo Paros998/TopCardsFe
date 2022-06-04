@@ -4,10 +4,7 @@ import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import {ToasterProps} from "./constants/ToasterProps";
 import Views from "./views/Views";
-import CurrentUserProvider from "./contexts/UserContext/CurrentUserContext";
-import {initAxios} from "./utils/initAxios";
-
-initAxios();
+import CurrentUserProvider from "./contexts/UserContext/UserContext";
 
 function App() {
   return (

@@ -1,10 +1,12 @@
 export interface FilterCardsFormikValues {
-  manufacturers:string[];
-  technology:string[];
-  memory:string[];
-  memoryType:string[];
-  outputsType:string[];
-  memoryBus:string[];
-  availableLocal:boolean;
-  availableOnline:boolean;
+  manufacturer: string[] | string;
+  technology: string[] | string;
+  memory: string[] | string;
+  memoryType: string[] | string;
+  outputsType: string[] | string;
+  memoryBus: string[] | string;
+  availableLocal: boolean;
+  availableOnline: boolean;
+  unavailableLocal: boolean;
+  unavailableOnline: boolean;
 }

@@ -1,17 +1,48 @@
-import React from 'react';
-import {UserHistory} from "../../../constants/UserHistory/UserHistory";
-import HistoryRecord from "../../History/HistoryRecord";
+import React, { useMemo, useState } from 'react';
+import Pagination from "@mui/material/Pagination";
+import { useFetchData } from "../../../hooks/useFetchData";
+import { PageRequest } from "../../../interfaces/PageRequest";
+import { useCurrentUser } from "../../../contexts/UserContext/UserContext";
+import HistoryRecords from "../../History/HistoryRecords";
+import { HistoryModel } from "../../../interfaces/models/HistoryModel";
+import { PageResponse } from "../../../interfaces/PageResponse";
 
 const HistoryCard = () => {
+
+  const [ page, setPage ] = useState<number>( 1 );
+  const { currentUser } = useCurrentUser();
+
+  const params: PageRequest = useMemo( () => {
+    return {
+      page: page,
+      pageLimit: 12,
+      sortDir: "desc",
+      sortBy: "dateTime"
+    }
+  }, [ page ] )
+
+  const [ records, fetchRecords, isPending ] = useFetchData<PageResponse<HistoryModel>>( `/history/${ currentUser?.userId }`, { params } );
+
   return (
-    <div className={`w-100 h-85 align-self-center d-flex flex-column justify-content-start
-     align-items-center overflow-y-scroll thumb-slim thumb-info pb-3`}>
-      {
-        UserHistory.map((value, index) => <HistoryRecord record={value} key={index}/>)
-      }
-      {
-        UserHistory.map((value, index) => <HistoryRecord record={value} key={index}/>)
-      }
+    <div className={ `w-100 h-90 align-self-center d-flex flex-column pb-3` }>
+
+      <div
+        className={ `w-100 mt-3 h-90 justify-content-start d-flex flex-column align-items-center overflow-y-scroll thumb-slim thumb-info` }>
+
+        <HistoryRecords fetchRecords={ fetchRecords } records={ records?.content || [] } isPending={ isPending }/>
+
+      </div>
+
+      <div className={ `w-100 h-10 d-flex align-items-center justify-content-center ` }>
+        <Pagination
+          count={ records?.totalPages || 1 }
+          className={ `bg-light rounded-card-10` }
+          color={ "primary" }
+          page={ page }
+          onChange={ ( event, newPage ) => setPage( newPage ) }
+        />
+      </div>
+
     </div>
   );
 };

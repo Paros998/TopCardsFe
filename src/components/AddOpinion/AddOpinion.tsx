@@ -1,74 +1,95 @@
-import React, {FC, useEffect, useState} from 'react';
-import {Button, Col, Modal} from "react-bootstrap";
-import {CardDetailsModel} from "../../interfaces/models/CardDetailsModel";
-import {useCurrentUser} from "../../contexts/UserContext/CurrentUserContext";
-import {ReviewModel} from "../../interfaces/models/ReviewModel";
+import React, { FC, useEffect, useState } from 'react';
+import { Button, Col, Modal } from "react-bootstrap";
+import { CardDetailsModel } from "../../interfaces/models/CardDetailsModel";
+import { ReviewModel } from "../../interfaces/models/ReviewModel";
 import { Formik } from 'formik';
-import {ReviewInitialValues} from "../../constants/InitialValues/ReviewInitialValues";
+import { ReviewInitialValues } from "../../constants/InitialValues/ReviewInitialValues";
 import ReviewForm from "../Forms/ReviewForm";
+import { useCurrentUser } from "../../contexts/UserContext/UserContext";
+import { toast } from "react-toastify";
+import Axios from "axios";
 
 interface AddOpinionProps {
-  reviews: ReviewModel[] | [];
+  review: ReviewModel | null;
+  fetchReviews: () => Promise<void>;
   card: CardDetailsModel;
-  xs:number;
-  render: boolean;
+  xs: number;
 }
 
-const AddOpinion:FC<AddOpinionProps> = ({card,xs,render,reviews}) => {
+const AddOpinion: FC<AddOpinionProps> = ( { card, xs, review, fetchReviews } ) => {
 
-  const [showModal,setShowModal] = useState<boolean>(false);
+  const [ showModal, setShowModal ] = useState<boolean>( false );
 
-  const [reviewId,setReviewId] = useState<string>();
+  const [ reviewId, setReviewId ] = useState<string>();
 
-  const [userHasReview,setUserHasReview] = useState<boolean>(false);
+  const [ userHasReview, setUserHasReview ] = useState<boolean>( false );
 
-  const {currentUser} = useCurrentUser();
+  const { currentUser } = useCurrentUser();
 
-  useEffect(() => {
+  useEffect( () => {
 
-    reviews.forEach(review => {
-
-      if(review.userId === currentUser?.userId){
-        setUserHasReview(true);
-        setReviewId(review.id);
-      }
-
-    })
-
-  },[reviews]);
-
-  const onSubmit = (values: ReviewModel) => {
-
-    if(!userHasReview){
-      values.userId = currentUser?.userId;
-      values.avatar = currentUser?.avatarFile;
-      values.username = currentUser?.username;
-      values.cardId = card.id;
+    if ( review !== null ) {
+      setUserHasReview( true );
+      setReviewId( review?.id );
     }
 
-    console.log(values)
+
+  }, [ review ] );
+
+  const onSubmit = async ( values: ReviewModel ) => {
+
+    if ( !userHasReview ) {
+      values.userId = currentUser?.userId;
+      values.cardId = card.cardId;
+    }
+
+    try {
+
+      if ( !userHasReview )
+        await Axios.post( `/reviews`, values );
+
+      else
+        await Axios.put( `/reviews`, values );
+
+      setShowModal( false );
+
+      if ( !userHasReview )
+        toast.success( `Review has been added successfully` );
+
+      else
+        toast.info( `Review has been updated successfully` );
+
+      await fetchReviews();
+
+    } catch ( e: any ) {
+
+      toast.error( e );
+
+    }
+
+
   }
 
   return (
-    <Col xs={xs} className={`bg-light rounded-card-10 border border-2
-     border-${userHasReview ? `success` : `info`} vstack align-items-center justify-content-center ${render ? `d-flex` : `d-none` }`}>
+    <Col xs={ xs } className={ `bg-light rounded-card-10 border border-2
+     border-${ userHasReview ? `success` : `info` } vstack align-items-center justify-content-center d-flex ` }>
 
-      <span className={`text-dark d-flex fw-bold justify-content-center`}>
+      <span className={ `text-dark d-flex fw-bold justify-content-center` }>
         {
           userHasReview ? `You already reviewed this product` : `Do you have this product?`
         }
       </span>
 
-      <span className={`text-secondary text-wrap text-middle `}>
+      <span className={ `text-secondary text-wrap text-middle ` }>
         {
-          userHasReview ? `Want to change something?` : `Rate ${card.title}`
+          userHasReview ? `Want to change something?` : `Rate ${ card.title }`
         }
       </span>
 
       <Button
-        className={`rounded-pill w-60 text-light my-1`}
-        variant={`${userHasReview ? `success` : `info`}`}
-        onClick={() => setShowModal(true)}
+        className={ `rounded-pill w-60 text-light my-1` }
+        variant={ `${ userHasReview ? `success` : `info` }` }
+        onClick={ () => setShowModal( true ) }
       >
         {
           userHasReview ? `Change your opinion` : `Add your opinion`
@@ -76,31 +97,31 @@ const AddOpinion:FC<AddOpinionProps> = ({card,xs,render,reviews}) => {
       </Button>
 
       <Modal
-        show={showModal}
-        onHide={() => setShowModal(false)}
+        show={ showModal }
+        onHide={ () => setShowModal( false ) }
         backdrop="static"
-        keyboard={false}
-        size={`lg`}
+        keyboard={ false }
+        size={ `lg` }
         centered
-        contentClassName={`bg-dark text-light rounded-card-10 border border-1 border-light`}
+        contentClassName={ `bg-dark text-light rounded-card-10 border border-1 border-light` }
       >
         <Modal.Header closeButton>
 
-          <Modal.Title className={`fs-5`}>
+          <Modal.Title className={ `fs-5` }>
             {
               userHasReview
                 ?
-                <div className={`d-flex align-items-center`}>
+                <div className={ `d-flex align-items-center` }>
                   Review Id :
-                  <span className={`text-success ms-1`}>
-                    {reviewId}
+                  <span className={ `text-success ms-1` }>
+                    { reviewId }
                   </span>
                 </div>
                 :
-                <div className={`d-flex align-items-center`}>
+                <div className={ `d-flex align-items-center` }>
                   Add opinion of card :
-                  <span className={`text-info fw-light`}>
-                  {card.title}
+                  <span className={ `text-info fw-light` }>
+                  { card.title }
                   </span>
                 </div>
             }
@@ -108,12 +129,12 @@ const AddOpinion:FC<AddOpinionProps> = ({card,xs,render,reviews}) => {
 
         </Modal.Header>
 
-          <Formik<ReviewModel>
-            initialValues={userHasReview ? reviews.find(review => review.id === reviewId) as ReviewModel : ReviewInitialValues}
-            onSubmit={onSubmit}
-          >
-            <ReviewForm userHasReview={userHasReview} setShowModal={setShowModal}/>
-          </Formik>
+        <Formik<ReviewModel>
+          initialValues={ userHasReview ? review as ReviewModel : ReviewInitialValues }
+          onSubmit={ onSubmit }
+        >
+          <ReviewForm userHasReview={ userHasReview } setShowModal={ setShowModal }/>
+        </Formik>
 
       </Modal>
 

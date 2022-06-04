@@ -1,8 +1,8 @@
 export interface UserNotificationsOptionsFormikValues {
-  newCardAdded: boolean;
-  followedAvailableLocal: boolean;
-  followedAvailableOnline: boolean;
-  followedNewReview: boolean;
-  followedOnlinePriceLowest: boolean;
+  isNewCardAdded: boolean;
+  hasFollowedCardBecomeAvailableLocally: boolean;
+  hasFollowedCardBecomeAvailableOnline: boolean;
+  hasFollowedCardNewReview: boolean;
+  hasFollowedCardLowerOnlinePrice: boolean;
 
 }

@@ -2,9 +2,9 @@ import React, {FC} from 'react';
 import {BasicCardModel} from "../../interfaces/models/BasicCardModel";
 import ProductPhoto from "../../assets/images/product_avatar.png";
 import {useNavigate} from "react-router-dom";
-import {useCurrentUser} from "../../contexts/UserContext/CurrentUserContext";
 import {Roles} from "../../interfaces/enums/Roles";
 import FollowStar from "../FollowedStar/FollowStar";
+import { useCurrentUser } from "../../contexts/UserContext/UserContext";
 
 interface BasicCardInfoProps {
   card: BasicCardModel;
@@ -50,13 +50,13 @@ const BasicCardInfo: FC<BasicCardInfoProps> = ({
 
   const local = <span>
     {availableLocal
-      ? ` locally in ${localStoresNumber} ${localStoresNumber > 1 ? `stores` : `store`} at lowest $${localStoresLowestPrice}`
+      ? ` locally in ${localStoresNumber} ${localStoresNumber > 1 ? `stores` : `store`} at lowest ${localStoresLowestPrice} PLN`
       : ` in local stores :(`}
   </span>
 
   const online = <span>
     {availableOnline
-      ? ` online in ${onlineStoresNumber} ${onlineStoresNumber > 1 ? `stores` : `store`} at lowest $${onlineStoresLowestPrice}`
+      ? ` online in ${onlineStoresNumber} ${onlineStoresNumber > 1 ? `stores` : `store`} at lowest ${onlineStoresLowestPrice} PLN`
       : ` in online stores :(`}
   </span>
 
@@ -88,7 +88,7 @@ const BasicCardInfo: FC<BasicCardInfoProps> = ({
         <div className={`w-50 d-flex justify-content-center`}>
           <img src={cardPhoto ? cardPhoto : ProductPhoto} alt={``}
                style={{width: photoSize, height: photoSize}}
-               className={`bg-dark rounded-circle`}/>
+               className={`bg-dark rounded-circle border border-1 border-light`}/>
         </div>
 
         <div className={`w-50 d-flex flex-column justify-content-center me-0 me-md-2 `}>

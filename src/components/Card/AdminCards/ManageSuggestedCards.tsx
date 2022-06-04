@@ -1,48 +1,53 @@
-import React, {useEffect, useState} from 'react';
-import {BasicCards} from "../../../constants/CardsModels/BasicCards";
+import React, { useEffect, useState } from 'react';
+import { BasicCards } from "../../../constants/CardsModels/BasicCards";
 import AdminSuggestedCardInfo from "../../GraphicCard/AdminSuggestedCardInfo";
-import {Button, Col, Row} from "react-bootstrap";
-import {SuggestedCardsIds} from "../../../constants/CardsModels/SuggestedCardsIds";
-import {BasicCardModel} from "../../../interfaces/models/BasicCardModel";
-import {CaretDownSquare, CaretLeftSquare, CaretRightSquare, CaretUpSquare} from "react-bootstrap-icons";
+import { Button, Col, Row } from "react-bootstrap";
+import { SuggestedCardsIds } from "../../../constants/CardsModels/SuggestedCardsIds";
+import { BasicCardModel } from "../../../interfaces/models/BasicCardModel";
+import { CaretDownSquare, CaretLeftSquare, CaretRightSquare, CaretUpSquare } from "react-bootstrap-icons";
+import { useFetchData } from "../../../hooks/useFetchData";
 
-function mapNotSuggested(suggested: string[]) {
+function mapNotSuggested( suggested: string[] ) {
   let notSuggested: string[] = [];
-  BasicCards.map(card => notSuggested.push(card.id));
-  return notSuggested.filter(id => !suggested.includes(id));
+  BasicCards.map( card => notSuggested.push( card.id ) );
+  return notSuggested.filter( id => !suggested.includes( id ) );
 }
 
-function mapSuggested(suggestedCardIds: string[]){
+function mapSuggested( suggestedCardIds: string[] ) {
   let suggested: string[] = [];
-  suggestedCardIds.map(id => suggested.push(id));
+  suggestedCardIds.map( id => suggested.push( id ) );
   return suggested;
 }
 
 const ManageSuggestedCards = () => {
 
-  const [changed, setChanged] = useState<boolean>(false);
-  const [suggested, setSuggested] = useState<string[]>(mapSuggested(SuggestedCardsIds));
-  const [notSuggested, setNotSuggested] = useState<string[]>(mapNotSuggested(SuggestedCardsIds));
+  const [ initialSuggestedCards, fetchSuggestedCards, isPendingSuggested ] = useFetchData<BasicCardModel[]>( '/cards/suggested' );
 
-  const onClick = (id: string, direction: `toSuggested` | `toNotSuggested`) => {
+  const [ initialNotSuggestedCards, fetchNotSuggestedCards, isPendingNotSuggested ] = useFetchData<BasicCardModel[]>( '/cards/not-suggested' );
 
-    setChanged(true);
+  const [ changed, setChanged ] = useState<boolean>( false );
+  const [ suggested, setSuggested ] = useState<string[]>( mapSuggested( SuggestedCardsIds ) );
+  const [ notSuggested, setNotSuggested ] = useState<string[]>( mapNotSuggested( SuggestedCardsIds ) );
 
-    if (direction === "toNotSuggested") {
-      setSuggested(suggested.filter(sId => sId !== id))
-      notSuggested.push(id);
-      setNotSuggested(notSuggested);
+  const onClick = ( id: string, direction: `toSuggested` | `toNotSuggested` ) => {
+
+    setChanged( true );
+
+    if ( direction === "toNotSuggested" ) {
+      setSuggested( suggested.filter( sId => sId !== id ) )
+      notSuggested.push( id );
+      setNotSuggested( notSuggested );
     } else {
-      setNotSuggested(notSuggested.filter(sId => sId !== id))
-      suggested.push(id);
-      setSuggested(suggested);
+      setNotSuggested( notSuggested.filter( sId => sId !== id ) )
+      suggested.push( id );
+      setSuggested( suggested );
     }
   }
 
   const reset = () => {
-    setSuggested(mapSuggested(SuggestedCardsIds));
-    setNotSuggested(mapNotSuggested(SuggestedCardsIds));
-    setChanged(false);
+    setSuggested( mapSuggested( SuggestedCardsIds ) );
+    setNotSuggested( mapNotSuggested( SuggestedCardsIds ) );
+    setChanged( false );
   }
 
   const rowClass = `w-50 overflow-y-scroll thumb-slim m-1 p-2 d-none d-lg-flex align-items-center`;
@@ -51,25 +56,25 @@ const ManageSuggestedCards = () => {
 
   return (
     <>
-      <div className={`w-100 d-flex flex-column flex-lg-row h-75 mt-2 `}>
+      <div className={ `w-100 d-flex flex-column flex-lg-row h-75 mt-2 ` }>
 
-        <Row className={rowClass}>
+        <Row className={ rowClass }>
           {
-            suggested.map((id, index) =>
+            suggested.map( ( id, index ) =>
               <>
-                <Col xs={10}
-                     className={`h-25 my-1 me-0`}
-                     key={index}>
-                  <AdminSuggestedCardInfo card={BasicCards.find(card => card.id === id) as BasicCardModel}
-                                          variant={`suggested`}
+                <Col xs={ 10 }
+                     className={ `h-25 my-1 me-0` }
+                     key={ index }>
+                  <AdminSuggestedCardInfo card={ BasicCards.find( card => card.id === id ) as BasicCardModel }
+                                          variant={ `suggested` }
                   />
                 </Col>
 
-                <Col xs={2}
-                     className={`d-flex align-items-center justify-content-center fs-1`}>
+                <Col xs={ 2 }
+                     className={ `d-flex align-items-center justify-content-center fs-1` }>
                   <CaretRightSquare
-                    className={`text-light btn-pointer managed-carrot-light`}
-                    onClick={() => onClick(id, "toNotSuggested")}
+                    className={ `text-light btn-pointer managed-carrot-light` }
+                    onClick={ () => onClick( id, "toNotSuggested" ) }
                   />
                 </Col>
               </>
@@ -77,23 +82,23 @@ const ManageSuggestedCards = () => {
           }
         </Row>
 
-        <Row className={`${rowClass} thumb-light`}>
+        <Row className={ `${ rowClass } thumb-light` }>
           {
-            notSuggested.map((id, index) =>
+            notSuggested.map( ( id, index ) =>
               <>
-                <Col xs={2}
-                     className={`d-flex align-items-center justify-content-center fs-1`}>
+                <Col xs={ 2 }
+                     className={ `d-flex align-items-center justify-content-center fs-1` }>
                   <CaretLeftSquare
-                    className={`text-primary btn-pointer managed-carrot-primary`}
-                    onClick={() => onClick(id, "toSuggested")}
+                    className={ `text-primary btn-pointer managed-carrot-primary` }
+                    onClick={ () => onClick( id, "toSuggested" ) }
                   />
                 </Col>
 
-                <Col xs={10}
-                     className={`h-25 my-1`}
-                     key={index}>
-                  <AdminSuggestedCardInfo card={BasicCards.find(card => card.id === id) as BasicCardModel}
-                                          variant={`notSuggested`}
+                <Col xs={ 10 }
+                     className={ `h-25 my-1` }
+                     key={ index }>
+                  <AdminSuggestedCardInfo card={ BasicCards.find( card => card.id === id ) as BasicCardModel }
+                                          variant={ `notSuggested` }
                   />
                 </Col>
               </>
@@ -101,23 +106,23 @@ const ManageSuggestedCards = () => {
           }
         </Row>
 
-        <Row className={rowClassSmall}>
+        <Row className={ rowClassSmall }>
           {
-            suggested.map((id, index) =>
+            suggested.map( ( id, index ) =>
               <>
-                <Col xs={10}
-                     className={`h-25 my-1`}
-                     key={index}>
-                  <AdminSuggestedCardInfo card={BasicCards.find(card => card.id === id) as BasicCardModel}
-                                          variant={`suggested`}
+                <Col xs={ 10 }
+                     className={ `h-25 my-1` }
+                     key={ index }>
+                  <AdminSuggestedCardInfo card={ BasicCards.find( card => card.id === id ) as BasicCardModel }
+                                          variant={ `suggested` }
                   />
                 </Col>
 
-                <Col xs={2}
-                     className={`d-flex align-items-center justify-content-center fs-1`}>
+                <Col xs={ 2 }
+                     className={ `d-flex align-items-center justify-content-center fs-1` }>
                   <CaretDownSquare
-                    className={`text-light btn-pointer managed-carrot-light`}
-                    onClick={() => onClick(id, "toNotSuggested")}
+                    className={ `text-light btn-pointer managed-carrot-light` }
+                    onClick={ () => onClick( id, "toNotSuggested" ) }
                   />
                 </Col>
               </>
@@ -125,23 +130,23 @@ const ManageSuggestedCards = () => {
           }
         </Row>
 
-        <Row className={`${rowClassSmall} thumb-light`}>
+        <Row className={ `${ rowClassSmall } thumb-light` }>
           {
-            notSuggested.map((id, index) =>
+            notSuggested.map( ( id, index ) =>
               <>
-                <Col xs={10}
-                     className={`h-25 my-1`}
-                     key={index}>
-                  <AdminSuggestedCardInfo card={BasicCards.find(card => card.id === id) as BasicCardModel}
-                                          variant={`notSuggested`}
+                <Col xs={ 10 }
+                     className={ `h-25 my-1` }
+                     key={ index }>
+                  <AdminSuggestedCardInfo card={ BasicCards.find( card => card.id === id ) as BasicCardModel }
+                                          variant={ `notSuggested` }
                   />
                 </Col>
 
-                <Col xs={2}
-                     className={`d-flex align-items-center justify-content-center fs-1`}>
+                <Col xs={ 2 }
+                     className={ `d-flex align-items-center justify-content-center fs-1` }>
                   <CaretUpSquare
-                    className={`text-primary btn-pointer managed-carrot-primary`}
-                    onClick={() => onClick(id, "toSuggested")}
+                    className={ `text-primary btn-pointer managed-carrot-primary` }
+                    onClick={ () => onClick( id, "toSuggested" ) }
                   />
                 </Col>
               </>
@@ -151,21 +156,21 @@ const ManageSuggestedCards = () => {
 
 
       </div>
-      <Row className={`w-100 justify-content-center align-items-center h-10 ${changed ? `d-flex` : `d-none`}`}>
+      <Row className={ `w-100 justify-content-center align-items-center h-10 ${ changed ? `d-flex` : `d-none` }` }>
         <Button
-          className={`${buttonClass}`}
-          variant={`outline-light`}
-          type={`submit`}
+          className={ `${ buttonClass }` }
+          variant={ `outline-light` }
+          type={ `submit` }
 
         >
           Save Changes
         </Button>
 
         <Button
-          className={`${buttonClass}`}
-          variant={`outline-primary`}
-          type={`reset`}
-          onClick={reset}
+          className={ `${ buttonClass }` }
+          variant={ `outline-primary` }
+          type={ `reset` }
+          onClick={ reset }
         >
           Discard Changes
         </Button>

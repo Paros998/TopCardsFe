@@ -20,7 +20,7 @@ const EditDeleteCards:FC<EditDeleteCardsProps> = ({index,card}) => {
   const colClassName = `d-flex justify-content-center h-100 align-items-center`
 
   return (
-    <Row key={index} className={`bg-${index % 2 === 0 ? `light` : `secondary-light`} text-dark rounded-pill my-2 h-15`}>
+    <Row key={index} className={`bg-${index % 2 === 0 ? `light` : `secondary-light`} text-dark rounded-pill my-2 h-15 mx-2`}>
 
       <Col
         xs={2}

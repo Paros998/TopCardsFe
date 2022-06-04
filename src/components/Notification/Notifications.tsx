@@ -1,15 +1,16 @@
-import React from 'react';
-import {NotificationsArray} from "../../constants/Notifications/NotificationsArray";
+import React, { FC } from 'react';
+import { NotificationsArray } from "../../constants/Notifications/NotificationsArray";
 import BasicNotification from "./BasicNotification";
+import { NotificationModel } from "../../interfaces/models/NotificationModel";
 
-const Notifications = () => {
+const Notifications: FC<{ notifications: NotificationModel[] | [] }> = ( { notifications } ) => {
 
   return (
     <>
       {
-        NotificationsArray.map((value, index) => {
-          return <BasicNotification notification={value} key={index}/>
-        })
+        notifications.map( ( value, index ) => {
+          return <BasicNotification notification={ value } key={ index }/>
+        } )
       }
     </>
   );

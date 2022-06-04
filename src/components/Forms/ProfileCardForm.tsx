@@ -1,11 +1,14 @@
-import React, {ChangeEvent, useRef, useState} from 'react';
-import {Button, Col, Form as FormBoot, Row} from "react-bootstrap";
-import {Form, FormikState, useFormikContext} from "formik";
-import {RegisterFormikValues} from "../../interfaces/formik/RegisterFormikValues";
+import React, { useState } from 'react';
+import { Button, Col, Form as FormBoot, Row } from "react-bootstrap";
+import { Form, useFormikContext } from "formik";
+import { ProfileCardFormikValues } from "../../interfaces/formik/ProfileCardFormikValues";
+import { useCurrentUser } from "../../contexts/UserContext/UserContext";
+import EditablePicture from "../Inputs/EditablePicture/EditablePictures";
+import { useFetchData } from "../../hooks/useFetchData";
 
 const ProfileCardForm = () => {
 
-  const [editable, setEditable] = useState<boolean>(false);
+  const [ editable, setEditable ] = useState<boolean>( false );
 
   const hStackClass = `hstack w-100 my-1 justify-content-center `;
   const colClass = `text-secondary`;
@@ -13,129 +16,121 @@ const ProfileCardForm = () => {
   const buttonClass = `rounded-pill mx-2 w-15 editable-button`;
   const formClassName = `profile-form-control w-100 rounded-pill bg-dark text-light`;
 
-  const {handleChange, errors, touched, values, resetForm, setFieldValue} = useFormikContext<RegisterFormikValues>();
+  const {
+    handleChange,
+    errors,
+    touched,
+    values,
+    initialValues
+  } = useFormikContext<ProfileCardFormikValues>();
 
-  const handleFileUpload = (e: ChangeEvent<HTMLElement>) => {
-    const file = (e.target as HTMLInputElement).files![0];
+  const { currentUser } = useCurrentUser();
 
-    if (file !== undefined) {
-      setFieldValue(`avatarFile`, URL.createObjectURL(file));
-    }
-  };
+  const [ userPhoto, fetchPicture ] = useFetchData<string>( `/users/${ currentUser?.userId }/avatar` );
 
-  const fileRef = useRef<HTMLInputElement>(null);
+  const urlForAvatar = `/users/${ currentUser?.userId }/avatar`;
+
+  const reset = () => {
+    values.username = initialValues.username;
+    values.email = initialValues.email;
+  }
 
   return (
-    <Form className={`${hStackClass} flex-column h-80 justify-content-around mt-3 mt-sm-0 profile-form`}>
-      <div className={`${hStackClass} top-profile-stack`}>
+    <Form className={ `${ hStackClass } flex-column h-80 justify-content-around mt-3 mt-sm-0 profile-form` }>
+      <div className={ `${ hStackClass } top-profile-stack` }>
 
-        <div className={`w-50 d-flex justify-content-end img-profile-input`}>
+        <div className={ `w-50 d-flex justify-content-end img-profile-input` }>
 
-          <FormBoot.Control
-            name={`avatarFile`}
-            type={`file`}
-            className={`d-none`}
-            onChange={handleFileUpload}
-            ref={fileRef}
-          />
+          {
+            editable
 
-          <img src={values.avatarFile}
-               className={`${editable && `rounded-circle btn-pointer`} border-2 border-light border profile-avatar`}
-               alt={`Img`}
-               style={{width: "10rem", height: "10rem"}}
-               onClick={() => editable ? fileRef?.current?.click() : null}
-          />
+              ? <EditablePicture
+                src={ userPhoto }
+                photoWrapperClass={ `d-flex justify-content-end` }
+                containerClass={ `w-30 d-flex justify-content-end` }
+                photoClass=' border-2 border-light border '
+                reloadData={ fetchPicture }
+                urlToPost={ urlForAvatar }
+                urlToUpdate={ urlForAvatar }
+                urlToDelete={ urlForAvatar }
+              />
 
+              : <img src={ userPhoto }
+                     className={ ` border-2 border-light border profile-avatar` }
+                     alt={ `Img` }
+                     style={ { width: "10rem", height: "10rem" } }
+              />
+          }
         </div>
 
-        <div className={`d-flex flex-md-column flex-wrap gap-3 ms-5 fs-4 fw-light w-50 profile-inputs`}>
-
-          <FormBoot.Group as={Row} className={`w-100`}>
-            <FormBoot.Label className={colClass}>
+        <div className={ `d-flex flex-md-column flex-wrap gap-3 ms-5 fs-4 fw-light w-50 profile-inputs` }>
+          {/*//TODO fix reset*/}
+          <FormBoot.Group as={ Row } className={ `w-100` }>
+            <FormBoot.Label className={ colClass }>
               Email
             </FormBoot.Label>
-            <Col className={`pe-0`}>
+            <Col className={ `pe-0` }>
               <FormBoot.Control
-                className={formClassName}
-                type={`text`}
-                name={`email`}
-                defaultValue={values.email}
-                onChange={handleChange}
-                isInvalid={touched.email && !!errors.email}
-                isValid={touched.email && !errors.email}
-                disabled={!editable}
+                className={ formClassName }
+                type={ `text` }
+                name={ `email` }
+                defaultValue={ values.email }
+                onChange={ handleChange }
+                isInvalid={ touched.email && !!errors.email }
+                isValid={ touched.email && !errors.email }
+                disabled={ !editable }
               />
             </Col>
-            <Col xs={1} md={4}/>
+            <Col xs={ 1 } md={ 4 }/>
           </FormBoot.Group>
 
-          <FormBoot.Group as={Row} className={`w-100`}>
-            <FormBoot.Label className={colClass}>
+          <FormBoot.Group as={ Row } className={ `w-100` }>
+            <FormBoot.Label className={ colClass }>
               Username
             </FormBoot.Label>
-            <Col className={`pe-0`}>
+            <Col className={ `pe-0` }>
               <FormBoot.Control
-                className={formClassName}
-                type={`text`}
-                name={`username`}
-                defaultValue={values.username}
-                onChange={handleChange}
-                isInvalid={touched.username && !!errors.username}
-                isValid={touched.username && !errors.username}
-                disabled={!editable}
+                className={ formClassName }
+                type={ `text` }
+                name={ `username` }
+                defaultValue={ values.username }
+                onChange={ handleChange }
+                isInvalid={ touched.username && !!errors.username }
+                isValid={ touched.username && !errors.username }
+                disabled={ !editable }
               />
             </Col>
-            <Col xs={1} md={4}/>
-          </FormBoot.Group>
-
-          <FormBoot.Group as={Row} className={`w-100`}>
-            <FormBoot.Label className={colClass}>
-              Password
-            </FormBoot.Label>
-            <Col className={`pe-0`}>
-              <FormBoot.Control
-                className={formClassName}
-                type={`password`}
-                name={`password`}
-                defaultValue={values.password}
-                onChange={handleChange}
-                isInvalid={touched.password && !!errors.password}
-                isValid={touched.password && !errors.password}
-                disabled={!editable}
-              />
-            </Col>
-            <Col xs={1} md={4}/>
+            <Col xs={ 1 } md={ 4 }/>
           </FormBoot.Group>
 
         </div>
 
       </div>
 
-      <div className={`${hStackClass} `}>
+      <div className={ `${ hStackClass } ` }>
         <Button
-          className={`${buttonClass} ${!editable ? `d-block` : `d-none`}`}
-          variant={`outline-info`}
-          onClick={() => setEditable(!editable)}
+          className={ `${ buttonClass } ${ !editable ? `d-block` : `d-none` }` }
+          variant={ `outline-info` }
+          onClick={ () => setEditable( !editable ) }
         >
           Toggle Edit
         </Button>
 
         <Button
-          className={`${buttonClass} ${editable ? `d-block` : `d-none`}`}
-          variant={`outline-secondary`}
-          type={`submit`}
+          className={ `${ buttonClass } ${ editable ? `d-block` : `d-none` }` }
+          variant={ `outline-secondary` }
+          type={ `submit` }
         >
           Save Changes
         </Button>
 
         <Button
-          className={`${buttonClass} ${editable ? `d-block` : `d-none`}`}
-          variant={`outline-danger`}
-          type={`reset`}
-          onClick={() => {
-            setEditable(!editable);
-            resetForm();
-          }}
+          className={ `${ buttonClass } ${ editable ? `d-block` : `d-none` }` }
+          variant={ `outline-danger` }
+          type={ `reset` }
+          onClick={ () => {
+            setEditable( !editable );
+          } }
         >
           Discard Changes
         </Button>

@@ -20,6 +20,7 @@ const RegisterForm = () => {
     if (file !== undefined) {
       setFieldValue(`avatarFile`, URL.createObjectURL(file));
     }
+
   };
 
   const fileRef = useRef<HTMLInputElement>(null);
@@ -87,7 +88,7 @@ const RegisterForm = () => {
 
             <div className={formLabel}>
               Photo
-              <Upload className={`ms-3`}/>
+              <Upload className={`ms-3 mb-1` }/>
             </div>
 
             <FormBoot.Control
@@ -99,7 +100,7 @@ const RegisterForm = () => {
             />
 
             <img src={values.avatarFile}
-                 className={`position-relative left-10 bg-dark text-light border-1 border-light rounded-circle btn-pointer`}
+                 className={`position-relative left-10 bg-dark text-light border border-1 border-light rounded-circle btn-pointer`}
                  alt={``}
                  style={{width: "4rem", height: "4rem"}}
                  onClick={() => fileRef?.current?.click()}

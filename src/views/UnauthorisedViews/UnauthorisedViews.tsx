@@ -1,19 +1,19 @@
 import React from 'react';
 import NotFound from "../../components/NotFound/NotFound";
-import {Route, Routes} from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Login from "../../sites/Login/Login";
 import Register from "../../sites/Register/Register";
 import CardDetails from "../../sites/Cards/CardDetails";
-import Sandbox from "../../components/Sandbox";
 import HomePage from "../../sites/HomePage/HomePage";
+import HelpPage from "../../sites/Help/HelpPage";
 
 const UnauthorisedViews = () => {
   return (
       <Routes>
 
         <Route
-          path='/sandbox'
-          element={<Sandbox/>}
+          path='/help'
+          element={<HelpPage/>}
         />
 
         <Route

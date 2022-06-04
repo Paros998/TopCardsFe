@@ -1,13 +1,15 @@
 import {FilterCardsFormikValues} from "../../interfaces/formik/FilterCardsFormikValues";
 
 export const FilterCardsInitialValues: FilterCardsFormikValues = {
-  availableLocal: false,
-  availableOnline: false,
+  unavailableLocal: true,
+  unavailableOnline: true,
+  availableLocal: true,
+  availableOnline: true,
   memory:[],
   memoryBus: [],
   memoryType: [],
   outputsType: [],
-  manufacturers: [],
+  manufacturer: [],
   technology: []
 
 }

@@ -4,14 +4,14 @@ import {CardDetailsModel} from "../../interfaces/models/CardDetailsModel";
 export const CardInitialValues : CardDetailsModel = {
   producentSite: "",
   coreClock: "",
-  clockMemory: "",
+  clockMemory: 0,
   cooling: "",
-  cuda: "",
-  memory: "",
+  cuda: 0,
+  memoryAmount: "",
   powerConnector: "",
-  powerConsumption: "",
+  powerConsumption: 0,
   producentCode: "",
-  recommendedPower: "",
+  recommendedPower: 0,
   rtxSupport: "",
   size: "",
   supportedLibraries: [''],
@@ -20,6 +20,8 @@ export const CardInitialValues : CardDetailsModel = {
   typeOfOutputs: [''],
   cardPhoto: CardPhoto,
   title: "",
-  memoryBus: ""
+  memoryBus: "",
+  technology: "",
+  manufacturer: "",
 
 }

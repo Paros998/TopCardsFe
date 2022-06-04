@@ -3,15 +3,16 @@ import {Route, Routes} from "react-router-dom";
 import CardDetails from "../../sites/Cards/CardDetails";
 import NotFound from "../../components/NotFound/NotFound";
 import HomePage from "../../sites/HomePage/HomePage";
-import {useCurrentUser} from "../../contexts/UserContext/CurrentUserContext";
 import Pending from "../../components/Pending/Pending";
 import Profile from "../../sites/User/Profile";
 import ObservedCards from "../../sites/User/ObservedCards";
 import History from "../../sites/User/History";
 import NotificationOptions from "../../sites/User/NotificationOptions";
+import { useCurrentUser } from "../../contexts/UserContext/UserContext";
+import HelpPage from "../../sites/Help/HelpPage";
 
 
-const ClientViews = () => {
+const ClientViews = () => { 
 
   const {isPending} = useCurrentUser();
 
@@ -24,6 +25,11 @@ const ClientViews = () => {
       <Route
         path='/'
         element={<HomePage/>}
+      />
+
+      <Route
+        path='/help'
+        element={<HelpPage/>}
       />
 
       <Route path={`/user`}

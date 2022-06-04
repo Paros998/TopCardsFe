@@ -1,11 +1,10 @@
-import {Roles} from "../enums/Roles";
+import { Roles } from "../enums/Roles";
 
 export interface UserModel {
   userId: string;
   username: string;
-  password: string;
   email: string;
-  appUserRole: Roles;
-  avatarFile:string;
-  blocked: boolean;
+  role: Roles;
+  isBlocked: boolean;
+  avatarFile: string;
 }

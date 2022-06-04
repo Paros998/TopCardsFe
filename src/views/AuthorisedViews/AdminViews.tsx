@@ -12,6 +12,7 @@ import ManageSuggested from "../../sites/Admin/ManageSuggested";
 import ManageUsers from "../../sites/Admin/ManageUsers";
 import NewCard from "../../sites/Cards/NewCard";
 import EditCard from "../../sites/Cards/EditCard";
+import HelpPage from "../../sites/Help/HelpPage";
 
 
 const AdminViews = () => {
@@ -21,6 +22,11 @@ const AdminViews = () => {
       <Route
         path='/'
         element={<HomePage/>}
+      />
+
+      <Route
+        path='/help'
+        element={<HelpPage/>}
       />
 
       <Route path={`/user`}
