@@ -26,9 +26,9 @@ const ProfileCardForm = () => {
 
   const { currentUser } = useCurrentUser();
 
-  const [ userPhoto, fetchPicture ] = useFetchData<string>( `/users/${ currentUser?.userId }/avatar` );
+  const [ userPhoto, fetchPicture ] = useFetchData<string>( `/users/avatar/${ currentUser?.userId }` );
 
-  const urlForAvatar = `/users/${ currentUser?.userId }/avatar`;
+  const urlForAvatar = `/users/avatar/${ currentUser?.userId }`;
 
   const reset = () => {
     values.username = initialValues.username;
@@ -64,7 +64,7 @@ const ProfileCardForm = () => {
         </div>
 
         <div className={ `d-flex flex-md-column flex-wrap gap-3 ms-5 fs-4 fw-light w-50 profile-inputs` }>
-          {/*//TODO fix reset*/}
+          {/*//TODO fix reset*/ }
           <FormBoot.Group as={ Row } className={ `w-100` }>
             <FormBoot.Label className={ colClass }>
               Email
@@ -109,24 +109,21 @@ const ProfileCardForm = () => {
 
       <div className={ `${ hStackClass } ` }>
         <Button
-          className={ `${ buttonClass } ${ !editable ? `d-block` : `d-none` }` }
-          variant={ `outline-info` }
+          className={ `${ buttonClass } ${ !editable ? `d-block` : `d-none` }  dark-info` }
           onClick={ () => setEditable( !editable ) }
         >
           Toggle Edit
         </Button>
 
         <Button
-          className={ `${ buttonClass } ${ editable ? `d-block` : `d-none` }` }
-          variant={ `outline-secondary` }
+          className={ `${ buttonClass } ${ editable ? `d-block` : `d-none` }  dark-light` }
           type={ `submit` }
         >
           Save Changes
         </Button>
 
         <Button
-          className={ `${ buttonClass } ${ editable ? `d-block` : `d-none` }` }
-          variant={ `outline-danger` }
+          className={ `${ buttonClass } ${ editable ? `d-block` : `d-none` }  dark-danger` }
           type={ `reset` }
           onClick={ () => {
             setEditable( !editable );

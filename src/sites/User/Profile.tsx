@@ -8,20 +8,20 @@ import UserCard from "../../components/Card/UserCard";
 
 const Profile = () => {
   return (
-    <>
+    <div className={'vh-100 vw-100'}>
       <TopNavbar/>
 
-      <MainContainer className={`bg-secondary-dark `}>
+      <MainContainer className={`bg-light `}>
 
         <UserCard>
           <UserNavBar/>
           <ProfileCard/>
         </UserCard>
 
+       <Footer/>
       </MainContainer>
 
-      <Footer/>
-    </>
+    </div>
   );
 };
 

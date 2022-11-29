@@ -5,33 +5,32 @@ import { useCurrentUser } from "../../contexts/UserContext/UserContext";
 import { useFetchData } from "../../hooks/useFetchData";
 import { toast } from "react-toastify";
 import Axios from "axios";
-import { Roles } from "../../interfaces/enums/Roles";
+import { ProductProps } from "../../interfaces/models/Product";
 
-interface FollowUnFollowCardProps {
-  cardId: string;
+interface FollowUnFollowProductProps extends ProductProps {
 }
 
-const FollowUnFollowCard: FC<FollowUnFollowCardProps> = ( { cardId } ) => {
+const FollowUnFollowProduct: FC<FollowUnFollowProductProps> = ( { productId } ) => {
 
   const { currentUser } = useCurrentUser();
 
   const [ isSubmitting, setSubmitting ] = useState<boolean>( false );
 
-  const [ following, fetchFollowing, isPending ] = useFetchData<boolean>( `users/${ currentUser?.userId }/follows/${ cardId }` );
+  const [ following, fetchFollowing, isPending ] = useFetchData<boolean>( `users/${ currentUser?.userId }/follows/${ productId }` );
 
   const handleOnClick = async () => {
 
     setSubmitting( true );
 
-    const url = following ? `unfollow-card` : `follow-card`;
+    const url = following ? `unfollow-product` : `follow-product`;
 
     try {
 
-      await Axios.put( `users/${ currentUser?.userId }/${ url }/${ cardId }` );
+      await Axios.put( `users/${ currentUser?.userId }/${ url }/${ productId }` );
 
       if ( following )
-        toast.warning( `Card: ${ cardId } unfollowed successfully` );
-      else toast.success( `Card: ${ cardId } added to followed cards successfully` );
+        toast.warning( `Product: ${ productId } unfollowed successfully` );
+      else toast.success( `Product: ${ productId } added to followed products successfully` );
 
       setSubmitting( false );
 
@@ -45,13 +44,11 @@ const FollowUnFollowCard: FC<FollowUnFollowCardProps> = ( { cardId } ) => {
 
     }
 
-
   }
-
 
   if ( isPending )
     return <span
-      className={ `w-50 d-flex justify-content-center align-items-center mt-2 ${ !currentUser && `d-none` }` }>
+      className={ `d-flex justify-content-center align-items-center mt-2 ${ !currentUser && `d-none` }` }>
 
      <span className={ `d-flex justify-content-center align-items-center` }>
 
@@ -65,7 +62,7 @@ const FollowUnFollowCard: FC<FollowUnFollowCardProps> = ( { cardId } ) => {
 
   </span>
 
-  return <span className={ `w-50 d-flex justify-content-center align-items-center mt-2 ${ !currentUser && `d-none` }` }>
+  return <span className={ `d-flex justify-content-center align-items-center mt-2 ${ !currentUser && `d-none` }` }>
 
      <span className={ `d-flex justify-content-center align-items-center` }>
        {
@@ -78,16 +75,15 @@ const FollowUnFollowCard: FC<FollowUnFollowCardProps> = ( { cardId } ) => {
      </span>
 
     <Button
-      className={ `ms-3 rounded-card-10 d-flex align-items-center justify-content-center gap-1` }
-      variant={ `outline-${ !following ? `success` : `warning` }` }
+      className={ `ms-3 rounded-card-10 d-flex align-items-center justify-content-center gap-1 dark-${ !following ? `success` : `warning` }` }
       onClick={ handleOnClick }
     >
       { !following ? `Follow` : `UnFollow` }
-      { isSubmitting && <Spinner animation={ "border" } size={"sm"} variant={ !following ? `success` : `warning` }/> }
+      { isSubmitting && <Spinner animation={ "border" } size={ "sm" } variant={ !following ? `success` : `warning` }/> }
     </Button>
 
   </span>
 
 };
 
-export default FollowUnFollowCard;
+export default FollowUnFollowProduct;

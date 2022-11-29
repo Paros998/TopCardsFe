@@ -1,11 +1,10 @@
 import React, { FC } from 'react';
-import { BasicCardModel } from "../../interfaces/models/BasicCardModel";
+import { BasicProductModel } from "../../interfaces/models/BasicProductModel";
 import { Col, Spinner } from "react-bootstrap";
-import BasicCardInfo from "../GraphicCard/BasicCardInfo";
 import NotFoundPhoto from "../../assets/images/product-not-found.jpg";
 
 interface BasicCardsProps {
-  cards: BasicCardModel[] | [];
+  cards: BasicProductModel[] | [];
   isPending: boolean;
 }
 
@@ -36,8 +35,8 @@ const BasicCards: FC<BasicCardsProps> = ( { cards, isPending } ) => {
           xxl={ 3 }
           className={ `mb-1 mb-md-2 btn-pointer mh-50` }
         >
-          <BasicCardInfo card={ value } className={ `text-dark background-light-hover` }
-                         followed={ value.isFollowed }/>
+          {/*<BasicCardInfo card={ value } className={ `text-dark background-light-hover` }*/ }
+          {/*               followed={ value.isFollowed }/>*/ } TODO
         </Col>
       )
     }

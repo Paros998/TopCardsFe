@@ -3,8 +3,6 @@ import { Col, Row, Spinner } from "react-bootstrap";
 import { ReviewModel } from "../../interfaces/models/ReviewModel";
 import UserConsensus from "./UserConsensus";
 import ScoreChartProgress from "../ScoreChartProgress/ScoreChartProgress";
-import AddOpinion from "../AddOpinion/AddOpinion";
-import { CardDetailsModel } from "../../interfaces/models/CardDetailsModel";
 import UserReviews from "./UserReviews";
 import { useCurrentUser } from "../../contexts/UserContext/UserContext";
 import { useFetchData } from "../../hooks/useFetchData";
@@ -12,14 +10,14 @@ import { PageResponse } from "../../interfaces/PageResponse";
 import { PageRequest } from "../../interfaces/PageRequest";
 import { UserConsensusModel } from "../../interfaces/models/UserConsensusModel";
 import { ScoreChartModel } from "../../interfaces/models/ScoreChartModel";
+import { ProductProps } from "../../interfaces/models/Product";
+import AddOpinion from "../AddOpinion/AddOpinion";
+import { BasicProductModel } from "../../interfaces/models/BasicProductModel";
 
-interface FeedBackCardProps {
-  card: CardDetailsModel;
+interface FeedBackCardProps extends ProductProps {
 }
 
-const FeedBackCard: FC<FeedBackCardProps> = ( { card } ) => {
-
-  const { cardId } = card;
+const FeedBackCard: FC<FeedBackCardProps> = ( { productId } ) => {
 
   const [ pageLimit, setPageLimit ] = useState<number>( 3 );
 
@@ -34,13 +32,15 @@ const FeedBackCard: FC<FeedBackCardProps> = ( { card } ) => {
 
   const { currentUser } = useCurrentUser();
 
-  const [ reviews, fetchReviews, isPendingReviews ] = useFetchData<PageResponse<ReviewModel>>( `/reviews/card/${ cardId }`, { params } );
+  const [ reviews, fetchReviews, isPendingReviews ] = useFetchData<PageResponse<ReviewModel>>( `products/reviews/${ productId }`, { params } );
 
-  const [ consensus, fetchConsensus, isPendingConsensus ] = useFetchData<UserConsensusModel>( `/reviews/card/${ cardId }/user-consensus` );
+  const [ consensus, fetchConsensus, isPendingConsensus ] = useFetchData<UserConsensusModel>( `products/reviews/${ productId }/user-consensus` );
 
-  const [ chart, fetchChart, isPendingChart ] = useFetchData<ScoreChartModel>( `/reviews/card/${ cardId }/chart` );
+  const [ chart, fetchChart, isPendingChart ] = useFetchData<ScoreChartModel>( `products/reviews/${ productId }/chart` );
 
-  const [ userReview, fetchUserReview, isPendingUserReview ] = useFetchData<ReviewModel>( `/reviews/card/${ cardId }/user/${ currentUser?.userId }` );
+  const [ userReview, fetchUserReview, isPendingUserReview ] = useFetchData<ReviewModel>( `products/reviews/${ productId }/user/${ currentUser?.userId }` );
+
+  const [ product, , isPendingProduct ] = useFetchData<BasicProductModel>( `products/${ productId }` );
 
   const updateReviews = useCallback( async () => {
     await fetchReviews();
@@ -115,7 +115,8 @@ const FeedBackCard: FC<FeedBackCardProps> = ( { card } ) => {
 
       <ScoreChartProgress xs={ currentUser ? 5 : 9 } chart={ chart }/>
 
-      { currentUser && <AddOpinion xs={ 4 } card={ card } review={ userReview } fetchReviews={ updateReviews }/> }
+      { currentUser && !isPendingProduct &&
+          <AddOpinion xs={ 4 } product={ product } review={ userReview } fetchReviews={ updateReviews }/> }
 
     </Col>
 

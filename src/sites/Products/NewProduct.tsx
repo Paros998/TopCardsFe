@@ -12,7 +12,7 @@ import { toast } from "react-toastify";
 import Axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const NewCard = () => {
+const NewProduct = () => {
 
   const [ editable, setEditable ] = useState<boolean>( true );
 
@@ -72,4 +72,4 @@ const NewCard = () => {
   );
 };
 
-export default NewCard;
+export default NewProduct;

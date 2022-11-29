@@ -1,6 +1,6 @@
-import {LocalStoreOffer} from "../../interfaces/models/LocalStoreOffer";
+import { StoreOffer } from "../../interfaces/models/StoreOffer";
 
-export const LocalStoresWithCards : LocalStoreOffer[] = [
+export const LocalStoresWithCards: StoreOffer[] = [
   // {
   //   name: "x-kom",
   //   address: "CH Echo, Świętokrzyska 20, 25-406 Kielce",

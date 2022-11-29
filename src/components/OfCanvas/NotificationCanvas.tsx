@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Offcanvas, OffcanvasProps, Spinner } from "react-bootstrap";
+import { Button, Offcanvas, OffcanvasProps, Spinner } from "react-bootstrap";
 import { XCircleFill } from "react-bootstrap-icons";
 import Notifications from "../Notification/Notifications";
 import { NotificationModel } from "../../interfaces/models/NotificationModel";
@@ -55,6 +55,16 @@ const NotificationCanvas: FC<NotificationCanvasProps> = ( {
       }
 
     </Offcanvas.Body>
+
+    <div className={ 'w-100 d-flex justify-content-start align-items-center ps-1 pb-1' }>
+      <Button
+        className={ '' }
+        variant={ "outline-primary-light" }
+        onClick={ handleClose }
+      >
+        Close
+      </Button>
+    </div>
 
   </Offcanvas>
 };

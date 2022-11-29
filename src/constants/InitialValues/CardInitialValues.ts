@@ -1,27 +1,27 @@
 import CardPhoto from "../../assets/images/product_avatar.png"
-import {CardDetailsModel} from "../../interfaces/models/CardDetailsModel";
+import { CardDetailsModel } from "../../interfaces/models/CardDetailsModel";
 
-export const CardInitialValues : CardDetailsModel = {
+export const CardInitialValues: CardDetailsModel = {
+  boostCoreClock: 0,
+  dateOfProduction: "",
+  supportedDirectX: "",
   producentSite: "",
-  coreClock: "",
-  clockMemory: 0,
+  coreClock: 0,
+  memoryClock: 0,
   cooling: "",
-  cuda: 0,
-  memoryAmount: "",
+  cudaCoresAmount: 0,
+  memoryAmount: 0,
   powerConnector: "",
   powerConsumption: 0,
   producentCode: "",
   recommendedPower: 0,
   rtxSupport: "",
-  size: "",
-  supportedLibraries: [''],
-  typeOfConnector: "",
+  supportedLibraries: [ '' ],
+  typeOfPciConnector: "",
   typeOfMemory: "",
-  typeOfOutputs: [''],
-  cardPhoto: CardPhoto,
+  productPhoto: CardPhoto,
   title: "",
-  memoryBus: "",
-  technology: "",
-  manufacturer: "",
+  memoryBus: 123,
+  technology: ""
 
 }

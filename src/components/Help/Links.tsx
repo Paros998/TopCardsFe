@@ -27,7 +27,7 @@ const Links = () => {
 
         <LinkDescription
           linkTo={ '/user/observed' }
-          linkName={ 'Observed Cards Page' }
+          linkName={ 'Observed Products Page' }
           linkDesc={ '- Here you can check all followed cards, unfollow them or check their details' }/>
 
         <LinkDescription
@@ -42,12 +42,12 @@ const Links = () => {
 
         <LinkDescription
           linkTo={ '/admin/suggested' }
-          linkName={ 'Manage Suggested Cards Page' }
+          linkName={ 'Manage Suggested Products Page' }
           linkDesc={ '- Here you can check current suggested cards, add / remove a card from them' }/>
 
         <LinkDescription
           linkTo={ '/admin/cards' }
-          linkName={ 'Manage Cards Page' }
+          linkName={ 'Manage Products Page' }
           linkDesc={ '- Here you can check all cards, filter, edit, delete them' }/>
 
         <LinkDescription
@@ -56,7 +56,7 @@ const Links = () => {
           linkDesc={ '- Here you can check all users registered in application, block or delete them' }/>
 
         <LinkDescription
-          linkTo={ '/card/new' }
+          linkTo={ '/product/new' }
           linkName={ 'New Card Page' }
           linkDesc={ '- Here you can add new card ' }/>
 
@@ -83,7 +83,7 @@ const Links = () => {
 
         <LinkDescription
           linkTo={ '/user/observed' }
-          linkName={ 'Observed Cards Page' }
+          linkName={ 'Observed Products Page' }
           linkDesc={ '- Here you can check all followed cards, unfollow them or check their details' }/>
 
         <LinkDescription

@@ -87,7 +87,7 @@ const ProfileCard = () => {
 
     } catch ( e: any ) {
 
-      if ( e.response.status !== 400 && e.response.status !==  409  )
+      if ( e.response.status !== 400 && e.response.status !== 409 )
         toast.error( e.response.data.message );
       else toast.info( e.response.data.message );
 
@@ -104,7 +104,7 @@ const ProfileCard = () => {
 
   return (
     <div
-      className={ `w-100 d-flex flex-column justify-content-around h-85 overflow-y-scroll thumb-slim thumb-info pb-3 pt-5 pt-md-0` }>
+      className={ `w-100 bg-secondary-dark d-flex flex-column justify-content-around h-90 overflow-y-scroll thumb-slim thumb-info pb-3 pt-5 pt-md-0` }>
 
       <Formik<ProfileCardFormikValues>
         validationSchema={ ProfileFormValidationSchema }
@@ -118,16 +118,14 @@ const ProfileCard = () => {
       <div className={ `w-100 d-flex justify-content-center align-items-center` }>
 
         <Button
-          className={ `${ buttonClass }` }
-          variant={ `outline-primary` }
+          className={ `${ buttonClass } dark-primary` }
           onClick={ () => setShowDeleteModal( true ) }
         >
           Delete Account
         </Button>
 
         <Button
-          className={ `${ buttonClass }` }
-          variant={ `outline-success` }
+          className={ `${ buttonClass } dark-success` }
           onClick={ () => setShowPasswordModal( true ) }
         >
           Change Password

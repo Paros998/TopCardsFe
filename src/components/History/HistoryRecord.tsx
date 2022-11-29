@@ -1,9 +1,8 @@
-import React, { FC, useMemo, useRef } from 'react';
+import React, { FC, useRef } from 'react';
 import { HistoryModel } from "../../interfaces/models/HistoryModel";
 import { Col, Row } from "react-bootstrap";
 import { Trash3Fill } from "react-bootstrap-icons";
 import { useNavigate } from "react-router-dom";
-import { BasicCards } from "../../constants/CardsModels/BasicCards";
 import { toast } from "react-toastify";
 import Axios from "axios";
 import { useFetchData } from "../../hooks/useFetchData";

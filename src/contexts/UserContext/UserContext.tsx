@@ -66,7 +66,7 @@ const CurrentUserProvider: FC<ProviderProps> = ( { children } ) => {
     try {
 
       if ( userId ) {
-        const { data } = await Axios.get<string>( `/users/${ userId }/avatar` );
+        const { data } = await Axios.get<string>( `/users/avatar/${ userId }` );
         setUserPhoto( data );
       }
 

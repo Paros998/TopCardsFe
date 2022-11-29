@@ -15,7 +15,7 @@ const UserReviews: FC<UserReviewsProps> = ( { reviews, setPageLimit, fetchReview
 
   if ( reviews.length === 0 )
     return <span className={ `fs-4 text-info fw-bold d-flex justify-content-center` }>
-      There is no available reviews
+      There are no available reviews
     </span>
 
   return (
@@ -36,7 +36,7 @@ const UserReviews: FC<UserReviewsProps> = ( { reviews, setPageLimit, fetchReview
       <Col xs={ 12 } className={ `d-flex justify-content-center mt-3` }>
         <Button
           className={ `rounded-pill ` }
-          variant={`outline-light`}
+          variant={ `outline-light` }
           disabled={ totalPages === 1 }
           onClick={ () => setPageLimit( prevState => prevState + 3 ) }
         >

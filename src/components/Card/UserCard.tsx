@@ -8,7 +8,7 @@ interface UserCardProps {
 const UserCard: FC<UserCardProps> = ({children, className}) => {
 
   return <CardTemplate
-    className={`bg-dark w-100 h-100 rounded-card-10 px-2 ${className}`}
+    className={`bg-dark w-100 h-95 px-1 pb-0 ${className}`}
   >
     {children}
   </CardTemplate>

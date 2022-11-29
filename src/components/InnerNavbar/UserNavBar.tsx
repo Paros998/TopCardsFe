@@ -18,7 +18,7 @@ const UserNavBar = () => {
   }
 
   return (
-    <Nav className={`nav-tabs fs-3 justify-content-center border-0 inner-nav-media`} >
+    <Nav className={`nav-tabs fs-3 justify-content-center border-top border-light inner-nav-media h-10`} >
 
       <NavLink
         as={Link}

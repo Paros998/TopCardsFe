@@ -31,7 +31,7 @@ const RegisterCard: FC<RegisterCardProps> = ( { className } ) => {
 
     formData.append( 'file', blob );
 
-    console.log(formData)
+    console.log( formData )
 
     try {
 
@@ -58,7 +58,7 @@ const RegisterCard: FC<RegisterCardProps> = ( { className } ) => {
 
   return (
     <CardTemplate
-      className={ `bg-dark d-flex flex-column align-items-start justify-content-end register-card  ${ className }` }>
+      className={ `rounded-card-10  bg-secondary-dark d-flex flex-column align-items-start justify-content-end register-card  ${ className }` }>
 
       <TextWithDiamond
         className={ ` mb-1 card-title` }

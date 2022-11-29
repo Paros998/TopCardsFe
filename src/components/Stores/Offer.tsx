@@ -1,5 +1,4 @@
 import React, { FC } from 'react';
-import { OnlineStoreOffer } from "../../interfaces/models/OnlineStoreOffer";
 import { Button, Col, Row } from "react-bootstrap";
 import HrBrake from "../Hr/HrBrake";
 import StarRatings from "react-star-ratings";
@@ -8,20 +7,21 @@ import { toast } from "react-toastify";
 import Axios from "axios";
 import { useCurrentUser } from "../../contexts/UserContext/UserContext";
 import { useFetchData } from "../../hooks/useFetchData";
+import { StoreOffer } from "../../interfaces/models/StoreOffer";
 
-interface OnlineStoreProps {
+interface OfferProps {
   firstStore: boolean;
   lastStore: boolean;
-  offer: OnlineStoreOffer;
+  offer: StoreOffer;
 }
 
-const OnlineStore: FC<OnlineStoreProps> = ( { offer, firstStore, lastStore } ) => {
+const Offer: FC<OfferProps> = ( { offer, firstStore, lastStore } ) => {
 
-  const { name, ratingScore, ratingCount, photoId, price, offerWebsite, hasFreeShipping } = offer;
+  const { name, ratingScore, ratingCount, storePhoto, price, offerWebsite, hasFreeShipping } = offer;
 
   const { currentUser } = useCurrentUser();
 
-  const [ shopPhoto ] = useFetchData<string>( `/files/${ photoId }` );
+  const [ photo ] = useFetchData<string>( `/files/${ storePhoto }` );
 
   const handleClick = async () => {
 
@@ -51,9 +51,9 @@ const OnlineStore: FC<OnlineStoreProps> = ( { offer, firstStore, lastStore } ) =
         <Col xs={ 1 } className={ `text-center` }>
 
           <img
-            src={ shopPhoto || NO_PHOTO }
+            src={ photo || NO_PHOTO }
             alt={ `` }
-            style={{width: "4.8rem",height: "3.2rem"}}
+            style={ { width: "4.8rem", height: "3.2rem" } }
             className={ `rounded-card-10 border border-1 border-dark p-1` }
           />
 
@@ -65,7 +65,8 @@ const OnlineStore: FC<OnlineStoreProps> = ( { offer, firstStore, lastStore } ) =
           }
         </Col>
 
-        <Col xs={ 3 } className={ `text-center d-flex align-items-center justify-content-center` }>
+        <Col xs={ 3 }
+             className={ `text-center d-flex align-items-center justify-content-center bg-dark rounded-pill pb-1` }>
 
           <StarRatings
             name={ `score` }
@@ -121,4 +122,4 @@ const OnlineStore: FC<OnlineStoreProps> = ( { offer, firstStore, lastStore } ) =
   );
 };
 
-export default OnlineStore;
+export default Offer;

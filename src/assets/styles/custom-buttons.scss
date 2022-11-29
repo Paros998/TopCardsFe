@@ -1,60 +1,72 @@
 @import "custom-variables";
 
-.dark-info{
+.dark-info {
   background-color: $dark;
   border: 1px solid $info;
   color: $info;
 }
 
-.dark-info:hover{
+.dark-info:hover {
   background-color: $info;
   border: 1px solid $dark;
   color: $dark;
 }
 
-.dark-danger{
+.dark-danger {
   background-color: $dark;
   border: 1px solid $danger;
   color: $danger;
 }
 
-.dark-danger:hover{
+.dark-danger:hover {
   background-color: $danger;
   border: 1px solid $dark;
   color: $dark;
 }
 
-.dark-warning{
+.dark-primary {
+  background-color: $dark;
+  border: 1px solid $primary;
+  color: $primary;
+}
+
+.dark-primary:hover {
+  background-color: $primary;
+  border: 1px solid $dark;
+  color: $dark;
+}
+
+.dark-warning {
   background-color: $dark;
   border: 1px solid $warning;
   color: $warning;
 }
 
-.dark-warning:hover{
+.dark-warning:hover {
   background-color: $warning;
   border: 1px solid $dark;
   color: $dark;
 }
 
-.dark-success{
+.dark-success {
   background-color: $dark;
   border: 1px solid $success;
   color: $success;
 }
 
-.dark-success:hover{
+.dark-success:hover {
   background-color: $success;
   border: 1px solid $dark;
   color: $dark;
 }
 
-.dark-light{
+.dark-light {
   background-color: $dark;
   border: 1px solid $light;
   color: $light;
 }
 
-.dark-light:hover{
+.dark-light:hover {
   background-color: $light;
   border: 1px solid $dark;
   color: $dark;

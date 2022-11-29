@@ -17,36 +17,36 @@ const Notification = () => {
 
   const [ notifications, fetchNotifications, isPending ] = useFetchData<NotificationModel[]>( `/users/${ currentUser?.userId }/notifications` );
 
-  const updateNotifications = useCallback(async () => {
+  const updateNotifications = useCallback( async () => {
     await fetchNotifications();
-  }, [fetchNotifications]);
+  }, [ fetchNotifications ] );
 
 
   useEffect( () => {
-    const interval = setInterval(updateNotifications, 30000);
-    return () => clearInterval(interval);
+    const interval = setInterval( updateNotifications, 30000 );
+    return () => clearInterval( interval );
   }, [] )
 
   return (
     <>
       <span
         className={ `bg-light rounded-circle p-1 d-flex justify-content-center align-items-center btn-pointer
-         position-absolute notification-span z-index-1000` }
+         position-relative notification-span z-index-1000` }
         onClick={ handleClick }
       >
 
         {
           isPending && <div className={ `w-100 rounded-circle d-flex justify-content-center align-items-center
          text-light position-absolute bottom-80 left-50  bg-dark border border-1 border-light py-1` }>
-            <Spinner animation={"border"} variant={`light`} size={"sm"}/>
-          </div>
+                <Spinner animation={ "border" } variant={ `light` } size={ "sm" }/>
+            </div>
         }
 
         { !isPending && notifications &&
-        <div className={ `w-100 rounded-circle d-flex justify-content-center align-items-center
+            <div className={ `w-100 rounded-circle d-flex justify-content-center align-items-center
          text-light position-absolute bottom-80 left-50  bg-dark border border-1 border-light` }>
-          { notifications.length > 9 ? '9+' : notifications.length }
-        </div>
+              { notifications.length > 9 ? '9+' : notifications.length }
+            </div>
         }
 
         <BellFill className={ `${ showCanvas ? `text-primary` : `text-dark` }` }/>

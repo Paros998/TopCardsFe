@@ -1,46 +1,36 @@
 import React from 'react';
-import {Link, useLocation} from "react-router-dom";
-import {Nav, NavLink} from "react-bootstrap";
+import { Link, useLocation } from "react-router-dom";
+import { Nav, NavLink } from "react-bootstrap";
 
 const AdminNavBar = () => {
   const navLinkClassName = `text-light border-0 inner-nav col-md-2 col-xs-3 text-center`;
 
-  const {pathname} = useLocation();
+  const { pathname } = useLocation();
 
-  const suggested = '/admin/suggested';
-  const cards = '/admin/cards';
+  const products = '/admin/products';
   const users = '/admin/users';
 
-  const active = (path:string) => {
+  const active = ( path: string ) => {
     return pathname === path;
   }
 
   return (
-    <Nav className={`nav-tabs fs-3 justify-content-center border-0 inner-nav-media`} >
+    <Nav className={ `nav-tabs fs-3 justify-content-center border-top border-light inner-nav-media h-10 nav` }>
 
       <NavLink
-        as={Link}
-        to={suggested}
-        className={`${navLinkClassName} ${active(suggested) && `active-nav`}`}
-        disabled={active(suggested)}
+        as={ Link }
+        to={ products }
+        className={ `${ navLinkClassName } ${ active( products ) && `active-nav` }` }
+        disabled={ active( products ) }
       >
-        Suggested
+        Products
       </NavLink>
 
       <NavLink
-        as={Link}
-        to={cards}
-        className={`${navLinkClassName} ${active(cards) && `active-nav`}`}
-        disabled={active(cards)}
-      >
-        Cards
-      </NavLink>
-
-      <NavLink
-        as={Link}
-        to={users}
-        className={`${navLinkClassName} ${active(users) && `active-nav`}`}
-        disabled={active(users)}
+        as={ Link }
+        to={ users }
+        className={ `${ navLinkClassName } ${ active( users ) && `active-nav` }` }
+        disabled={ active( users ) }
       >
         Users
       </NavLink>

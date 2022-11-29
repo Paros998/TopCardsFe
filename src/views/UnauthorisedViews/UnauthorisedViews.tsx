@@ -3,45 +3,45 @@ import NotFound from "../../components/NotFound/NotFound";
 import { Route, Routes } from "react-router-dom";
 import Login from "../../sites/Login/Login";
 import Register from "../../sites/Register/Register";
-import CardDetails from "../../sites/Cards/CardDetails";
+import ProductDetails from "../../sites/Products/ProductDetails";
 import HomePage from "../../sites/HomePage/HomePage";
 import HelpPage from "../../sites/Help/HelpPage";
 
 const UnauthorisedViews = () => {
   return (
-      <Routes>
+    <Routes>
 
-        <Route
-          path='/help'
-          element={<HelpPage/>}
-        />
+      <Route
+        path='/help'
+        element={ <HelpPage/> }
+      />
 
-        <Route
-          path='/'
-          element={<HomePage/>}
-        />
+      <Route
+        path='/'
+        element={ <HomePage/> }
+      />
 
-        <Route
-          path='/card/:cardId'
-          element={<CardDetails/>}
-        />
+      <Route
+        path='/product/:productId&:productType'
+        element={ <ProductDetails/> }
+      />
 
-        <Route
-          path='/login'
-          element={<Login/>}
-        />
+      <Route
+        path='/login'
+        element={ <Login/> }
+      />
 
-        <Route
-          path='/register'
-          element={<Register/>}
-        />
+      <Route
+        path='/register'
+        element={ <Register/> }
+      />
 
-        <Route
-          path='*'
-          element={<NotFound/>}
-        />
+      <Route
+        path='*'
+        element={ <NotFound/> }
+      />
 
-      </Routes>
+    </Routes>
   );
 };
 

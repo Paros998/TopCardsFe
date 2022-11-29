@@ -8,20 +8,21 @@ import AllUsers from "../../components/Users/AllUsers";
 
 const ManageUsers = () => {
   return (
-    <>
+    <div className={ 'vh-100 vw-100' }>
       <TopNavbar/>
 
-      <MainContainer className={`bg-secondary-dark `}>
+      <MainContainer>
 
         <UserCard>
           <AdminNavBar/>
+
           <AllUsers/>
         </UserCard>
 
+        <Footer/>
       </MainContainer>
 
-      <Footer/>
-    </>
+    </div>
   );
 };
 

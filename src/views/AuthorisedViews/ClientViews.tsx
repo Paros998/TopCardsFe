@@ -1,22 +1,22 @@
 import React from 'react';
-import {Route, Routes} from "react-router-dom";
-import CardDetails from "../../sites/Cards/CardDetails";
+import { Route, Routes } from "react-router-dom";
+import ProductDetails from "../../sites/Products/ProductDetails";
 import NotFound from "../../components/NotFound/NotFound";
 import HomePage from "../../sites/HomePage/HomePage";
 import Pending from "../../components/Pending/Pending";
 import Profile from "../../sites/User/Profile";
-import ObservedCards from "../../sites/User/ObservedCards";
+import ObservedProducts from "../../sites/User/ObservedProducts";
 import History from "../../sites/User/History";
 import NotificationOptions from "../../sites/User/NotificationOptions";
 import { useCurrentUser } from "../../contexts/UserContext/UserContext";
 import HelpPage from "../../sites/Help/HelpPage";
 
 
-const ClientViews = () => { 
+const ClientViews = () => {
 
-  const {isPending} = useCurrentUser();
+  const { isPending } = useCurrentUser();
 
-  if(isPending)
+  if ( isPending )
     return <Pending/>
 
   return (
@@ -24,30 +24,30 @@ const ClientViews = () => {
 
       <Route
         path='/'
-        element={<HomePage/>}
+        element={ <HomePage/> }
       />
 
       <Route
         path='/help'
-        element={<HelpPage/>}
+        element={ <HelpPage/> }
       />
 
-      <Route path={`/user`}
+      <Route path={ `/user` }
       >
-        <Route path={`profile`} element={<Profile/>}/>
-        <Route path={`observed`} element={<ObservedCards/>}/>
-        <Route path={`history`} element={<History/>}/>
-        <Route path={`notifications`} element={<NotificationOptions/>}/>
+        <Route path={ `profile` } element={ <Profile/> }/>
+        <Route path={ `observed` } element={ <ObservedProducts/> }/>
+        <Route path={ `history` } element={ <History/> }/>
+        <Route path={ `notifications` } element={ <NotificationOptions/> }/>
       </Route>
 
       <Route
-        path='/card/:cardId'
-        element={<CardDetails/>}
+        path='/product/:productId&:productType'
+        element={ <ProductDetails/> }
       />
 
       <Route
         path='*'
-        element={<NotFound/>}
+        element={ <NotFound/> }
       />
 
     </Routes>

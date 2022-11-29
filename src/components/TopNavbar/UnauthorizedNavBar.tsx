@@ -11,19 +11,19 @@ const UnauthorizedNavBar = () => {
   return (
     <Navbar bg='dark'
             expand='xl'
-            className={ `my-0 py-0 position-absolute top-0 h-10 z-index-1001` }>
-      <Container className={ `px-1 min-vw-100` }>
+            className={ `my-0 py-0 position-static h-10 z-index-1001 w-100` }>
+      <Container className={ ` px-1 min-vw-100 mx-0` }>
 
         <Navbar.Brand className={ `my-0 py-0` }
                       as={ Link }
                       to={ '/' }>
 
           <img src={ TopCardsFe }
-               alt={ "Top Cards" }
+               alt={ "Top Products" }
                className={ `h-auto w-75px` }/>
 
           <span className={ `ms-lg-3 ms-md-2 fw-bolder text-light` }>
-            TopCards
+            TopProducts
           </span>
 
           <span className={ `text-light fs-5 d-none d-md-inline-block ms-2` }>
@@ -147,7 +147,7 @@ const UnauthorizedNavBar = () => {
         <Navbar.Collapse id="basic-navbar-nav "
                          className={ `justify-content-end` }>
 
-          <Nav className={ `mb-2 mb-xl-0` }>
+          <Nav className={ `mb-2 mb-xl-0 align-items-center ` }>
 
             <Nav.Link
               as={ Link }

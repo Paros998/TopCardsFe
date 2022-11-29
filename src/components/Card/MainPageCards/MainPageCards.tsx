@@ -1,6 +1,6 @@
 import React, { FC, SetStateAction } from 'react';
 import CardTemplate from "../CardTemplate";
-import { BasicCardModel } from "../../../interfaces/models/BasicCardModel";
+import { BasicProductModel } from "../../../interfaces/models/BasicProductModel";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { Roles } from "../../../interfaces/enums/Roles";
@@ -10,7 +10,7 @@ import BasicCards from "../../Cards/BasicCards";
 
 interface MainPageCardsProps {
   className?: string;
-  cards: BasicCardModel[] | [];
+  cards: BasicProductModel[] | [];
   isPending: boolean;
   page: number;
   totalPages: number;

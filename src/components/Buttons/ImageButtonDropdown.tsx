@@ -22,24 +22,22 @@ const ImageButtonDropdown: FC<ImageButtonDropdownProps> = ({
 
   return (
     <div
-      className={`w-100 ${className}`}
+      className={`w-100 d-flex justify-content-center ${className}`}
       onMouseOver={() => setShowDropdown(true)}
       onMouseLeave={() => setShowDropdown(false)}
     >
 
       <img src={src}
-           className={`rounded-circle border-2 border-light border btn-pointer position-relative ${imageClassName}`}
+           className={`rounded-circle border-2 border-light border btn-pointer  ${imageClassName}`}
            alt={`Img`}
            style={{width: "3rem", height: "3rem"}}
            onClick={() => onClick ? onClick() : null}
       />
 
       <div
-        className={`${showDropdown ? `d-flex` : `d-none`} flex-column p-1 bg-dark text-light position-absolute rounded-card-10 ${dropdownClassName}`}
+        className={`${showDropdown ? `d-flex` : `d-none`} mt-5 flex-column p-1 bg-dark text-light rounded-card-10 position-absolute  ${dropdownClassName}`}
       >
-
         {children}
-
       </div>
     </div>
   );

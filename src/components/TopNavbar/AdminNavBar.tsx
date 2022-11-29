@@ -25,19 +25,19 @@ const AdminNavBar = () => {
   return (
     <Navbar bg='dark'
             expand='xl'
-            className={ `my-0 py-0 position-absolute top-0 h-10 z-index-1001` }>
-      <Container className={ `px-1 min-vw-100` }>
+            className={ `my-0 py-0 position-static h-10 z-index-1001 vw-100` }>
+      <Container className={ `px-1 min-vw-100 mx-0` }>
 
         <Navbar.Brand className={ `my-0 py-0` }
                       as={ Link }
                       to={ '/' }>
 
           <img src={ TopCardsFe }
-               alt={ "Top Cards" }
+               alt={ "Top Products" }
                className={ `h-auto w-75px` }/>
 
           <span className={ `ms-lg-3 ms-md-2 fw-bolder text-light` }>
-            TopCards
+            TopProducts
           </span>
 
           <span className={ `text-light fs-6 d-none d-md-inline-block ms-2` }>
@@ -168,20 +168,13 @@ const AdminNavBar = () => {
               className={ `px-xxl-5 px-xl-2 admin-img-dropdown` }
               imageClassName={ `admin-img` }
               dropdownClassName={ `admin-dropdown` }
-              onClick={ () => navigate( `/admin/suggested` ) }
+              onClick={ () => navigate( `/admin/products` ) }
             >
               <Button
                 variant={ `dark` }
-                onClick={ () => navigate( `/admin/suggested` ) }
+                onClick={ () => navigate( `/admin/products` ) }
               >
-                Suggested
-              </Button>
-
-              <Button
-                variant={ `dark` }
-                onClick={ () => navigate( `/admin/cards` ) }
-              >
-                Cards
+                Products
               </Button>
 
               <Button
@@ -211,7 +204,7 @@ const AdminNavBar = () => {
                 variant={ `dark` }
                 onClick={ () => navigate( `/user/observed` ) }
               >
-                Observed Cards
+                Observed Products
               </Button>
 
               <Button

@@ -1,24 +1,25 @@
 export interface CardDetailsModel {
-  cardId?:string;
-  cardPhoto:string;
-  title:string;
-  typeOfConnector:string;
-  typeOfMemory:string;
-  memoryAmount:string;
-  memoryBus: string;
-  clockMemory:number;
-  coreClock:string;
-  cuda:number;
-  typeOfOutputs:string[];
-  cooling:string;
-  powerConnector:string;
-  recommendedPower:number;
-  powerConsumption:number;
-  size:string;
-  producentCode:string;
-  rtxSupport:string;
-  supportedLibraries:string[];
-  producentSite:string;
+  productId?: string;
+  title: string;
+  producentCode: string;
+  producentSite: string;
+  dateOfProduction: string;
+  productPhoto: string;
+
   technology: string;
-  manufacturer: string;
+  rtxSupport: string;
+  supportedLibraries: string[];
+  cudaCoresAmount: number;
+  powerConsumption: number;
+  recommendedPower: number;
+  cooling: string;
+  powerConnector: string;
+  coreClock: number;
+  boostCoreClock: number;
+  memoryAmount: number;
+  supportedDirectX: string;
+  typeOfMemory: string;
+  typeOfPciConnector: string;
+  memoryClock: number;
+  memoryBus: number;
 }

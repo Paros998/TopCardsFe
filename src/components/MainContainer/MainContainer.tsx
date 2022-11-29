@@ -8,7 +8,7 @@ interface MainContainerProps{
 const MainContainer:FC<MainContainerProps> = ({children,
                                                 className}) => {
   return (
-    <div className={`vw-100 vh-100 bg-secondary text-light main-container ${className}`}>
+    <div className={`w-100 h-90 bg-secondary text-light ${className}`}>
       {children}
     </div>
   );

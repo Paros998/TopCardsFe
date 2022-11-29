@@ -6,7 +6,7 @@ interface CardTemplateProps {
 
 const CardTemplate:FC<CardTemplateProps> = ({className,children}) => {
   return (
-    <div className={`${className} rounded-card-10 pt-0`}>
+    <div className={`${className}  pt-0`}>
       {children}
     </div>
   );

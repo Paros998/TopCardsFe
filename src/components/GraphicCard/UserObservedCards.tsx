@@ -1,14 +1,14 @@
 import React, { FC } from 'react';
-import { BasicCardModel } from "../../interfaces/models/BasicCardModel";
+import { BasicProductModel } from "../../interfaces/models/BasicProductModel";
 import { Button, Col, Spinner } from "react-bootstrap";
-import ObservedCardInfo from "./ObservedCardInfo";
+import ObservedProductInfo from "./ObservedProductInfo";
 import FollowedCardsNotFound from "../../assets/images/followed-not-found.png";
 import { toast } from "react-toastify";
 import Axios from "axios";
 import { useCurrentUser } from "../../contexts/UserContext/UserContext";
 
 interface UserObservedCardsProps {
-  followedCards: BasicCardModel[] | [];
+  followedCards: BasicProductModel[] | [];
   isPending: boolean;
   fetchCards: () => Promise<void>;
 }
@@ -41,7 +41,7 @@ const UserObservedCards: FC<UserObservedCardsProps> = ( { fetchCards, followedCa
 
   if ( followedCards?.length === 0 )
     return <div className={ `d-flex h-30 w-100 justify-content-center align-items-center mt-5` }>
-      <img src={ FollowedCardsNotFound } alt={ '' } className={ `rounded-circle h-50 w-auto` }/>
+      <img src={ FollowedCardsNotFound } alt={ '' } className={ `rounded-circle h-50 w-auto ` }/>
     </div>;
 
   return (
@@ -58,12 +58,11 @@ const UserObservedCards: FC<UserObservedCardsProps> = ( { fetchCards, followedCa
           xxl={ 6 }
           className={ `d-flex align-items-center ` }
         >
-          <ObservedCardInfo card={ value }/>
+          <ObservedProductInfo product={ value }/>
 
           <Button
-            onClick={ () => handleUnFollow( value.id ) }
-            className={ ` h-30 mx-md-3 mx-2 rounded-card-10` }
-            variant={ `outline-warning` }
+            onClick={ () => handleUnFollow( value.productId ) }
+            className={ ` h-30 mx-md-3 mx-2 rounded-card-10 dark-warning` }
           >
             UnFollow
           </Button>

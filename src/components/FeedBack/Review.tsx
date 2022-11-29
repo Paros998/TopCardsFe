@@ -21,7 +21,7 @@ interface ReviewProps {
 
 const Review: FC<ReviewProps> = ( { review, fetchReviews } ) => {
 
-  const { score, username, opinion, date, censored } = review;
+  const { score, username, opinion, reviewDate, isCensored } = review;
 
   dayjs.extend( utc );
   dayjs.extend( tz );
@@ -31,7 +31,7 @@ const Review: FC<ReviewProps> = ( { review, fetchReviews } ) => {
 
   const getDateMessage = (): string => {
 
-    const normalizedDate = dayjs( date, `DD.MM.YYYY`, true ).tz( timezone )
+    const normalizedDate = dayjs( reviewDate, `DD.MM.YYYY`, true ).tz( timezone )
 
     if ( dayjs().diff( normalizedDate, `day` ) === 0 )
       return "Today";
@@ -59,11 +59,11 @@ const Review: FC<ReviewProps> = ( { review, fetchReviews } ) => {
 
   const dateMessage = getDateMessage();
 
-  const { role } = useCurrentUser();
+  const { role, currentUser } = useCurrentUser();
 
   const isAdmin = role === Roles.RoleAdmin;
 
-  const [ userPhoto ] = useFetchData<string>( `/users/${ review?.userId }/avatar` );
+  const [ userPhoto ] = useFetchData<string>( `/users/avatar/${ review?.userId }` );
 
   return (
     <Col as={ Row } xs={ 12 } className={ `hstack my-2` }>
@@ -111,11 +111,11 @@ const Review: FC<ReviewProps> = ( { review, fetchReviews } ) => {
 
         <div className={ `text-wrap` }>
           {
-            !censored ? opinion :
+            !isCensored ? opinion :
               <span
                 className={ `text-danger` }
               >
-                Message censored due to inapropriate language usage and violation of good behaviour rules
+                Message censored due to inappropriate language usage and violation of good behaviour rules
               </span>
           }
         </div>
@@ -123,10 +123,10 @@ const Review: FC<ReviewProps> = ( { review, fetchReviews } ) => {
       </Col>
 
       {
-        isAdmin &&
-        <Col xs={ 1 }>
-            <CensorUnCensorReview review={ review } fetchReviews={ fetchReviews }/>
-        </Col>
+        isAdmin && ( review?.userId !== currentUser?.userId ) &&
+          <Col xs={ 1 }>
+              <CensorUnCensorReview review={ review } fetchReviews={ fetchReviews }/>
+          </Col>
       }
 
     </Col>

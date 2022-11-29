@@ -1,10 +1,10 @@
 export interface ReviewModel {
-  id?:string;
-  cardId?: string;
+  id?: string;
+  productId?: string;
   opinion: string;
   score: number;
   username?: string;
-  date: string;
-  censored: boolean;
+  reviewDate: string;
+  isCensored: boolean;
   userId?: string;
 }

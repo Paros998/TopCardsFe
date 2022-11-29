@@ -42,8 +42,8 @@ const NotificationOptionsCard = () => {
   }, [ settings ] );
 
   return (
-    <div className={ `w-100 h-85 d-flex flex-column justify-content-start align-items-center fw-light
-     overflow-y-scroll thumb-slim thumb-primary pb-3` }>
+    <div className={ `w-100 h-90 d-flex flex-column justify-content-start align-items-center fw-light
+     overflow-y-scroll thumb-slim thumb-primary pb-3 bg-secondary-dark` }>
       <Formik<UserNotificationsOptionsFormikValues>
         onSubmit={ handleSubmit }
         initialValues={ initialValues }

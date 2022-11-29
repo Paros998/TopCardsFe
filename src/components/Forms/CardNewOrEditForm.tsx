@@ -63,7 +63,7 @@ const CardNewOrEditForm: FC<CardNewOrEditFormProps> = ( {
   const [ outputTypes ] = useFetchData<FilterOption[]>( 'filters/outputs' );
   const [ memoryBuses ] = useFetchData<FilterOption[]>( 'filters/memory-bus' );
 
-  const [ cardPhotoSrc ] = useFetchData<string>( `/files/${ values.cardPhoto }` );
+  const [ cardPhotoSrc ] = useFetchData<string>( `/files/${ values.productPhoto }` );
 
   return (
     <Form
@@ -140,17 +140,17 @@ const CardNewOrEditForm: FC<CardNewOrEditFormProps> = ( {
 
               <FormBoot.Select
                 className={ `${ formClassName } ` }
-                name={ `typeOfConnector` }
+                name={ `typeOfPciConnector` }
                 onChange={ handleChange }
-                isInvalid={ touched.typeOfConnector && !!errors.typeOfConnector }
-                isValid={ touched.typeOfConnector && !errors.typeOfConnector }
+                isInvalid={ touched.typeOfPciConnector && !!errors.typeOfPciConnector }
+                isValid={ touched.typeOfPciConnector && !errors.typeOfPciConnector }
                 disabled={ !editable }
               >
                 {
                   isNewCard
                     ? <option>Choose...</option>
                     : <option className={ `inner-text-info` }
-                              value={ values.typeOfConnector }>{ values.typeOfConnector }</option>
+                              value={ values.typeOfPciConnector }>{ values.typeOfPciConnector }</option>
                 }
 
                 {
@@ -296,11 +296,11 @@ const CardNewOrEditForm: FC<CardNewOrEditFormProps> = ( {
               <FormBoot.Control
                 className={ `${ formClassName }` }
                 type={ `number` }
-                name={ `clockMemory` }
-                defaultValue={ values.clockMemory }
+                name={ `memoryClock` }
+                defaultValue={ values.memoryClock }
                 onChange={ handleChange }
-                isInvalid={ touched.clockMemory && !!errors.clockMemory }
-                isValid={ touched.clockMemory && !errors.clockMemory }
+                isInvalid={ touched.memoryClock && !!errors.memoryClock }
+                isValid={ touched.memoryClock && !errors.memoryClock }
                 disabled={ !editable }
               />
             </Col>
@@ -346,135 +346,17 @@ const CardNewOrEditForm: FC<CardNewOrEditFormProps> = ( {
               <FormBoot.Control
                 className={ `${ formClassName }` }
                 type={ `number` }
-                name={ `cuda` }
-                defaultValue={ values.cuda }
+                name={ `cudaCoresAmount` }
+                defaultValue={ values.cudaCoresAmount }
                 onChange={ handleChange }
-                isInvalid={ touched.cuda && !!errors.cuda }
-                isValid={ touched.cuda && !errors.cuda }
+                isInvalid={ touched.cudaCoresAmount && !!errors.cudaCoresAmount }
+                isValid={ touched.cudaCoresAmount && !errors.cudaCoresAmount }
                 disabled={ !editable }
               />
             </Col>
 
           </FormBoot.Group>
 
-          <FormBoot.Group as={ Row } className={ `${ rowClass }` }>
-
-            <Col
-              xs={ labelSize }
-              className={ colClass }>
-              <FormBoot.Label className={ labelClass }>
-                Manufacturer
-              </FormBoot.Label>
-            </Col>
-
-            <Col className={ colClass }>
-              <FormBoot.Select
-                className={ `${ formClassName }` }
-                name={ `manufacturer` }
-                onChange={ handleChange }
-                isInvalid={ touched.manufacturer && !!errors.manufacturer }
-                isValid={ touched.manufacturer && !errors.manufacturer }
-                disabled={ !editable }
-              >
-                {
-                  isNewCard
-                    ? <option>Choose...</option>
-                    : <option className={ `inner-text-info` }
-                              value={ values.manufacturer }>{ values.manufacturer }</option>
-                }
-
-                {
-                  manufacturers?.map( ( value, index ) =>
-                    <option key={ index } value={ value.value }>
-                      { value.label }
-                    </option> )
-                }
-
-              </FormBoot.Select>
-            </Col>
-
-          </FormBoot.Group>
-
-          <FieldArray name={ `typeOfOutputs` }>
-            {
-              ( fieldArrayProps ) => {
-
-                const { push, remove, form } = fieldArrayProps;
-                const { values: CardDetailsModel } = form;
-                const { typeOfOutputs } = values;
-
-                return <FormBoot.Group className={ `${ rowClass } ${ arrayGroup }` }>
-
-                  {
-                    typeOfOutputs.map( ( library, index ) => (
-                      <div className={ dynamicRowClass } key={ index }>
-
-                        <Col
-                          xs={ labelSize }
-                          className={ colClass }>
-
-                          {
-                            index === 0 &&
-
-                            <FormBoot.Label className={ labelClass }>
-                                Type of outputs
-                            </FormBoot.Label>
-                          }
-                        </Col>
-
-
-                        <Col
-                          xs={ 12 - labelSize }
-                          className={ `${ colClass } mb-1` }>
-
-                          {/*TODO make control writeable and choosable*/ }
-
-                          <FormBoot.Control
-                            className={ `${ formClassName }  ${ !editable && `ps-2` }` }
-                            type={ `text` }
-
-                            name={ `typeOfOutputs[${ index }]` }
-                            defaultValue={ values.typeOfOutputs[ index ] }
-                            onChange={ handleChange }
-                            isInvalid={ touched.typeOfOutputs && !!errors.typeOfOutputs }
-                            isValid={ touched.typeOfOutputs && !errors.typeOfOutputs }
-                            disabled={ !editable }
-                          />
-
-
-                          <XCircleFill
-                            className={ deleteClass }
-                            onClick={ () => remove( index ) }
-                          />
-
-                        </Col>
-
-                      </div>
-                    ) )
-                  }
-
-                  <div className={ `row` }>
-
-                    <Col xs={ labelSize }/>
-
-                    <Col
-                      xs={ 12 - labelSize }
-                      className={ `${ colClass } justify-content-center` }>
-
-                      <PlusCircleFill
-                        className={ addClass }
-                        onClick={ () => push( `` ) }
-                      />
-
-                    </Col>
-
-                  </div>
-
-
-                </FormBoot.Group>
-              }
-            }
-          </FieldArray>
 
         </div>
 
@@ -624,31 +506,6 @@ const CardNewOrEditForm: FC<CardNewOrEditFormProps> = ( {
               xs={ labelSize }
               className={ colClass }>
               <FormBoot.Label className={ labelClass }>
-                Length | Width | Height
-              </FormBoot.Label>
-            </Col>
-
-            <Col className={ colClass }>
-              <FormBoot.Control
-                className={ `${ formClassName }` }
-                type={ `text` }
-                name={ `size` }
-                defaultValue={ values.size }
-                onChange={ handleChange }
-                isInvalid={ touched.size && !!errors.size }
-                isValid={ touched.size && !errors.size }
-                disabled={ !editable }
-              />
-            </Col>
-
-          </FormBoot.Group>
-
-          <FormBoot.Group as={ Row } className={ rowClass }>
-
-            <Col
-              xs={ labelSize }
-              className={ colClass }>
-              <FormBoot.Label className={ labelClass }>
                 Producent code
               </FormBoot.Label>
             </Col>
@@ -728,9 +585,9 @@ const CardNewOrEditForm: FC<CardNewOrEditFormProps> = ( {
                           {
                             index === 0 &&
 
-                            <FormBoot.Label className={ labelClass }>
-                                Supported Libraries
-                            </FormBoot.Label>
+                              <FormBoot.Label className={ labelClass }>
+                                  Supported Libraries
+                              </FormBoot.Label>
                           }
                         </Col>
 

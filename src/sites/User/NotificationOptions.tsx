@@ -8,18 +8,20 @@ import NotificationOptionsCard from "../../components/Card/UserCards/Notificatio
 
 const NotificationOptions = () => {
   return (
-    <>
+    <div className={'vh-100 vw-100'}>
       <TopNavbar/>
 
-      <MainContainer className={`bg-secondary-dark `}>
+      <MainContainer className={`bg-secondary-dark thumb-slim thumb-light`}>
+
         <UserCard>
           <UserNavBar/>
           <NotificationOptionsCard/>
         </UserCard>
+
+        <Footer/>
       </MainContainer>
 
-      <Footer/>
-    </>
+    </div>
   );
 };
 

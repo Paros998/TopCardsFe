@@ -13,7 +13,7 @@ const UserNotificationsOptionsForm = () => {
     dirty
   } = useFormikContext<UserNotificationsOptionsFormikValues>()
 
-  const rowClass = `w-100 my-4 my-md-0 `
+  const rowClass = `w-100 my-4 my-md-0`
 
   return (
       <Form

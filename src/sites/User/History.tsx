@@ -8,18 +8,20 @@ import HistoryCard from "../../components/Card/UserCards/HistoryCard";
 
 const History = () => {
   return (
-    <>
+    <div className={'vh-100 vw-100'}>
       <TopNavbar/>
 
       <MainContainer className={`bg-secondary-dark `}>
+
         <UserCard>
           <UserNavBar/>
           <HistoryCard/>
         </UserCard>
+
+        <Footer/>
       </MainContainer>
 
-      <Footer/>
-    </>
+    </div>
   );
 };
 

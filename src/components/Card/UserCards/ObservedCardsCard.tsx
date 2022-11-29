@@ -1,9 +1,7 @@
 import React from 'react';
-import { Button, Col, Row } from "react-bootstrap";
-import { BasicCards } from "../../../constants/CardsModels/BasicCards";
-import ObservedCardInfo from "../../GraphicCard/ObservedCardInfo";
+import { Row } from "react-bootstrap";
 import { useFetchData } from "../../../hooks/useFetchData";
-import { BasicCardModel } from "../../../interfaces/models/BasicCardModel";
+import { BasicProductModel } from "../../../interfaces/models/BasicProductModel";
 import { useCurrentUser } from "../../../contexts/UserContext/UserContext";
 import UserObservedCards from "../../GraphicCard/UserObservedCards";
 
@@ -11,13 +9,13 @@ const ObservedCardsCard = () => {
 
   const { currentUser } = useCurrentUser();
 
-  const [ followedCards, fetchCards, isPending ] = useFetchData<BasicCardModel[]>( `users/${ currentUser?.userId }/followed-cards` );
+  const [ followedCards, fetchCards, isPending ] = useFetchData<BasicProductModel[]>( `users/${ currentUser?.userId }/followed-products` );
 
   return (
-    <div className={ `container-fluid h-85 p-0 m-0 my-1 thumb-slim thumb-warning overflow-y-scroll my-md-3 my-2 ` }>
+    <div className={ `bg-secondary-dark container-fluid h-90 p-0 m-0  thumb-slim thumb-warning overflow-y-scroll   ` }>
       <Row>
 
-        <UserObservedCards followedCards={followedCards || []} isPending={isPending} fetchCards={fetchCards} />
+        <UserObservedCards followedCards={ followedCards || [] } isPending={ isPending } fetchCards={ fetchCards }/>
 
       </Row>
     </div>

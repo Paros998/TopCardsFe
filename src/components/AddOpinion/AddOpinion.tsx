@@ -1,6 +1,5 @@
 import React, { FC, useEffect, useState } from 'react';
 import { Button, Col, Modal } from "react-bootstrap";
-import { CardDetailsModel } from "../../interfaces/models/CardDetailsModel";
 import { ReviewModel } from "../../interfaces/models/ReviewModel";
 import { Formik } from 'formik';
 import { ReviewInitialValues } from "../../constants/InitialValues/ReviewInitialValues";
@@ -8,15 +7,16 @@ import ReviewForm from "../Forms/ReviewForm";
 import { useCurrentUser } from "../../contexts/UserContext/UserContext";
 import { toast } from "react-toastify";
 import Axios from "axios";
+import { BasicProductModel } from "../../interfaces/models/BasicProductModel";
 
 interface AddOpinionProps {
   review: ReviewModel | null;
   fetchReviews: () => Promise<void>;
-  card: CardDetailsModel;
+  product: BasicProductModel;
   xs: number;
 }
 
-const AddOpinion: FC<AddOpinionProps> = ( { card, xs, review, fetchReviews } ) => {
+const AddOpinion: FC<AddOpinionProps> = ( { product, xs, review, fetchReviews } ) => {
 
   const [ showModal, setShowModal ] = useState<boolean>( false );
 
@@ -40,7 +40,7 @@ const AddOpinion: FC<AddOpinionProps> = ( { card, xs, review, fetchReviews } ) =
 
     if ( !userHasReview ) {
       values.userId = currentUser?.userId;
-      values.cardId = card.cardId;
+      values.productId = product.productId;
     }
 
     try {
@@ -82,7 +82,7 @@ const AddOpinion: FC<AddOpinionProps> = ( { card, xs, review, fetchReviews } ) =
 
       <span className={ `text-secondary text-wrap text-middle ` }>
         {
-          userHasReview ? `Want to change something?` : `Rate ${ card.title }`
+          userHasReview ? `Want to change something?` : `Rate ${ product.title }`
         }
       </span>
 
@@ -121,7 +121,7 @@ const AddOpinion: FC<AddOpinionProps> = ( { card, xs, review, fetchReviews } ) =
                 <div className={ `d-flex align-items-center` }>
                   Add opinion of card :
                   <span className={ `text-info fw-light` }>
-                  { card.title }
+                  { product.title }
                   </span>
                 </div>
             }

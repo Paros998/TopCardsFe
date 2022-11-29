@@ -1,7 +1,7 @@
 @import "custom-variables";
 @import "custom-animations";
 
-body,html{
+body, html {
   margin: 0;
   padding: 0;
   overflow: auto;
@@ -12,130 +12,146 @@ body,html{
   height: 100%;
 }
 
-hr:not([size]){
+hr:not([size]) {
   height: 1px;
   opacity: 1;
 }
 
-.ps-6{
+.inner-nav-media {
+  border-bottom: 0;
+}
+
+.h-fit {
+  height: fit-content !important;
+}
+
+.ps-6 {
   padding-left: 6rem !important;
 }
 
+.h-2px {
+  height: 2px !important;
+}
 
 //imitating button
-.btn-pointer{
+.btn-pointer {
   cursor: pointer;
 }
 
 //number input
-.primary-number-input::-webkit-inner-spin-button,.primary-number-input::-webkit-outer-spin-button{
+.primary-number-input::-webkit-inner-spin-button, .primary-number-input::-webkit-outer-spin-button {
   -webkit-appearance: none;
 }
 
-.rounded-card-10{
+.rounded-card-10 {
   border-radius: 10px;
 }
 
-.rounded-start-10{
+.rounded-start-10 {
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
 }
-.rounded-end-10{
+
+.rounded-end-10 {
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
 }
 
-#nav-dropdown{
-  color: $primary ;
+#nav-dropdown {
+  color: $primary;
   background-color: $light;
-  border: 1px solid $primary ;
+  border: 1px solid $primary;
   border-radius: 10px;
   text-decoration: none;
 }
 
-#nav-dropdown:focus{
+#nav-dropdown:focus {
   color: $light;
   background-image: linear-gradient(to right, $primary 0% 50%, $dark 85% 100%);
 }
 
-#nav-dropdown:hover{
+#nav-dropdown:hover {
   color: $light;
   animation: nav-dropdown-fill-gradient 0.25s ease-in;
   background-image: linear-gradient(to right, $primary 0% 50%, $dark 85% 100%);
 }
 
-#nav-toggle{
+#nav-toggle {
   background-color: $light !important;
 }
 
-.light-navLink:hover{
+.light-navLink:hover {
   animation: fill-bg-dark-light-left 0.25s ease-in;
   background-color: $dark !important;
   color: $light !important;
   border: 1px solid $light !important;
 }
 
-.dark-navLink:hover{
+.dark-navLink:hover {
   animation: fill-bg-light-dark-right 0.25s ease-in;
   background-color: $light !important;
   color: $dark !important;
 }
 
-.filter-canvas{
+.filter-canvas {
   z-index: 2;
 }
 
-.navbar{
+.navbar {
   z-index: 20;
 }
 
-.main-container{
-  padding: 90px 1.1rem 55px 1.1rem;
+.top-container {
+  padding-top: 5% !important;
 }
 
-.z-index-1000{
+.z-index-1000 {
   z-index: 1000;
 }
 
-.z-index-1{
+.z-index-1 {
   z-index: 1 !important;
 }
 
-.background-light-hover:hover{
+.background-light-hover:hover {
   background-color: $dark !important;
   color: $light !important;
 }
 
-.background-danger-hover:hover{
-  background-color: $primary-dark !important;
+.background-danger-hover:hover {
+  background-color: $danger !important;
+  border: 1px solid $dark !important;
+  box-shadow: 0.2rem 0.2rem 0.2rem $dark;
+}
+
+.background-dark-hover:hover {
+  background-color: $dark !important;
   color: $light !important;
 }
 
-.login-card{
-  height: 90%;
+.login-card {
   width: 30%;
 }
 
-.register-card{
-  height: 90%;
+.register-card {
   width: 80%;
 }
 
-.light-button-hover:hover{
+.light-button-hover:hover {
   border: 1px solid $light !important;
   background-color: $dark !important;
   color: $light !important;
 }
 
-.card-title{
+.card-title {
   height: 20%;
 }
 
-.select-all{
+.select-all {
   color: $primary-light !important;
 }
 
-.select-all:hover{
+.select-all:hover {
   color: $primary-light !important;
   text-decoration: underline !important;
 }
@@ -153,52 +169,57 @@ hr:not([size]){
   color: $primary-light;
 }
 
-.notification-span{
+.notification-span {
   right: 2rem;
 }
 
-.star-hover:hover{
+.star-hover:hover {
   color: gold !important;
 }
 
-.active-nav{
+.active-nav {
   background-color: $secondary-dark !important;
   color: $light !important;
 }
 
-.inner-nav{
+.inner-nav {
   border-radius: 0 !important;
 }
 
-.inner-nav:hover{
+.inner-nav:hover {
   background-color: $light !important;
   color: $dark !important;
 }
 
-.profile-form-control:disabled{
+.profile-form-control:disabled {
   border: 0 !important;
 }
 
-.observed-card-info{
+.observed-card-info {
   filter: drop-shadow(0px 6px 6px rgba(0, 0, 0, 0.65));
 }
 
-.observed-card-info:hover{
+.observed-card-info:hover {
   filter: drop-shadow(0px 6px 6px rgba(255, 255, 255, 0.45));
 }
 
-.managed-carrot-light:hover{
+.managed-carrot-light:hover {
   color: $primary !important;
 }
 
-.managed-carrot-primary:hover{
+.managed-carrot-primary:hover {
   color: $light !important;
 }
 
-.inner-text-info{
+.inner-text-info {
   color: $info !important;
 }
 
-.rounded-pill-progress > div{
+.rounded-pill-progress > div {
   border-radius: 16px;
+}
+
+.danger-hover:hover {
+  border: 1px solid $danger !important;
+  color: $danger !important;
 }

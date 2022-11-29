@@ -24,16 +24,16 @@ const HistoryCard = () => {
   const [ records, fetchRecords, isPending ] = useFetchData<PageResponse<HistoryModel>>( `/history/${ currentUser?.userId }`, { params } );
 
   return (
-    <div className={ `w-100 h-90 align-self-center d-flex flex-column pb-3` }>
+    <div className={ `bg-secondary-dark w-100 h-90 align-self-center d-flex flex-column pb-3` }>
 
       <div
-        className={ `w-100 mt-3 h-90 justify-content-start d-flex flex-column align-items-center overflow-y-scroll thumb-slim thumb-info` }>
+        className={ `w-100 mt-3 h-95 justify-content-start d-flex flex-column align-items-center overflow-y-scroll thumb-slim thumb-info` }>
 
         <HistoryRecords fetchRecords={ fetchRecords } records={ records?.content || [] } isPending={ isPending }/>
 
       </div>
 
-      <div className={ `w-100 h-10 d-flex align-items-center justify-content-center ` }>
+      <div className={ `w-100 h-5 d-flex align-items-center justify-content-center ` }>
         <Pagination
           count={ records?.totalPages || 1 }
           className={ `bg-light rounded-card-10` }

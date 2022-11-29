@@ -12,7 +12,7 @@ interface CensorUnCensorReviewProps {
 
 const CensorUnCensorReview: FC<CensorUnCensorReviewProps> = ( { review, fetchReviews } ) => {
 
-  const { censored, id } = review;
+  const { isCensored, id } = review;
 
   const [ isPending, setIsPending ] = useState<boolean>( false );
 
@@ -23,7 +23,7 @@ const CensorUnCensorReview: FC<CensorUnCensorReviewProps> = ( { review, fetchRev
 
       await Axios.patch( `/reviews/${ id }` );
 
-      toast.info( `${ censored ? `Uncesored review` : `Censored review` }` );
+      toast.info( `${ isCensored ? `Uncesored review` : `Censored review` }` );
 
       await fetchReviews();
 
@@ -38,9 +38,9 @@ const CensorUnCensorReview: FC<CensorUnCensorReviewProps> = ( { review, fetchRev
   }
 
   if ( isPending )
-    return <Spinner animation={ "border" } variant={ !censored ? "primary" : "success" }/>
+    return <Spinner animation={ "border" } variant={ !isCensored ? "primary" : "success" }/>
 
-  if ( !censored )
+  if ( !isCensored )
     return <SlashCircle className={ `text-danger fs-3 btn-pointer` } onClick={ onClick }/>
 
   return <HandThumbsUp className={ `text-success fs-3 btn-pointer` } onClick={ onClick }/>

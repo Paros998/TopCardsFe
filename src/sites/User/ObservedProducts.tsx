@@ -5,22 +5,25 @@ import Footer from "../../components/Footer/Footer";
 import UserNavBar from "../../components/InnerNavbar/UserNavBar";
 import UserCard from "../../components/Card/UserCard";
 import ObservedCardsCard from "../../components/Card/UserCards/ObservedCardsCard";
+import ts from 'typescript';
 
-const ObservedCards = () => {
+const ObservedProducts = () => {
   return (
-    <>
+    <div className={'vh-100 vw-100'}>
       <TopNavbar/>
 
       <MainContainer className={`bg-secondary-dark `}>
+
         <UserCard>
           <UserNavBar/>
           <ObservedCardsCard/>
         </UserCard>
+
+        <Footer/>
       </MainContainer>
 
-      <Footer/>
-    </>
+    </div>
   );
 };
 
-export default ObservedCards;
+export default ObservedProducts;

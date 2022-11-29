@@ -8,7 +8,7 @@ const LoginForm = () => {
 
   const formGroup = `mx-3 my-1 fw-light`;
   const formLabel = `position-relative left-10 fs-4`;
-  const formControl = `rounded-pill px-3 w-80 position-relative left-10`;
+  const formControl = `rounded-pill px-3 w-80 position-relative left-10 bg-dark text-light`;
   const errorSpan = `text-danger position-relative left-10`;
 
   const {handleChange, errors, touched} = useFormikContext<LoginFormikValues>();
@@ -52,8 +52,8 @@ const LoginForm = () => {
       <hr className={`my-4 w-90 position-relative left-5`}/>
 
       <SubmitButton
-        variant={`outline-light`}
-        className={`w-80 position-relative left-10 rounded-pill`}
+        variant={`light`}
+        className={`w-80 position-relative left-10 rounded-pill light-button-hover`}
       >
         Login
       </SubmitButton>

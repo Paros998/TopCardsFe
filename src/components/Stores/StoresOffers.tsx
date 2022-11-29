@@ -1,20 +1,20 @@
 import React, { FC, useCallback, useEffect } from 'react';
 import { Col, Row, Spinner } from "react-bootstrap";
 import { EmojiFrown } from "react-bootstrap-icons";
-import OnlineStore from "./OnlineStore";
 import { useFetchData } from "../../hooks/useFetchData";
-import { OnlineStoreOffer } from "../../interfaces/models/OnlineStoreOffer";
+import { StoreOffer } from "../../interfaces/models/StoreOffer";
 import RecordsNotFound from "../../assets/images/records-not-found.png";
+import { ProductProps } from "../../interfaces/models/Product";
+import Offer from "./Offer";
 
-interface OnlineStoresProps {
-  cardId: string;
+interface LocalStoresProps extends ProductProps {
 }
 
-const OnlineStores: FC<OnlineStoresProps> = ( { cardId } ) => {
+const StoresOffers: FC<LocalStoresProps> = ( { productId } ) => {
 
-  const [ onlineStoreOffers, fetchOffers, isPending ] = useFetchData<OnlineStoreOffer[]>( `/online-offers/card/${ cardId }` );
+  const [ offers, fetchOffers, isPending ] = useFetchData<StoreOffer[]>( `products/offers/${ productId }` );
 
-  const availability: number = onlineStoreOffers?.length;
+  const availability: number = offers?.length;
 
   const available: boolean = availability >= 1;
 
@@ -30,19 +30,19 @@ const OnlineStores: FC<OnlineStoresProps> = ( { cardId } ) => {
   }, [] )
 
   if ( !available )
-    availabilityMessage = `Not available in online stores`;
+    availabilityMessage = `Not available in any store currently`;
   else if ( availability === 1 )
     availabilityMessage = `Available in 1 store`;
   else if ( availability > 1 )
     availabilityMessage = `Available in ${ availability } stores`;
 
   if ( isPending )
-    return <Row className={ `w-100 ` }>
+    return <Row className={ `w-100 pb-md-3` }>
 
       <Col xs={ 12 }>
 
       <span className={ `ms-4 fs-3 fw-light ps-4 align-items-center d-flex mt-1` }>
-        Online Stores
+        Stores offers
       </span>
 
       </Col>
@@ -51,28 +51,28 @@ const OnlineStores: FC<OnlineStoresProps> = ( { cardId } ) => {
 
       <Col xs={ 11 } className={ `my-1 fs-5 fw-light` }>
 
-        Checking for online offers...
+        Checking for store offers...
 
       </Col>
 
       <Col xs={ 1 }/>
 
-      <Col xs={ 11 } className={`d-flex justify-content-center align-items-center mb-5`}>
+      <Col xs={ 11 } className={ `d-flex justify-content-center align-items-center mb-5` }>
         <Spinner
           animation={ "grow" }
           variant={ "dark" }
-          className={`border border-2 border-light`}
+          className={ `border border-2 border-light` }
           style={ { width: "12rem", height: "12rem" } }/>
       </Col>
     </Row>
 
-  if ( !isPending && onlineStoreOffers?.length === 0 )
-    return <Row className={ `w-100 mb-5` }>
+  if ( !isPending && offers?.length === 0 )
+    return <Row className={ `w-100 pb-md-3` }>
 
       <Col xs={ 12 }>
 
       <span className={ `ms-4 fs-3 fw-light ps-4 align-items-center d-flex mt-1` }>
-        Online Stores
+        Stores offers
       </span>
 
       </Col>
@@ -92,17 +92,18 @@ const OnlineStores: FC<OnlineStoresProps> = ( { cardId } ) => {
       <Col xs={ 1 }/>
 
       <Col xs={ 11 } className={ `d-flex align-items-center justify-content-center` }>
-        <img src={ RecordsNotFound } alt={ '' } className={ `rounded-circle w-30 h-auto` }/>
+        <img src={ RecordsNotFound } alt={ '' }
+             className={ `rounded-card-10 mh-300px` }/>
       </Col>
 
     </Row>
 
-  return <Row className={ `w-100 mb-5` }>
+  return <Row className={ `w-100 pb-md-3` }>
 
     <Col xs={ 12 }>
 
       <span className={ `ms-4 fs-3 fw-light ps-4 align-items-center d-flex mt-1` }>
-        Online Stores
+        Stores offers
       </span>
 
     </Col>
@@ -110,27 +111,27 @@ const OnlineStores: FC<OnlineStoresProps> = ( { cardId } ) => {
     <Col xs={ 1 }/>
 
     <Col xs={ 11 } className={ `my-1 fs-5 fw-light` }>
+
       {
         availabilityMessage
       }
       {
         !available && <EmojiFrown className={ `ms-2 fs-5` }/>
       }
-
-      {
-        onlineStoreOffers?.map( ( offer, index ) =>
-          <OnlineStore
-            key={ index }
-            firstStore={ index === 0 }
-            lastStore={ onlineStoreOffers.length - 1 === index }
-            offer={ offer }
-          />
-        )
-      }
-
     </Col>
+
+    {
+      offers?.map( ( offer, index ) =>
+        <Offer
+          offer={ offer }
+          key={ index }
+          lastStore={ offers.length - 1 === index }
+          firstStore={ index === 0 }
+        />
+      )
+    }
 
   </Row>
 };
 
-export default OnlineStores;
+export default StoresOffers;
