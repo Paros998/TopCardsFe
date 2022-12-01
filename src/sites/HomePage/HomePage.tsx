@@ -2,7 +2,7 @@ import React from 'react';
 import TopNavbar from "../../components/TopNavbar/TopNavbar";
 import MainContainer from "../../components/MainContainer/MainContainer";
 import Footer from "../../components/Footer/Footer";
-import HomeView from "../../components/Card/SuggestedCards/HomeView";
+import HomeCard from "../../components/Card/HomeCard/HomeCard";
 import { PageRequest } from "../../interfaces/PageRequest";
 import { FilterCardsFormikValues } from "../../interfaces/formik/FilterCardsFormikValues";
 
@@ -43,14 +43,13 @@ const HomePage = () => {
   //
   // const [ cards, , isPending ] = useFetchData<PageResponse<BasicCardModel>>( 'cards', { params } );
 
-  let cardClassName = `w-100 mnh-95`;
 
   return (
     <div className={ 'vh-100 vw-100' }>
       <TopNavbar/>
 
-      <MainContainer className={ `bg-light overflow-y-scroll thumb-slim` }>
-        <HomeView className={ `${ cardClassName }` }/>
+      <MainContainer className={ `bg-light overflow-y-scroll thumb-dark` }>
+        <HomeCard/>
 
         <Footer/>
       </MainContainer>

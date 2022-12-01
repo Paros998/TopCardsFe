@@ -3,8 +3,6 @@ import { Button, Col, Form as FormBoot, Row } from "react-bootstrap";
 import { FieldArray, Form, useFormikContext } from "formik";
 import { CardDetailsModel } from "../../interfaces/models/CardDetailsModel";
 import { PlusCircleFill, XCircleFill } from "react-bootstrap-icons";
-import { FilterOption } from "../../interfaces/FilterOption";
-import { useFetchData } from "../../hooks/useFetchData";
 import SubmitButton from "../SubmitButton/SubmitButton";
 import BasicCardPhoto from "../../assets/images/product_avatar.png";
 
@@ -27,11 +25,13 @@ const CardNewOrEditForm: FC<CardNewOrEditFormProps> = ( {
 
   const { values, setFieldValue, handleChange, errors, touched, resetForm } = useFormikContext<CardDetailsModel>();
 
+  console.log( values )
+
   const handleFileUpload = ( e: ChangeEvent<HTMLElement> ) => {
     const file = ( e.target as HTMLInputElement ).files![ 0 ];
 
     if ( file !== undefined ) {
-      setFieldValue( `cardPhoto`, URL.createObjectURL( file ) );
+      setFieldValue( `productPhoto`, URL.createObjectURL( file ) );
     }
   };
 
@@ -39,7 +39,7 @@ const CardNewOrEditForm: FC<CardNewOrEditFormProps> = ( {
 
   const formClassName = `w-100 rounded-pill bg-dark text-light ${ !editable && `border-0` }`;
 
-  const rowClass = `w-100 my-1`;
+  const rowClass = `w-100 my-2`;
 
   const labelClass = `text-secondary-light m-0 `;
 
@@ -49,25 +49,17 @@ const CardNewOrEditForm: FC<CardNewOrEditFormProps> = ( {
 
   const addClass = `fs-5 btn-pointer ${ !editable && `d-none` }`;
 
-  const arrayGroup = `rounded-card-10 border border-1 border-secondary-dark p-1 ${ !editable && `border-0 p-0` }`;
+  const arrayGroup = `rounded-card-10 border border-1 border-light p-1 ${ !editable && `border-0 p-0` }`;
 
   const dynamicRowClass = `row ${ editable ? `px-3` : `px-0 ps-2` }`;
 
   const labelSize = 5;
 
-  const [ manufacturers ] = useFetchData<FilterOption[]>( 'filters/manufacturer' );
-  const [ connectors ] = useFetchData<FilterOption[]>( 'filters/connector' );
-  const [ technologies ] = useFetchData<FilterOption[]>( 'filters/technology' );
-  const [ memoryAmounts ] = useFetchData<FilterOption[]>( 'filters/memory-amount' );
-  const [ memoryTypes ] = useFetchData<FilterOption[]>( 'filters/memory-type' );
-  const [ outputTypes ] = useFetchData<FilterOption[]>( 'filters/outputs' );
-  const [ memoryBuses ] = useFetchData<FilterOption[]>( 'filters/memory-bus' );
-
-  const [ cardPhotoSrc ] = useFetchData<string>( `/files/${ values.productPhoto }` );
+  const productPhoto = values?.productPhoto;
 
   return (
     <Form
-      className={ `w-100 vstack ${ !inDetails ? `overflow-y-scroll thumb-slim thumb-light py-2` : ` pt-3 mt-5` } px-3 my-2 mt-3 ` }>
+      className={ `w-100 vstack ${ !inDetails ? `overflow-y-scroll thumb-slim thumb-light py-2` : ` pt-3 ` } px-3 ` }>
 
       <div className={ `w-100 hstack gap-4 align-items-start ` }>
 
@@ -82,7 +74,7 @@ const CardNewOrEditForm: FC<CardNewOrEditFormProps> = ( {
           />
 
           <div className={ `w-100 d-flex justify-content-center` }>
-            <img src={ cardPhotoSrc ? cardPhotoSrc : BasicCardPhoto }
+            <img src={ productPhoto ? productPhoto : BasicCardPhoto }
                  className={ `${ editable && `rounded-circle btn-pointer` } border-2 border-light border profile-avatar` }
                  alt={ `Img` }
                  style={ { width: "10rem", height: "10rem" } }
@@ -154,10 +146,10 @@ const CardNewOrEditForm: FC<CardNewOrEditFormProps> = ( {
                 }
 
                 {
-                  connectors?.map( ( value, index ) =>
-                    <option key={ index } value={ value.value }>
-                      { value.label }
-                    </option> )
+                  // connectors?.map( ( value, index ) =>
+                  //   <option key={ index } value={ value.value }>
+                  //     { value.label }
+                  //   </option> )
                 }
 
               </FormBoot.Select>
@@ -194,10 +186,10 @@ const CardNewOrEditForm: FC<CardNewOrEditFormProps> = ( {
                 }
 
                 {
-                  memoryTypes?.map( ( value, index ) =>
-                    <option key={ index } value={ value.value }>
-                      { value.label }
-                    </option> )
+                  // memoryTypes?.map( ( value, index ) =>
+                  //   <option key={ index } value={ value.value }>
+                  //     { value.label }
+                  //   </option> )
                 }
 
               </FormBoot.Select>
@@ -211,7 +203,7 @@ const CardNewOrEditForm: FC<CardNewOrEditFormProps> = ( {
               xs={ labelSize }
               className={ colClass }>
               <FormBoot.Label className={ labelClass }>
-                Memory Amount
+                Memory Amount (GB)
               </FormBoot.Label>
             </Col>
 
@@ -233,10 +225,10 @@ const CardNewOrEditForm: FC<CardNewOrEditFormProps> = ( {
                 }
 
                 {
-                  memoryAmounts?.map( ( value, index ) =>
-                    <option key={ index } value={ value.value }>
-                      { value.label }
-                    </option> )
+                  // memoryAmounts?.map( ( value, index ) =>
+                  //   <option key={ index } value={ value.value }>
+                  //     { value.label }
+                  //   </option> )
                 }
 
               </FormBoot.Select>
@@ -250,7 +242,7 @@ const CardNewOrEditForm: FC<CardNewOrEditFormProps> = ( {
               xs={ labelSize }
               className={ colClass }>
               <FormBoot.Label className={ labelClass }>
-                Memory Bus
+                Memory Bus (Bits)
               </FormBoot.Label>
             </Col>
 
@@ -271,10 +263,10 @@ const CardNewOrEditForm: FC<CardNewOrEditFormProps> = ( {
                 }
 
                 {
-                  memoryBuses?.map( ( value, index ) =>
-                    <option key={ index } value={ value.value }>
-                      { value.label }
-                    </option> )
+                  // memoryBuses?.map( ( value, index ) =>
+                  //   <option key={ index } value={ value.value }>
+                  //     { value.label }
+                  //   </option> )
                 }
 
               </FormBoot.Select>
@@ -288,7 +280,7 @@ const CardNewOrEditForm: FC<CardNewOrEditFormProps> = ( {
               xs={ labelSize }
               className={ colClass }>
               <FormBoot.Label className={ labelClass }>
-                Memory clock speed
+                Memory clock (GHz)
               </FormBoot.Label>
             </Col>
 
@@ -313,7 +305,7 @@ const CardNewOrEditForm: FC<CardNewOrEditFormProps> = ( {
               xs={ labelSize }
               className={ colClass }>
               <FormBoot.Label className={ labelClass }>
-                Core clock
+                Core clock (GHz)
               </FormBoot.Label>
             </Col>
 
@@ -388,10 +380,10 @@ const CardNewOrEditForm: FC<CardNewOrEditFormProps> = ( {
                 }
 
                 {
-                  technologies?.map( ( value, index ) =>
-                    <option key={ index } value={ value.value }>
-                      { value.label }
-                    </option> )
+                  // technologies?.map( ( value, index ) =>
+                  //   <option key={ index } value={ value.value }>
+                  //     { value.label }
+                  //   </option> )
                 }
 
               </FormBoot.Select>
@@ -456,7 +448,7 @@ const CardNewOrEditForm: FC<CardNewOrEditFormProps> = ( {
               xs={ labelSize }
               className={ colClass }>
               <FormBoot.Label className={ labelClass }>
-                Recommended PSU power
+                Recommended PSU power (Wats)
               </FormBoot.Label>
             </Col>
 
@@ -481,7 +473,7 @@ const CardNewOrEditForm: FC<CardNewOrEditFormProps> = ( {
               xs={ labelSize }
               className={ colClass }>
               <FormBoot.Label className={ labelClass }>
-                Power consumption
+                Power consumption (Wats)
               </FormBoot.Label>
             </Col>
 
@@ -547,7 +539,8 @@ const CardNewOrEditForm: FC<CardNewOrEditFormProps> = ( {
                 {
                   isNewCard
                     ? <option>Choose...</option>
-                    : <option className={ `inner-text-info` } value={ values.rtxSupport }>{ values.rtxSupport }</option>
+                    : <option className={ `inner-text-info` }
+                              value={ values.rtxSupport }>{ values.rtxSupport ? 'Yes' : 'No' }</option>
                 }
 
                 <option value={ "true" }>
@@ -597,7 +590,7 @@ const CardNewOrEditForm: FC<CardNewOrEditFormProps> = ( {
                           className={ `${ colClass } mb-1` }>
 
                           <FormBoot.Control
-                            className={ `${ formClassName } ${ !editable && `ps-2` }` }
+                            className={ `${ formClassName } ${ !editable && `ps-2 pe-0` }` }
                             type={ `text` }
                             name={ `supportedLibraries[${ index }]` }
                             defaultValue={ values.supportedLibraries[ index ] }
@@ -673,7 +666,7 @@ const CardNewOrEditForm: FC<CardNewOrEditFormProps> = ( {
           <a
             href={ values.producentSite }
             target={ `_blank` }
-            className={ `${ formClassName } ${ editable && `d-none` } inner-text-info text-truncate` }
+            className={ `${ formClassName } ${ editable && `d-none` } inner-text-info text-truncate ps-1 ps-md-3` }
           >
             { values.producentSite }
           </a>
@@ -682,18 +675,16 @@ const CardNewOrEditForm: FC<CardNewOrEditFormProps> = ( {
 
       </FormBoot.Group>
 
-      <div className={ `${ editable ? `d-flex` : `d-none` } justify-content-center ` }>
+      <div className={ `${ editable ? `d-flex` : `d-none` } justify-content-center mt-4` }>
         <SubmitButton
-          className={ `rounded-pill me-5 w-10` }
-          variant={ `outline-success` }
+          className={ `rounded-pill me-5 w-10 dark-success` }
           type={ `submit` }
         >
           Save
         </SubmitButton>
 
         <Button
-          className={ `rounded-pill w-10` }
-          variant={ `outline-secondary` }
+          className={ `rounded-pill w-10 dark-danger` }
           type={ `reset` }
           onClick={ () => {
             !isNewCard && setEditable( !editable );

@@ -1,15 +1,17 @@
-import React, {FC, ReactNode} from 'react';
+import React, { FC, ReactNode } from 'react';
 
-interface MainContainerProps{
+interface MainContainerProps {
   children?: ReactNode;
-  className?:string;
+  className?: string;
 }
 
-const MainContainer:FC<MainContainerProps> = ({children,
-                                                className}) => {
+const MainContainer: FC<MainContainerProps> = ( {
+                                                  children,
+                                                  className
+                                                } ) => {
   return (
-    <div className={`w-100 h-90 bg-secondary text-light ${className}`}>
-      {children}
+    <div className={ `w-100 h-90 bg-secondary text-light ${ className }` }>
+      { children }
     </div>
   );
 };

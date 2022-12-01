@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useMemo } from 'react';
 import TopNavbar from "../../components/TopNavbar/TopNavbar";
 import MainContainer from "../../components/MainContainer/MainContainer";
 import Footer from "../../components/Footer/Footer";
@@ -12,15 +12,14 @@ import HrBrake from "../../components/Hr/HrBrake";
 import FeedBackCard from "../../components/FeedBack/FeedBackCard";
 import StoresOffers from "../../components/Stores/StoresOffers";
 import { useCurrentUser } from "../../contexts/UserContext/UserContext";
-import Axios from "axios";
 import { ProductType } from "../../interfaces/enums/ProductType";
 import CardDetails from "./Card/CardDetails";
 import CardTemplate from "../../components/Card/CardTemplate";
 import { usePostCqrs } from "../../hooks/usePostCqrs";
+import { AddHistoryCommand } from "../../interfaces/models/command/AddHistoryCommand";
+import { HistoryAction } from "../../interfaces/enums/HistoryAction";
 
 const ProductDetails = () => {
-
-  const [ historyCreated, setHistoryCreated ] = useState<boolean>( false );
 
   const navigate = useNavigate();
 
@@ -35,18 +34,18 @@ const ProductDetails = () => {
     }
   }, [ productId, productType ] );
 
-  useEffect( () => {
+  const command = useMemo<AddHistoryCommand>( (): AddHistoryCommand => {
+    return {
+      historyData: {
+        productId: productId as string,
+        action: HistoryAction.CHECK_PRODUCT,
+        content: productId as string
+      },
+      userId: currentUser?.userId as string
+    }
+  }, [ productId, currentUser ] )
 
-    if ( currentUser && !historyCreated )
-      Axios.post( '/history',
-        {
-          action: "checkProduct",
-          content: productId,
-          userId: currentUser.userId
-        }
-      ).then( () => setHistoryCreated( true ) )
-
-  }, [ productId, currentUser, historyCreated ] )
+  usePostCqrs( `/history/AddHistoryCommand`, { cqrsBody: command, notExecute: !currentUser, executeOnce: true } );
 
   const [ productExists, , isPending ] = usePostCqrs<boolean>( `products/ProductExistsQuery`, { cqrsBody: query } );
 

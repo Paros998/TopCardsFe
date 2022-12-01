@@ -15,7 +15,7 @@ const HistoryCard = () => {
   const params: PageRequest = useMemo( () => {
     return {
       page: page,
-      pageLimit: 12,
+      pageLimit: 15,
       sortDir: "desc",
       sortBy: "dateTime"
     }
@@ -27,7 +27,7 @@ const HistoryCard = () => {
     <div className={ `bg-secondary-dark w-100 h-90 align-self-center d-flex flex-column pb-3` }>
 
       <div
-        className={ `w-100 mt-3 h-95 justify-content-start d-flex flex-column align-items-center overflow-y-scroll thumb-slim thumb-info` }>
+        className={ `w-100 mt-3 h-95 justify-content-start d-flex flex-column align-items-center overflow-y-scroll thumb-slim thumb-info mb-2` }>
 
         <HistoryRecords fetchRecords={ fetchRecords } records={ records?.content || [] } isPending={ isPending }/>
 

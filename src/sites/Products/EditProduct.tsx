@@ -4,7 +4,7 @@ import MainContainer from "../../components/MainContainer/MainContainer";
 import UserCard from "../../components/Card/UserCard";
 import Footer from "../../components/Footer/Footer";
 import BackButtonArrowCircle from "../../components/BackButton/BackButtonArrowCircle";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import ProductNotFound from "../../components/NotFound/ProductNotFound";
 import { Button, Spinner } from "react-bootstrap";
 import { ProductType } from "../../interfaces/enums/ProductType";
@@ -13,9 +13,11 @@ import { usePostCqrs } from "../../hooks/usePostCqrs";
 
 const EditProduct = () => {
 
-  const [ editable, setEditable ] = useState<boolean>( true );
+  const [ editable, setEditable ] = useState<boolean>( false );
 
   const { productId, productType } = useParams<{ productId: string, productType: ProductType }>();
+
+  const navigate = useNavigate();
 
   const query = useMemo( () => {
     return {
@@ -40,21 +42,27 @@ const EditProduct = () => {
     <div className={ 'vh-100 vw-100' }>
       <TopNavbar/>
 
-      <MainContainer className={ `bg-secondary-dark ` }>
+      <MainContainer className={ `` }>
 
-        <UserCard className={ `vstack` }>
+        <UserCard className={ `vstack bg-secondary-dark pt-2` }>
 
           <div className={ `h-5 hstack` }>
 
             <BackButtonArrowCircle/>
 
-            <span className={ `w-100 fs-3 fw-light ps-4 align-items-center d-flex mt-1` }>
+            <span className={ `w-80 fs-3 fw-light ps-4 align-items-center d-flex mt-1` }>
                 Edit Card
               </span>
 
             <Button
-              className={ `w-10 rounded-card-10 mt-3 me-2` }
-              variant={ `outline-info` }
+              className={ `w-10 rounded-card-10 mt-3 me-3 dark-light` }
+              onClick={ () => navigate( `/product/${ productId }&${ productType }` ) }
+            >
+              To Details
+            </Button>
+
+            <Button
+              className={ `w-10 rounded-card-10 mt-3 me-2 ${ editable ? 'bg-secondary border-secondary' : 'dark-info ' }` }
               disabled={ editable }
               onClick={ () => setEditable( true ) }
             >
@@ -65,7 +73,7 @@ const EditProduct = () => {
 
           {
             {
-              GPU: <CardDetails productId={ productId as string }/>,
+              GPU: <CardDetails productId={ productId as string } editable={ editable } setEditable={ setEditable }/>,
               CONSOLE: 'Console ',
               CPU: 'Processor ',
               PC: 'Personal Computer ',

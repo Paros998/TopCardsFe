@@ -38,7 +38,7 @@ const FeedBackCard: FC<FeedBackCardProps> = ( { productId } ) => {
 
   const [ chart, fetchChart, isPendingChart ] = useFetchData<ScoreChartModel>( `products/reviews/${ productId }/chart` );
 
-  const [ userReview, fetchUserReview, isPendingUserReview ] = useFetchData<ReviewModel>( `products/reviews/${ productId }/user/${ currentUser?.userId }` );
+  const [ userReview, fetchUserReview, isPendingUserReview ] = useFetchData<ReviewModel>( currentUser ? `products/reviews/${ productId }/user/${ currentUser.userId }` : `products/reviews/${ productId }` );
 
   const [ product, , isPendingProduct ] = useFetchData<BasicProductModel>( `products/${ productId }` );
 

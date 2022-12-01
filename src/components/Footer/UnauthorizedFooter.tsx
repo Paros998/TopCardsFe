@@ -6,7 +6,7 @@ const UnauthorizedFooter = () => {
   return (
     <footer
       className={ `py-2 py-md-0 text-light bg-dark d-flex flex-column flex-md-row
-       align-items-center w-100 font-italic footer h-5` }>
+       align-items-center w-100 font-italic footer h-5 ` }> 
 
       <span className={ `ms-md-4 font-weight-extra-normal ` }>
         © 2022 P.Grzywacz Dev.

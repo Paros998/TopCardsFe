@@ -4,16 +4,25 @@ import { Col, Container, Row } from "react-bootstrap";
 import SuggestedProducts from "../../Cards/SuggestedProducts";
 import { ProductType } from "../../../interfaces/enums/ProductType";
 import { Controller, CpuFill, Laptop, Pc, PciCard } from "react-bootstrap-icons";
+import WelcomeSegment from "./WelcomeSegment";
+import { useCurrentUser } from "../../../contexts/UserContext/UserContext";
+import NotificationsReminder from "./NotificationsReminder";
 
-interface SuggestedCardsProps {
+interface HomeCardProps {
   className?: string;
 }
 
-const HomeView: FC<SuggestedCardsProps> = ( { className } ) => {
+const HomeCard: FC<HomeCardProps> = ( { className } ) => {
+
+  const { currentUser } = useCurrentUser();
 
   const suggested = ` p-0 ps-md-4 mx-2 mx-md-4 mb-3 align-items-center mnh-100px mh-700px`;
   const hr = <Col xs={ 12 }>
     <hr className={ 'h-2px' }/>
+  </Col>;
+
+  const hrInfo = <Col xs={ 12 }>
+    <hr className={ 'h-2px mx-3' }/>
   </Col>;
 
   let iconClass = 'd-flex-column gap-1 justify-content-center';
@@ -21,8 +30,14 @@ const HomeView: FC<SuggestedCardsProps> = ( { className } ) => {
 
   const style = { width: "100%", height: "auto" };
   return (
-    <CardTemplate className={ `bg-light text-dark fs-6 ${ className }` }>
+    <CardTemplate className={ `bg-light text-dark fs-6 w-100 mnh-95 ${ className }` }>
       <Container className={ `p-0 m-0 align-items-center` } fluid>
+
+        <WelcomeSegment/>
+
+        { currentUser && <NotificationsReminder/> }
+
+        { hrInfo }
 
         <Row className={ `h-10 align-items-center m-0 py-3` }>
           <Col xs={ 12 } md={ 6 } className={ `ms-1 ms-md-3 fs-5 font-weight-extra-normal ` }>
@@ -109,4 +124,4 @@ const HomeView: FC<SuggestedCardsProps> = ( { className } ) => {
   );
 };
 
-export default HomeView;
+export default HomeCard;

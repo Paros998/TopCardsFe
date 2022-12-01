@@ -6,58 +6,60 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Axios from "axios";
 import { useFetchData } from "../../hooks/useFetchData";
+import { HistoryAction } from "../../interfaces/enums/HistoryAction";
+import { BasicProductModel } from "../../interfaces/models/BasicProductModel";
 
 interface HistoryRecordProps {
   record: HistoryModel;
   fetchRecords: () => Promise<void>;
 }
 
-function getTheme( action: "unfollow" | "follow" | "checkCard" | "checkOffer" | "opinion" ) {
+function getTheme( action: HistoryAction ) {
   switch ( action ) {
-    case "unfollow":
+    case HistoryAction.UNFOLLOW:
       return `warning`;
-    case "follow":
+    case HistoryAction.FOLLOW:
       return `success`;
-    case "checkCard":
-      return `secondary`;
-    case "checkOffer":
+    case HistoryAction.CHECK_PRODUCT:
+      return `light`;
+    case HistoryAction.CHECK_OFFER:
       return `purple-light`;
-    case "opinion":
+    case HistoryAction.OPINION:
       return `info`;
   }
 
 }
 
-function getHeader( action: "unfollow" | "follow" | "checkCard" | "checkOffer" | "opinion" ) {
+function getHeader( action: HistoryAction ) {
   switch ( action ) {
-    case "unfollow":
+    case HistoryAction.UNFOLLOW:
       return `UnFollow `;
-    case "follow":
+    case HistoryAction.FOLLOW:
       return `Follow `;
-    case "checkCard":
+    case HistoryAction.CHECK_PRODUCT:
       return `Check `;
-    case "checkOffer":
+    case HistoryAction.CHECK_OFFER:
       return `Check `;
-    case "opinion":
+    case HistoryAction.OPINION:
       return `Opinion `;
   }
 }
 
 const HistoryRecord: FC<HistoryRecordProps> = ( { record, fetchRecords } ) => {
 
-  const { cardId, id, action, link } = record;
+  const { productId, historyId, action, content } = record;
   const navigate = useNavigate();
 
   const theme = getTheme( action );
   const header = getHeader( action );
 
-  const isOfferRecord = action === "checkOffer";
+  const isOfferRecord = action === HistoryAction.CHECK_OFFER;
 
   const deleteRecord = async () => {
 
     try {
 
-      await Axios.delete( `/history/${ id }` );
+      await Axios.delete( `/history/${ historyId }` );
 
       await fetchRecords();
 
@@ -69,24 +71,29 @@ const HistoryRecord: FC<HistoryRecordProps> = ( { record, fetchRecords } ) => {
   }
 
   const onClick = () => {
+    if ( !product ) {
+      toast.info( "Still checking product type" );
+      return;
+    }
+
     if ( isOfferRecord )
       aHref.current?.click();
     else
-      navigate( `/card/${ cardId }` );
+      navigate( `/product/${ productId }&${ product.productType }` );
   }
 
   const aHref = useRef<HTMLAnchorElement>( null );
 
-  const [ title ] = useFetchData<string>( `/cards/${ cardId }/title` );
+  const [ product ] = useFetchData<BasicProductModel>( `/products/${ productId }` );
 
-  const message = isOfferRecord ? link : `ID: ${ cardId } - Card: ${ title ? title : `Fetching title...` }`
+  const message = isOfferRecord ? content : `ID: ${ productId } -> Product: ${ product ? product.title : `Fetching title...` }`
 
-  const rowClass = `border border-1 border-${ theme } rounded-card-10 my-2 w-75`;
+  const rowClass = `border border-1 border-${ theme } bg-dark rounded-card-10 my-2 w-90`;
 
   return (
     <Row className={ rowClass }>
 
-      <a className={ `d-none` } href={ link } target={ `_blank` } ref={ aHref }>NothingHere</a>
+      <a className={ `d-none` } href={ content } target={ `_blank` } ref={ aHref }>NothingHere</a>
 
       <Col xs={ 2 }
            className={ `hstack gap-1 btn-pointer` }
@@ -96,15 +103,15 @@ const HistoryRecord: FC<HistoryRecordProps> = ( { record, fetchRecords } ) => {
           { header }
         </span>
 
-        <span className={ `d-none d-lg-block` }>
-          { ` of ${ isOfferRecord ? ` offer:` : ` card:` }` }
+        <span className={ `d-none d-lg-block text-berry-red` }>
+          { ` of ${ isOfferRecord ? ` offer:` : ` product:` }` }
         </span>
 
       </Col>
 
       <Col xs={ 8 }
            md={ 9 }
-           className={ `${ !isOfferRecord && `text-decoration-underline` } text-truncate text-${ theme } btn-pointer` }
+           className={ `${ !isOfferRecord && `text-decoration-underline` } text-truncate text-${ theme } btn-pointer text-center` }
            onClick={ onClick }>
         { message }
       </Col>

@@ -1,8 +1,9 @@
 import React, { FC } from 'react';
 import { Button, Offcanvas, OffcanvasProps, Spinner } from "react-bootstrap";
-import { XCircleFill } from "react-bootstrap-icons";
+import { ChevronDoubleDown, XCircleFill } from "react-bootstrap-icons";
 import Notifications from "../Notification/Notifications";
 import { NotificationModel } from "../../interfaces/models/NotificationModel";
+import { useNavigate } from "react-router-dom";
 
 interface NotificationCanvasProps extends OffcanvasProps {
   show: boolean;
@@ -18,6 +19,27 @@ const NotificationCanvas: FC<NotificationCanvasProps> = ( {
                                                             isPending,
                                                             ...props
                                                           } ) => {
+  const navigate = useNavigate();
+
+  const settingsButton = <Button
+    className={ `rounded-card-10 ms-1 ms-xl-2 dark-warning` }
+    onClick={ () => {
+      handleClose();
+      navigate( `/user/notifications` );
+    } }
+  >
+    Adjust Settings
+  </Button>;
+
+  const emptyNotificationsSegment = <div
+    className={ `vstack gap-2 justify-content-center align-items-center text-warning fs-5` }>
+    No new notifications, maybe
+
+    <ChevronDoubleDown className={ `fs-4` }/>
+
+    { settingsButton }
+  </div>
+
   let spanFlex = `w-100 d-flex align-items-center`;
   return <Offcanvas show={ show }
                     onHide={ handleClose }
@@ -52,6 +74,10 @@ const NotificationCanvas: FC<NotificationCanvasProps> = ( {
         isPending
           ? <Spinner animation={ "border" } variant={ 'danger' } style={ { width: "3rem", height: "3rem" } }/>
           : <Notifications notifications={ notifications }/>
+      }
+
+      {
+        !isPending && !( notifications.length > 0 ) && emptyNotificationsSegment
       }
 
     </Offcanvas.Body>

@@ -6,17 +6,31 @@ interface UsePostCqrsConfig<T> {
   dataMapper?: ( data: any ) => T;
   cqrsBody: any;
   errorMessage?: string;
+  executeOnce?: boolean;
+  notExecute?: boolean;
 }
 
 type UsePostCqrsReturnModel<T> = [ T, () => Promise<void>, boolean ];
 
 export const usePostCqrs = <T extends unknown>( endpoint: string, config?: UsePostCqrsConfig<T> ): UsePostCqrsReturnModel<T> => {
   const [ data, setData ] = useState<T>();
+  const [ executed, setExecuted ] = useState( false );
   const [ isPending, setIsPending ] = useState( false );
 
-  const { cqrsBody, dataMapper, errorMessage } = config || {};
+  const { cqrsBody, dataMapper, errorMessage, executeOnce, notExecute } = config || {};
 
   const execute = useCallback( async () => {
+    if ( notExecute ) {
+      return;
+    }
+
+    if ( executeOnce ) {
+      if ( executed ) {
+        return;
+      }
+      setExecuted( true );
+    }
+
     setIsPending( true );
     try {
       const { data: fetchedData } = await Axios.post<T>( endpoint, cqrsBody, {} );
@@ -27,7 +41,7 @@ export const usePostCqrs = <T extends unknown>( endpoint: string, config?: UsePo
     } finally {
       setIsPending( false );
     }
-  }, [ setData, dataMapper, endpoint, cqrsBody, errorMessage ] );
+  }, [ setData, dataMapper, endpoint, cqrsBody, errorMessage, notExecute, executed, executeOnce ] );
 
   useEffect( () => {
     execute().catch();

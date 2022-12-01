@@ -1,6 +1,9 @@
+import { HistoryAction } from "../enums/HistoryAction";
+
 export interface HistoryModel {
-  action: `unfollow` | `follow` | `checkCard` | `checkOffer` | `opinion`;
-  id: string;
-  cardId?: string;
-  link?: string;
+  action: HistoryAction
+  historyId: string;
+  productId: string;
+  content: string;
+  dateTime: string;
 }
