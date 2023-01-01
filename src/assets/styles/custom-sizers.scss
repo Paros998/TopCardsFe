@@ -43,8 +43,20 @@
   max-height: 800px;
 }
 
+.mh-1200px {
+  max-height: 1200px;
+}
+
+.mh-2000px {
+  max-height: 2000px;
+}
+
 .mnh-50px {
   min-height: 50px;
+}
+
+.mnh-75px {
+  min-height: 75px;
 }
 
 .mnh-44px {
@@ -97,6 +109,10 @@
 
 .mnh-95 {
   min-height: 95% !important;
+}
+
+.mnh-100 {
+  min-height: 100% !important;
 }
 
 .mnh-30 {
@@ -171,6 +187,10 @@
 
 .mw-200px {
   max-width: 200px;
+}
+
+.mw-250px {
+  max-width: 250px;
 }
 
 .w-250px {

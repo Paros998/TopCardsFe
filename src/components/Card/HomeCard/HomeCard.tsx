@@ -3,10 +3,12 @@ import CardTemplate from "../CardTemplate";
 import { Col, Container, Row } from "react-bootstrap";
 import SuggestedProducts from "../../Cards/SuggestedProducts";
 import { ProductType } from "../../../interfaces/enums/ProductType";
-import { Controller, CpuFill, Laptop, Pc, PciCard } from "react-bootstrap-icons";
+import { Controller, CpuFill, Laptop, PcDisplay, PciCard } from "react-bootstrap-icons";
 import WelcomeSegment from "./WelcomeSegment";
 import { useCurrentUser } from "../../../contexts/UserContext/UserContext";
 import NotificationsReminder from "./NotificationsReminder";
+import ProductsNavbar from "../../InnerNavbar/ProductsNavbar";
+import LastUserActions from "./LastUserActions";
 
 interface HomeCardProps {
   className?: string;
@@ -16,19 +18,19 @@ const HomeCard: FC<HomeCardProps> = ( { className } ) => {
 
   const { currentUser } = useCurrentUser();
 
-  const suggested = ` p-0 ps-md-4 mx-2 mx-md-4 mb-3 align-items-center mnh-100px mh-700px`;
   const hr = <Col xs={ 12 }>
-    <hr className={ 'h-2px' }/>
+    <hr className={ 'h-2px my-3' }/>
   </Col>;
 
   const hrInfo = <Col xs={ 12 }>
-    <hr className={ 'h-2px mx-3' }/>
+    <hr className={ 'h-2px mx-3 my-3' }/>
   </Col>;
 
-  let iconClass = 'd-flex-column gap-1 justify-content-center';
-  let iconDesc = 'fw-bolder text-dark d-flex justify-content-center';
-
+  const suggested = ` p-0 ps-md-4 mx-2 mx-md-4 mb-5 align-items-center mnh-100px `;
+  const iconClass = 'd-flex-column gap-1 justify-content-center';
+  const iconDesc = 'fw-bolder text-dark d-flex justify-content-center';
   const style = { width: "100%", height: "auto" };
+
   return (
     <CardTemplate className={ `bg-light text-dark fs-6 w-100 mnh-95 ${ className }` }>
       <Container className={ `p-0 m-0 align-items-center` } fluid>
@@ -39,9 +41,17 @@ const HomeCard: FC<HomeCardProps> = ( { className } ) => {
 
         { hrInfo }
 
+        { currentUser && <LastUserActions/> }
+
+        { currentUser && hrInfo }
+
+        <ProductsNavbar/>
+
+        { hrInfo }
+
         <Row className={ `h-10 align-items-center m-0 py-3` }>
-          <Col xs={ 12 } md={ 6 } className={ `ms-1 ms-md-3 fs-5 font-weight-extra-normal ` }>
-            Suggested Products
+          <Col xs={ 12 } md={ 6 } className={ `ms-1 ms-md-2 fs-4  ` }>
+            Suggested Products By Type
           </Col>
         </Row>
 
@@ -107,7 +117,7 @@ const HomeCard: FC<HomeCardProps> = ( { className } ) => {
 
         <Row className={ suggested }>
           <Col xs={ 2 } sm={ 1 }>
-            <Pc style={ style }/>
+            <PcDisplay style={ style }/>
 
             <span className={ iconDesc }>
               { ProductType.PC }

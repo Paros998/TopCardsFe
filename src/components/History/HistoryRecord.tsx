@@ -14,7 +14,7 @@ interface HistoryRecordProps {
   fetchRecords: () => Promise<void>;
 }
 
-function getTheme( action: HistoryAction ) {
+export function getTheme( action: HistoryAction ) {
   switch ( action ) {
     case HistoryAction.UNFOLLOW:
       return `warning`;
@@ -30,7 +30,7 @@ function getTheme( action: HistoryAction ) {
 
 }
 
-function getHeader( action: HistoryAction ) {
+export function getHeader( action: HistoryAction ) {
   switch ( action ) {
     case HistoryAction.UNFOLLOW:
       return `UnFollow `;

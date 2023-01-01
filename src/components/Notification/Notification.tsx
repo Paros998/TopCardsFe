@@ -6,7 +6,7 @@ import { useNotifications } from "../../contexts/NotificationsContext/Notificati
 
 const Notification = () => {
 
-  const { notifications, isPending, showCanvas, setShowCanvas } = useNotifications();
+  const { unReadNotifications, isPending, showCanvas, setShowCanvas } = useNotifications();
 
   const handleClick = () => setShowCanvas( !showCanvas );
   const handleClose = () => setShowCanvas( false );
@@ -26,20 +26,17 @@ const Notification = () => {
             </div>
         }
 
-        { !isPending && notifications &&
+        { !isPending && unReadNotifications &&
             <div className={ `w-100 rounded-circle d-flex justify-content-center align-items-center
          text-light position-absolute bottom-80 left-50  bg-dark border border-1 border-light` }>
-              { notifications.length > 9 ? '9+' : notifications.length }
+              { unReadNotifications.length > 9 ? '9+' : unReadNotifications.length }
             </div>
         }
 
         <BellFill className={ `${ showCanvas ? `text-primary` : `text-dark` }` }/>
       </span>
 
-      <NotificationCanvas show={ showCanvas }
-                          handleClose={ handleClose }
-                          notifications={ notifications || [] }
-                          isPending={ isPending }/>
+      <NotificationCanvas handleClose={ handleClose }/>
     </>
   );
 };

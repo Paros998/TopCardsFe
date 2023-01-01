@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect, useMemo, useState } from 'react';
 import { Button, Col, Modal } from "react-bootstrap";
 import { ReviewModel } from "../../interfaces/models/ReviewModel";
 import { Formik } from 'formik';
@@ -8,6 +8,8 @@ import { useCurrentUser } from "../../contexts/UserContext/UserContext";
 import { toast } from "react-toastify";
 import Axios from "axios";
 import { BasicProductModel } from "../../interfaces/models/BasicProductModel";
+import { AddHistoryCommand } from "../../interfaces/models/command/AddHistoryCommand";
+import { HistoryAction } from "../../interfaces/enums/HistoryAction";
 
 interface AddOpinionProps {
   review: ReviewModel | null;
@@ -25,6 +27,17 @@ const AddOpinion: FC<AddOpinionProps> = ( { product, xs, review, fetchReviews } 
   const [ userHasReview, setUserHasReview ] = useState<boolean>( false );
 
   const { currentUser } = useCurrentUser();
+
+  const command = useMemo<AddHistoryCommand>( (): AddHistoryCommand => {
+    return {
+      historyData: {
+        productId: review?.productId as string,
+        action: HistoryAction.OPINION,
+        content: review?.productId as string
+      },
+      userId: currentUser?.userId as string
+    }
+  }, [ review, currentUser ] )
 
   useEffect( () => {
 
@@ -65,6 +78,12 @@ const AddOpinion: FC<AddOpinionProps> = ( { product, xs, review, fetchReviews } 
 
       toast.error( e );
 
+    } finally {
+      try {
+        await Axios.post( `/history/AddHistoryCommand`, command );
+      } catch ( e: any ) {
+        toast.error( e );
+      }
     }
 
 
@@ -105,7 +124,7 @@ const AddOpinion: FC<AddOpinionProps> = ( { product, xs, review, fetchReviews } 
         centered
         contentClassName={ `bg-dark text-light rounded-card-10 border border-1 border-light` }
       >
-        <Modal.Header closeButton>
+        <Modal.Header closeButton className={ `bg-dark text-light modal-close-light` }>
 
           <Modal.Title className={ `fs-5` }>
             {

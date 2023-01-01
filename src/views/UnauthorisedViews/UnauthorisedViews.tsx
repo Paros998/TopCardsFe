@@ -6,6 +6,8 @@ import Register from "../../sites/Register/Register";
 import ProductDetails from "../../sites/Products/ProductDetails";
 import HomePage from "../../sites/HomePage/HomePage";
 import HelpPage from "../../sites/Help/HelpPage";
+import DatabaseOfProducts from "../../sites/Products/DatabaseOfProducts";
+import SpecificSearchProducts from "../../sites/Products/SpecificSearchProducts";
 
 const UnauthorisedViews = () => {
   return (
@@ -19,6 +21,16 @@ const UnauthorisedViews = () => {
       <Route
         path='/'
         element={ <HomePage/> }
+      />
+
+      <Route
+        path='/products/:productType'
+        element={ <DatabaseOfProducts/> }
+      />
+
+      <Route
+        path='/products/for-:usage'
+        element={ <SpecificSearchProducts/> }
       />
 
       <Route

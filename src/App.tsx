@@ -6,13 +6,19 @@ import { ToasterProps } from "./constants/ToasterProps";
 import Views from "./views/Views";
 import CurrentUserProvider from "./contexts/UserContext/UserContext";
 import NotificationsProvider from "./contexts/NotificationsContext/NotificationsContext";
+import NavbarProvider from "./contexts/NavbarsContext/NavbarContext";
+import { BackgroundProvider } from "./contexts/BackgroundContext";
 
 function App() {
   return (
     <>
       <CurrentUserProvider>
         <NotificationsProvider>
-          <Views/>
+          <NavbarProvider>
+            <BackgroundProvider>
+              <Views/>
+            </BackgroundProvider>
+          </NavbarProvider>
         </NotificationsProvider>
       </CurrentUserProvider>
 

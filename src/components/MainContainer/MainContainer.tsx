@@ -1,16 +1,17 @@
-import React, { FC, ReactNode } from 'react';
+import React, { FC, HTMLAttributes, ReactNode } from 'react';
 
-interface MainContainerProps {
+interface MainContainerProps extends HTMLAttributes<any> {
   children?: ReactNode;
   className?: string;
 }
 
 const MainContainer: FC<MainContainerProps> = ( {
                                                   children,
-                                                  className
+                                                  className,
+                                                  ...props
                                                 } ) => {
   return (
-    <div className={ `w-100 h-90 bg-secondary text-light ${ className }` }>
+    <div style={ props.style } className={ `w-100 h-90 bg-secondary text-light ${ className }` }>
       { children }
     </div>
   );

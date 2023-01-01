@@ -1,5 +1,4 @@
 import React, { FC } from 'react';
-import { NotificationsArray } from "../../constants/Notifications/NotificationsArray";
 import BasicNotification from "./BasicNotification";
 import { NotificationModel } from "../../interfaces/models/NotificationModel";
 

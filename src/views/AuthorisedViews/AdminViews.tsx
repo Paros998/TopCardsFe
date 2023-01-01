@@ -12,6 +12,8 @@ import ManageUsers from "../../sites/Admin/ManageUsers";
 import NewProduct from "../../sites/Products/NewProduct";
 import EditProduct from "../../sites/Products/EditProduct";
 import HelpPage from "../../sites/Help/HelpPage";
+import DatabaseOfProducts from "../../sites/Products/DatabaseOfProducts";
+import SpecificSearchProducts from "../../sites/Products/SpecificSearchProducts";
 
 
 const AdminViews = () => {
@@ -41,6 +43,16 @@ const AdminViews = () => {
         <Route path={ `products` } element={ <ManageProducts/> }/>
         <Route path={ `users` } element={ <ManageUsers/> }/>
       </Route>
+
+      <Route
+        path='/products/:productType'
+        element={ <DatabaseOfProducts/> }
+      />
+
+      <Route
+        path='/products/for-:usage'
+        element={ <SpecificSearchProducts/> }
+      />
 
       <Route
         path={ '/product' }

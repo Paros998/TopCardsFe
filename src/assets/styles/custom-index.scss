@@ -118,6 +118,11 @@ hr:not([size]) {
   color: $light !important;
 }
 
+.background-danger-hover {
+  border: 1px solid $light !important;
+  box-shadow: 0.2rem 0.2rem 0.2rem $light;
+}
+
 .background-danger-hover:hover {
   background-color: $danger !important;
   border: 1px solid $dark !important;
@@ -177,6 +182,10 @@ hr:not([size]) {
   color: gold !important;
 }
 
+.star-hover-dark:hover {
+  color: $dark !important;
+}
+
 .active-nav {
   background-color: $secondary-dark !important;
   color: $light !important;
@@ -222,4 +231,24 @@ hr:not([size]) {
 .danger-hover:hover {
   border: 1px solid $danger !important;
   color: $danger !important;
+}
+
+.text-danger-hover:hover {
+  color: $danger !important;
+}
+
+.modal-close-light > .btn-close {
+  background-color: $light !important;
+}
+
+.hover-primary:hover {
+  color: $primary !important;
+}
+
+.hover-primary-dark:hover {
+  color: $primary-dark !important;
+}
+
+.hover-success-dark:hover {
+  color: $success-dark !important;
 }

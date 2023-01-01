@@ -1,11 +1,11 @@
-import React, { useMemo } from 'react';
+import React, { CSSProperties, useMemo } from 'react';
 import TopNavbar from "../../components/TopNavbar/TopNavbar";
 import MainContainer from "../../components/MainContainer/MainContainer";
 import Footer from "../../components/Footer/Footer";
 import BackButtonArrowCircle from "../../components/BackButton/BackButtonArrowCircle";
 import { useNavigate, useParams } from "react-router-dom";
 import ProductNotFound from "../../components/NotFound/ProductNotFound";
-import { Button, Spinner } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { Roles } from "../../interfaces/enums/Roles";
 import FollowUnFollowProduct from "../../components/Buttons/FollowUnFollowProduct";
 import HrBrake from "../../components/Hr/HrBrake";
@@ -13,19 +13,25 @@ import FeedBackCard from "../../components/FeedBack/FeedBackCard";
 import StoresOffers from "../../components/Stores/StoresOffers";
 import { useCurrentUser } from "../../contexts/UserContext/UserContext";
 import { ProductType } from "../../interfaces/enums/ProductType";
-import CardDetails from "./Card/CardDetails";
+import CardDetails from "./CardDetails";
 import CardTemplate from "../../components/Card/CardTemplate";
 import { usePostCqrs } from "../../hooks/usePostCqrs";
 import { AddHistoryCommand } from "../../interfaces/models/command/AddHistoryCommand";
 import { HistoryAction } from "../../interfaces/enums/HistoryAction";
+import Pending from "../../components/Pending/Pending";
+import ConsoleDetails from "./ConsoleDetails";
+import ProcessorDetails from "./ProcessorDetails";
+import PcDetails from "./PcDetails";
+import LaptopDetails from "./LaptopDetails";
+import { useBackground } from "../../contexts/BackgroundContext";
 
 const ProductDetails = () => {
-
   const navigate = useNavigate();
+  const { background } = useBackground();
 
-  const { role, currentUser } = useCurrentUser();
+  const { role, currentUser, isPending } = useCurrentUser();
 
-  const { productId, productType } = useParams<{ productId: string, productType: ProductType }>();
+  const { productId, productType } = useParams<{ productId: string, productType: ProductType }>() || {};
 
   const query = useMemo( () => {
     return {
@@ -47,12 +53,11 @@ const ProductDetails = () => {
 
   usePostCqrs( `/history/AddHistoryCommand`, { cqrsBody: command, notExecute: !currentUser, executeOnce: true } );
 
-  const [ productExists, , isPending ] = usePostCqrs<boolean>( `products/ProductExistsQuery`, { cqrsBody: query } );
+  const [ productExists, , isPendingProduct ] = usePostCqrs<boolean>( `products/ProductExistsQuery`, { cqrsBody: query } );
 
-  if ( isPending )
-    return <div className={ `d-flex align-items-center justify-content-center h-100 w-100` }>
-      <Spinner animation={ "border" } variant={ 'light' }/>
-    </div>
+  if ( isPending || isPendingProduct ) {
+    return <Pending/>
+  }
 
   if ( !productExists )
     return (
@@ -69,19 +74,27 @@ const ProductDetails = () => {
 
   const displayedContent = {
     GPU: <CardDetails productId={ productId as string }/>,
-    CONSOLE: 'Console ',
-    CPU: 'Processor ',
-    PC: 'Personal Computer ',
-    LAPTOP: 'Laptop '
+    CONSOLE: <ConsoleDetails productId={ productId as string }/>,
+    CPU: <ProcessorDetails productId={ productId as string }/>,
+    PC: <PcDetails productId={ productId as string }/>,
+    LAPTOP: <LaptopDetails productId={ productId as string }/>
   }[ productType as ProductType ]
+
+  const style: CSSProperties = background ? {
+    backgroundImage: `url(${ background })`,
+    backgroundRepeat: 'no-repeat',
+    backgroundBlendMode: "overlay",
+    backgroundSize: "cover",
+    backgroundAttachment: "fixed"
+  } : {};
 
   return (
     <div className={ 'vh-100 vw-100' }>
       <TopNavbar/>
 
-      <MainContainer className={ `bg-secondary-dark overflow-y-scroll thumb-slim thumb-light ` }>
+      <MainContainer style={ style } className={ `bg-secondary-dark overflow-y-scroll thumb-slim thumb-light ` }>
 
-        <CardTemplate className={ `d-flex flex-column pt-2 mnh-95 ` }>
+        <CardTemplate className={ `d-flex flex-column pt-2 pb-4 mnh-95 ` }>
 
           <div className={ `d-flex align-items-center mt-2 position-fixed ms-1 pb-2 z-index-1000` }>
             <BackButtonArrowCircle/>

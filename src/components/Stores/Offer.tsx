@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useMemo } from 'react';
 import { Button, Col, Row } from "react-bootstrap";
 import HrBrake from "../Hr/HrBrake";
 import StarRatings from "react-star-ratings";
@@ -8,14 +8,17 @@ import Axios from "axios";
 import { useCurrentUser } from "../../contexts/UserContext/UserContext";
 import { useFetchData } from "../../hooks/useFetchData";
 import { StoreOffer } from "../../interfaces/models/StoreOffer";
+import { AddHistoryCommand } from "../../interfaces/models/command/AddHistoryCommand";
+import { HistoryAction } from "../../interfaces/enums/HistoryAction";
 
 interface OfferProps {
   firstStore: boolean;
   lastStore: boolean;
   offer: StoreOffer;
+  productId: string;
 }
 
-const Offer: FC<OfferProps> = ( { offer, firstStore, lastStore } ) => {
+const Offer: FC<OfferProps> = ( { offer, firstStore, lastStore, productId } ) => {
 
   const { name, ratingScore, ratingCount, storePhoto, price, offerWebsite, hasFreeShipping } = offer;
 
@@ -23,17 +26,21 @@ const Offer: FC<OfferProps> = ( { offer, firstStore, lastStore } ) => {
 
   const [ photo ] = useFetchData<string>( `/files/${ storePhoto }` );
 
+  const command = useMemo<AddHistoryCommand>( (): AddHistoryCommand => {
+    return {
+      historyData: {
+        productId: productId as string,
+        action: HistoryAction.CHECK_OFFER,
+        content: offerWebsite
+      },
+      userId: currentUser?.userId as string
+    }
+  }, [ productId, currentUser, offerWebsite ] )
+
   const handleClick = async () => {
 
     try {
-
-      await Axios.post( `/history`, {
-        action: "checkOffer",
-        content: offerWebsite,
-        userId: currentUser?.userId
-      } );
-
-
+      await Axios.post( `/history/AddHistoryCommand`, command );
     } catch ( e: any ) {
       toast.error( e );
     }
@@ -88,7 +95,7 @@ const Offer: FC<OfferProps> = ( { offer, firstStore, lastStore } ) => {
 
           <span className={ `rounded-pill bg-dark px-4 py-1 ${ firstStore ? `text-success` : `text-light` }` }>
             {
-              `${ price }PLN ${ hasFreeShipping ? `+ free shipping` : `` }`
+              `${ price } ${ currentUser?.currency || "USD" } ${ hasFreeShipping ? `+ free shipping` : `` }`
             }
           </span>
 
@@ -103,6 +110,7 @@ const Offer: FC<OfferProps> = ( { offer, firstStore, lastStore } ) => {
             <Button
               className={ `rounded-card-10 text-light px-5 py-1` }
               variant={ `info` }
+              onAuxClick={ handleClick }
               onClick={ handleClick }
             >
               Proceed to offer

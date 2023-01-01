@@ -28,7 +28,7 @@ const ChangePasswordModal: FC<ChangePasswordModalProps> = ( {
       size='lg'
       contentClassName='rounded-0 border-1 border-light bg-dark  text-light'
     >
-      <Modal.Header closeButton>
+      <Modal.Header closeButton className={ `bg-dark text-light modal-close-light` }>
 
         <div className={ `d-flex justify-content-center w-100` }>
           <h3>
@@ -37,7 +37,6 @@ const ChangePasswordModal: FC<ChangePasswordModalProps> = ( {
         </div>
 
       </Modal.Header>
-
 
       <Formik<ChangePasswordFormikValues>
         onSubmit={ onChangePasswordSubmit }

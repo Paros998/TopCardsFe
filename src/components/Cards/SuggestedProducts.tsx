@@ -2,7 +2,7 @@ import React, { FC, useMemo, useState } from 'react';
 import { BasicProductModel } from "../../interfaces/models/BasicProductModel";
 import { Col, Row, Spinner } from "react-bootstrap";
 import NotFoundPhoto from "../../assets/images/product-not-found.jpg";
-import BasicProductInfo from "../GraphicCard/BasicProductInfo";
+import BasicProductInfo from "../Products/BasicProductInfo";
 import { ProductType } from "../../interfaces/enums/ProductType";
 import { useCurrentUser } from "../../contexts/UserContext/UserContext";
 import { useFetchData } from "../../hooks/useFetchData";
@@ -22,7 +22,7 @@ const SuggestedProducts: FC<SuggestedProductsProps> = ( { productType } ) => {
       userId: currentUser?.userId,
       productType: productType,
       page: page,
-      pageLimit: 4
+      pageLimit: 8
     };
   }, [ currentUser?.userId, productType, page ] )
 
@@ -51,25 +51,22 @@ const SuggestedProducts: FC<SuggestedProductsProps> = ( { productType } ) => {
   return <Row>
     {
       products?.map( ( value, index ) =>
+        <Col
+          key={ index }
+          xs={ 12 }
+          sm={ 12 }
+          lg={ 6 }
+          xxl={ 4 }
+          className={ `mb-1 mb-md-2 btn-pointer mnh-200px mh-200px` }
+        >
+          <BasicProductInfo product={ value }
+                            className={ `bg-dark  h-100 background-danger-hover text-light` }
+                            unavailableColor={ `text-primary-dark` }
+                            productPhotoSize={ `sm` }
+                            followed={ value.isFollowed }
+          />
 
-        <>
-
-          <Col
-            key={ index }
-            xs={ 12 }
-            sm={ 12 }
-            lg={ 6 }
-            xxl={ 4 }
-            className={ `mb-1 mb-md-2 btn-pointer ` }
-          >
-            <BasicProductInfo product={ value } className={ `bg-dark fs-7 h-100 background-danger-hover text-light` }
-                              unavailableColor={ `text-light` }
-                              productPhotoSize={ `sm` }
-                              followed={ value.isFollowed }
-            />
-
-          </Col>
-        </>
+        </Col>
       )
     }
 

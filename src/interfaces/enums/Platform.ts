@@ -1,0 +1,12 @@
+export enum Platform {
+  PC = "PC",
+  XBOX_ONE = "XBOX_ONE",
+  XBOX_ONE_X = "XBOX_ONE_X",
+  XBOX_SERIES_S = "XBOX_SERIES_S",
+  XBOX_SERIES_X = "XBOX_SERIES_X",
+  PS4 = "PS4",
+  PS4_PRO = "PS4_PRO",
+  PS5 = "PS5",
+  STEAM_DECK = "STEAM_DECK",
+  NINTENDO_SWITCH = "NINTENDO_SWITCH"
+}

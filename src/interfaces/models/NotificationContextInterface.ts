@@ -10,7 +10,10 @@ export interface NotificationContextInterface {
   isPending: boolean;
   setIsPending: React.Dispatch<React.SetStateAction<boolean>>;
 
-  notifications: NotificationModel[] | [];
+  unReadNotifications: NotificationModel[] | [];
+  readNotifications: NotificationModel[] | [];
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   fetchNotifications: <Notifications>() => Promise<void>
 
+  readNotification: ( id: string ) => Promise<void>
 }

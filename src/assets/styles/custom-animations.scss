@@ -1,68 +1,147 @@
 @import "custom-variables";
 
 @keyframes gradient-color {
-  0%, 100% {color: $primary;}
-  50% {color: $light;}
+  0%, 100% {
+    color: $primary;
+  }
+  50% {
+    color: $light;
+  }
 }
 
 @keyframes spin-around {
-  from {transform: rotate(0deg);}
-  to {transform: rotate(360deg);}
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes light-to-dark {
-  from {background-color: $light;}
-  to {background-color: $dark;}
+  from {
+    background-color: $light;
+  }
+  to {
+    background-color: $dark;
+  }
 }
-
 
 
 @keyframes fill-bg-light-dark-right {
-  0%{background-image: linear-gradient(to right, $light 0% 0%, $dark 0% 100%);}
-  10%{background-image: linear-gradient(to right, $light 0% 10%, $dark 10% 100%);}
-  20%{background-image: linear-gradient(to right, $light 0% 20%, $dark 20% 100%);}
-  30%{background-image: linear-gradient(to right, $light 0% 30%, $dark 30% 100%);}
-  40%{background-image: linear-gradient(to right, $light 0% 40%, $dark 40% 100%);}
-  50%{background-image: linear-gradient(to right, $light 0% 50%, $dark 50% 100%);}
-  60%{background-image: linear-gradient(to right, $light 0% 60%, $dark 60% 100%);}
-  70%{background-image: linear-gradient(to right, $light 0% 70%, $dark 70% 100%);}
-  80%{background-image: linear-gradient(to right, $light 0% 80%, $dark 80% 100%);}
-  90%{background-image: linear-gradient(to right, $light 0% 90%, $dark 90% 100%);}
-  100%{background-image: linear-gradient(to right, $light 0% 100%, $dark 100% 100%);}
+  0% {
+    background-image: linear-gradient(to right, $light 0% 0%, $dark 0% 100%);
+  }
+  10% {
+    background-image: linear-gradient(to right, $light 0% 10%, $dark 10% 100%);
+  }
+  20% {
+    background-image: linear-gradient(to right, $light 0% 20%, $dark 20% 100%);
+  }
+  30% {
+    background-image: linear-gradient(to right, $light 0% 30%, $dark 30% 100%);
+  }
+  40% {
+    background-image: linear-gradient(to right, $light 0% 40%, $dark 40% 100%);
+  }
+  50% {
+    background-image: linear-gradient(to right, $light 0% 50%, $dark 50% 100%);
+  }
+  60% {
+    background-image: linear-gradient(to right, $light 0% 60%, $dark 60% 100%);
+  }
+  70% {
+    background-image: linear-gradient(to right, $light 0% 70%, $dark 70% 100%);
+  }
+  80% {
+    background-image: linear-gradient(to right, $light 0% 80%, $dark 80% 100%);
+  }
+  90% {
+    background-image: linear-gradient(to right, $light 0% 90%, $dark 90% 100%);
+  }
+  100% {
+    background-image: linear-gradient(to right, $light 0% 100%, $dark 100% 100%);
+  }
 }
 
 @keyframes fill-bg-dark-light-left {
-  0%{background-image: linear-gradient(to left, $dark 0% 0%, $light 0% 100%);}
-  10%{background-image: linear-gradient(to left, $dark 0% 10%, $light 10% 100%);}
-  20%{background-image: linear-gradient(to left, $dark 0% 20%, $light 20% 100%);}
-  30%{background-image: linear-gradient(to left, $dark 0% 30%, $light 30% 100%);}
-  40%{background-image: linear-gradient(to left, $dark 0% 40%, $light 40% 100%);}
-  50%{background-image: linear-gradient(to left, $dark 0% 50%, $light 50% 100%);}
-  60%{background-image: linear-gradient(to left, $dark 0% 60%, $light 60% 100%);}
-  70%{background-image: linear-gradient(to left, $dark 0% 70%, $light 70% 100%);}
-  80%{background-image: linear-gradient(to left, $dark 0% 80%, $light 80% 100%);}
-  90%{background-image: linear-gradient(to left, $dark 0% 90%, $light 90% 100%);}
-  100%{background-image: linear-gradient(to left, $dark 0% 100%, $light 100% 100%);}
+  0% {
+    background-image: linear-gradient(to left, $dark 0% 0%, $light 0% 100%);
+  }
+  10% {
+    background-image: linear-gradient(to left, $dark 0% 10%, $light 10% 100%);
+  }
+  20% {
+    background-image: linear-gradient(to left, $dark 0% 20%, $light 20% 100%);
+  }
+  30% {
+    background-image: linear-gradient(to left, $dark 0% 30%, $light 30% 100%);
+  }
+  40% {
+    background-image: linear-gradient(to left, $dark 0% 40%, $light 40% 100%);
+  }
+  50% {
+    background-image: linear-gradient(to left, $dark 0% 50%, $light 50% 100%);
+  }
+  60% {
+    background-image: linear-gradient(to left, $dark 0% 60%, $light 60% 100%);
+  }
+  70% {
+    background-image: linear-gradient(to left, $dark 0% 70%, $light 70% 100%);
+  }
+  80% {
+    background-image: linear-gradient(to left, $dark 0% 80%, $light 80% 100%);
+  }
+  90% {
+    background-image: linear-gradient(to left, $dark 0% 90%, $light 90% 100%);
+  }
+  100% {
+    background-image: linear-gradient(to left, $dark 0% 100%, $light 100% 100%);
+  }
 }
 
 @keyframes nav-dropdown-fill-gradient {
-  0%{background-image: linear-gradient(to right, $primary 0% 0%, $dark 35% 100%);}
-  10%{background-image: linear-gradient(to right, $primary 0% 5%, $dark 40% 100%);}
-  20%{background-image: linear-gradient(to right, $primary 0% 10%, $dark 45% 100%);}
-  30%{background-image: linear-gradient(to right, $primary 0% 15%, $dark 50% 100%);}
-  40%{background-image: linear-gradient(to right, $primary 0% 20%, $dark 55% 100%);}
-  50%{background-image: linear-gradient(to right, $primary 0% 25%, $dark 60% 100%);}
-  60%{background-image: linear-gradient(to right, $primary 0% 30%, $dark 65% 100%);}
-  70%{background-image: linear-gradient(to right, $primary 0% 35%, $dark 70% 100%);}
-  80%{background-image: linear-gradient(to right, $primary 0% 40%, $dark 75% 100%);}
-  90%{background-image: linear-gradient(to right, $primary 0% 45%, $dark 80% 100%);}
-  100%{background-image: linear-gradient(to right, $primary 0% 50%, $dark 85% 100%);}
+  0% {
+    background-image: linear-gradient(to right, $primary 0% 0%, $dark 35% 100%);
+  }
+  10% {
+    background-image: linear-gradient(to right, $primary 0% 5%, $dark 40% 100%);
+  }
+  20% {
+    background-image: linear-gradient(to right, $primary 0% 10%, $dark 45% 100%);
+  }
+  30% {
+    background-image: linear-gradient(to right, $primary 0% 15%, $dark 50% 100%);
+  }
+  40% {
+    background-image: linear-gradient(to right, $primary 0% 20%, $dark 55% 100%);
+  }
+  50% {
+    background-image: linear-gradient(to right, $primary 0% 25%, $dark 60% 100%);
+  }
+  60% {
+    background-image: linear-gradient(to right, $primary 0% 30%, $dark 65% 100%);
+  }
+  70% {
+    background-image: linear-gradient(to right, $primary 0% 35%, $dark 70% 100%);
+  }
+  80% {
+    background-image: linear-gradient(to right, $primary 0% 40%, $dark 75% 100%);
+  }
+  90% {
+    background-image: linear-gradient(to right, $primary 0% 45%, $dark 80% 100%);
+  }
+  100% {
+    background-image: linear-gradient(to right, $primary 0% 50%, $dark 85% 100%);
+  }
 }
 
-.gradient-color{
+.gradient-color {
   animation: gradient-color 5s infinite ease-in-out;
 }
 
-.spin-around{
+.spin-around {
   animation: spin-around 10s infinite ease-in-out;
 }
+
+

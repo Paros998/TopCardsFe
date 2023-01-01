@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Controller, CpuFill, Laptop, Pc, PciCard } from "react-bootstrap-icons";
+import { Controller, CpuFill, Laptop, PcDisplay, PciCard } from "react-bootstrap-icons";
 import BackButtonArrowCircle from "../BackButton/BackButtonArrowCircle";
 import { ProductType } from "../../interfaces/enums/ProductType";
 
@@ -19,7 +19,7 @@ const ProductNotFound: FC<ProductNotFoundProps> = ( { productId, type } ) => {
           GPU: <PciCard className={ `text-light ` } fontSize={ '30rem' }/>,
           CONSOLE: <Controller className={ `text-light ` } fontSize={ '30rem' }/>,
           CPU: <CpuFill className={ `text-light ` } fontSize={ '30rem' }/>,
-          PC: <Pc className={ `text-light ` } fontSize={ '30rem' }/>,
+          PC: <PcDisplay className={ `text-light ` } fontSize={ '30rem' }/>,
           LAPTOP: <Laptop className={ `text-light ` } fontSize={ '30rem' }/>,
         }[ type ]
       }

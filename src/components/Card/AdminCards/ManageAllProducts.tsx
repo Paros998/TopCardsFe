@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import Products from "../../GraphicCard/Products";
+import EditDeleteProducts from "../../Products/EditDeleteProducts";
 import { PageRequest } from "../../../interfaces/PageRequest";
 import { useFetchData } from "../../../hooks/useFetchData";
 import { PageResponse } from "../../../interfaces/PageResponse";
@@ -79,7 +79,7 @@ const ManageAllProducts = () => {
       <div className={ `d-flex flex-column w-80 h-100 px-3 justify-content-center align-items-center` }>
 
         <div className={ `d-flex justify-content-center h-95 w-100` }>
-          <Products products={ products?.content || [] } isPending={ isPending }/>
+          <EditDeleteProducts products={ products?.content || [] } isPending={ isPending }/>
         </div>
 
         <div className={ `d-flex justify-content-center  w-100 my-1` }>

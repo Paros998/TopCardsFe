@@ -11,3 +11,8 @@ export interface BasicProductModel {
   storesLowestPrice: number
   productPhoto?: string;
 }
+
+export interface ProductModelWithPerformance extends BasicProductModel {
+  peakPerformance: number;
+  avgPerformance: number;
+}

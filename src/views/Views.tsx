@@ -8,19 +8,19 @@ import { useInitAxios } from "../hooks/useInitAxios";
 import { useCurrentUser } from "../contexts/UserContext/UserContext";
 
 const Views = () => {
-    useInitAxios();
-    const user = useCurrentUser();
+  useInitAxios();
+  const { role, isPending } = useCurrentUser();
 
-    if(user?.isPending)
-        return <Pending/>
+  if ( isPending )
+    return <Pending/>
 
-    if(user?.role === Roles.RoleClient)
-        return <ClientViews/>
+  if ( role === Roles.RoleClient )
+    return <ClientViews/>
 
-    if(user?.role === Roles.RoleAdmin)
-        return <AdminViews/>
+  if ( role === Roles.RoleAdmin )
+    return <AdminViews/>
 
-    return <UnauthorisedViews/>
+  return <UnauthorisedViews/>
 };
 
 export default Views;

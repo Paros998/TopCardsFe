@@ -8,9 +8,9 @@ import { useCurrentUser } from "../../contexts/UserContext/UserContext";
 
 const Footer = () => {
 
-  const {role} = useCurrentUser();
+  const { role } = useCurrentUser();
 
-  if(role === Roles.RoleClient || role === Roles.RoleAdmin)
+  if ( role === Roles.RoleClient || role === Roles.RoleAdmin )
     return <AuthorizedFooter/>
 
   return <UnauthorizedFooter/>

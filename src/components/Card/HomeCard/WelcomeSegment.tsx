@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { useCurrentUser } from "../../../contexts/UserContext/UserContext";
 import { Col, Row } from "react-bootstrap";
-import { ArrowUpSquareFill, EmojiSunglassesFill } from "react-bootstrap-icons";
+import { ArrowUpSquareFill, EmojiSunglasses } from "react-bootstrap-icons";
 
 interface WelcomeSegmentPops {
 
@@ -23,7 +23,7 @@ const welcomeBanner = (
       Nice to have you back
     </span>
 
-    <EmojiSunglassesFill className={ `ms-2 fs-4` }/>
+    <EmojiSunglasses className={ `ms-2 fs-4` }/>
   </Col>
 );
 
@@ -33,9 +33,9 @@ const WelcomeSegment: FC<WelcomeSegmentPops> = () => {
   return (
     <>
 
-      <Row className={ 'align-items-center m-0 py-3 ps-1 ps-md-3' }>
-        <Col xs={ 12 } md={ 6 } className={ `fs-5 font-weight-extra-normal ` }>
-          <span>
+      <Row className={ 'align-items-center m-0 py-3 ps-1 ps-md-2 fs-4' }>
+        <Col xs={ 12 } md={ 6 } className={ `fs-3` }>
+          <span className={ `` }>
             Welcome { currentUser ? currentUser.username : 'Stranger' }
           </span>
         </Col>

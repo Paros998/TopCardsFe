@@ -1,5 +1,6 @@
 $primary: #CE1010;
 $success: #5CB85C;
+$success-dark: #1C381C;
 $info: #5BC0DE;
 $secondary: #9A9A9A;
 $light: #F7F7F7;
@@ -28,13 +29,13 @@ $fs-7: 0.8rem;
 $fs-8: 0.6rem;
 
 
-
 $theme-colors: () !default;
 $utilities: () !default;
 
 $custom-theme-colors: (
         "primary": $primary,
         "success": $success,
+        "success-dark": $success-dark,
         "info": $info,
         "purple-light": $purple-light,
         "secondary": $secondary,
@@ -80,7 +81,7 @@ $myUtilities: (
                         auto: auto
                 )
         ),
-         "max-width": (
+        "max-width": (
                 property: max-width,
                 class: mw,
                 values:(
@@ -90,7 +91,6 @@ $myUtilities: (
                         30: 30%,
                         35: 35%,
                         40: 40%,
-
                         50: 50%,
                         60: 60%,
                         70: 70%,

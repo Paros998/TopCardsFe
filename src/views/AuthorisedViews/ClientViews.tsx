@@ -10,6 +10,8 @@ import History from "../../sites/User/History";
 import NotificationOptions from "../../sites/User/NotificationOptions";
 import { useCurrentUser } from "../../contexts/UserContext/UserContext";
 import HelpPage from "../../sites/Help/HelpPage";
+import DatabaseOfProducts from "../../sites/Products/DatabaseOfProducts";
+import SpecificSearchProducts from "../../sites/Products/SpecificSearchProducts";
 
 
 const ClientViews = () => {
@@ -39,6 +41,16 @@ const ClientViews = () => {
         <Route path={ `history` } element={ <History/> }/>
         <Route path={ `notifications` } element={ <NotificationOptions/> }/>
       </Route>
+
+      <Route
+        path='/products/:productType'
+        element={ <DatabaseOfProducts/> }
+      />
+
+      <Route
+        path='/products/for-:usage'
+        element={ <SpecificSearchProducts/> }
+      />
 
       <Route
         path='/product/:productId&:productType'

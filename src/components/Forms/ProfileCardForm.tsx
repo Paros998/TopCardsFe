@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Button, Col, Form as FormBoot, Row } from "react-bootstrap";
 import { Form, useFormikContext } from "formik";
+import Avatar from "../../assets/images/user_avatar.png"
+
 import { ProfileCardFormikValues } from "../../interfaces/formik/ProfileCardFormikValues";
 import { useCurrentUser } from "../../contexts/UserContext/UserContext";
 import EditablePicture from "../Inputs/EditablePicture/EditablePictures";
@@ -45,7 +47,7 @@ const ProfileCardForm = () => {
             editable
 
               ? <EditablePicture
-                src={ userPhoto }
+                src={ userPhoto || Avatar }
                 photoWrapperClass={ `d-flex justify-content-end` }
                 containerClass={ `w-30 d-flex justify-content-end` }
                 photoClass=' border-2 border-light border '
@@ -55,7 +57,7 @@ const ProfileCardForm = () => {
                 urlToDelete={ urlForAvatar }
               />
 
-              : <img src={ userPhoto }
+              : <img src={ userPhoto || Avatar }
                      className={ ` border-2 border-light border profile-avatar` }
                      alt={ `Img` }
                      style={ { width: "10rem", height: "10rem" } }

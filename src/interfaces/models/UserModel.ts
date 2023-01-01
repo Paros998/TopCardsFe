@@ -7,4 +7,5 @@ export interface UserModel {
   role: Roles;
   isBlocked: boolean;
   avatarFile: string;
+  currency?: string;
 }

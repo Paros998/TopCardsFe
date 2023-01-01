@@ -11,11 +11,14 @@ import { useNavigate } from "react-router-dom";
 import { ChangePasswordFormikValues } from "../../../interfaces/formik/ChangePasswordFormikValues";
 import DeleteAccountModal from "../../ConfirmModal/DeleteAccountModal";
 import ChangePasswordModal from "../../ConfirmModal/ChangePasswordModal";
+import ChangeCurrencyModal from "../../ConfirmModal/ChangeCurrencyModal";
+import { ChangeCurrencyFormikValues } from "../../../interfaces/formik/ChangeCurrencyFormikValues";
 
 const ProfileCard = () => {
 
   const [ showDeleteModal, setShowDeleteModal ] = useState<boolean>( false );
   const [ showPasswordModal, setShowPasswordModal ] = useState<boolean>( false );
+  const [ showChangeCurrency, setShowChangeCurrency ] = useState<boolean>( false );
 
   const buttonClass = `rounded-pill mx-2 w-15 editable-button`;
 
@@ -74,6 +77,25 @@ const ProfileCard = () => {
     }
 
   }
+  const onChangeCurrency = async ( values: ChangeCurrencyFormikValues ) => {
+
+    try {
+
+      await Axios.put( `users/${ currentUser?.userId }/new-currency/${ values.newCurrency }` );
+
+      await fetchUser();
+
+      setShowChangeCurrency( false );
+
+      toast.info( "Your current currency has been changed to " + values.newCurrency );
+
+    } catch ( e: any ) {
+
+      toast.error( e );
+
+    }
+
+  }
 
   const onChangePasswordSubmit = async ( values: ChangePasswordFormikValues ) => {
 
@@ -102,6 +124,16 @@ const ProfileCard = () => {
       .required( `Email cannot be empty` ).min( 6, `Email must have at least 6 symbols` ).email( `This email is incorrect` )
   } );
 
+  const currencyValues: ChangeCurrencyFormikValues = useMemo( () => {
+    return currentUser ? {
+      oldCurrency: currentUser.currency as string,
+      newCurrency: currentUser.currency as string
+    } : {
+      oldCurrency: '',
+      newCurrency: ''
+    }
+  }, [ currentUser ] )
+
   return (
     <div
       className={ `w-100 bg-secondary-dark d-flex flex-column justify-content-around h-90 overflow-y-scroll thumb-slim thumb-info pb-3 pt-5 pt-md-0` }>
@@ -114,6 +146,23 @@ const ProfileCard = () => {
       >
         <ProfileCardForm/>
       </Formik>
+
+      <div className={ `w-100 hstack gap-2 justify-content-center align-items-center` }>
+        <span className={ `px-3 py-2 bg-dark rounded-card-10` }>
+          Current Currency:
+          <span className={ `text-warning fs-5 ms-1` }>
+            { currentUser?.currency }
+          </span>
+        </span>
+
+        <Button
+          className={ `${ buttonClass } dark-warning` }
+          onClick={ () => setShowChangeCurrency( true ) }
+
+        >
+          Change currency
+        </Button>
+      </div>
 
       <div className={ `w-100 d-flex justify-content-center align-items-center` }>
 
@@ -132,6 +181,11 @@ const ProfileCard = () => {
         </Button>
 
       </div>
+
+      <ChangeCurrencyModal setShowChangeCurrency={ setShowChangeCurrency }
+                           showChangeCurrency={ showChangeCurrency }
+                           onSubmit={ onChangeCurrency }
+                           initialValues={ currencyValues }/>
 
       <DeleteAccountModal showDeleteModal={ showDeleteModal }
                           setShowDeleteModal={ setShowDeleteModal }

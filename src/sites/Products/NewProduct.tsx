@@ -6,8 +6,8 @@ import Footer from "../../components/Footer/Footer";
 import BackButtonArrowCircle from "../../components/BackButton/BackButtonArrowCircle";
 import { Formik } from 'formik';
 import { CardInitialValues } from "../../constants/InitialValues/CardInitialValues";
-import CardNewOrEditForm from "../../components/Forms/CardNewOrEditForm";
-import { CardDetailsModel } from "../../interfaces/models/CardDetailsModel";
+import CardNewOrEditForm from "../../components/Forms/product/CardNewOrEditForm";
+import { CardDetailsModel } from "../../interfaces/models/product/CardDetailsModel";
 import { toast } from "react-toastify";
 import Axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -27,9 +27,9 @@ const NewProduct = () => {
         cardPhoto: "ffffffff-ffff-ffff-ffff-ffffffffffff"
       } );
 
-      toast.success('Card added successfully');
+      toast.success( 'Card added successfully' );
 
-      navigate(`/card/${data}`);
+      navigate( `/card/${ data }` );
 
     } catch ( e: any ) {
 
@@ -60,7 +60,7 @@ const NewProduct = () => {
             initialValues={ CardInitialValues }
             onSubmit={ onSubmit }
           >
-            <CardNewOrEditForm isNewCard={ true } editable={ editable } setEditable={ setEditable }/>
+            <CardNewOrEditForm isNewProduct={ true } editable={ editable } setEditable={ setEditable }/>
           </Formik>
 
         </UserCard>

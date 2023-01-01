@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 interface UsePostCqrsConfig<T> {
   dataMapper?: ( data: any ) => T;
   cqrsBody: any;
+  params?: any;
   errorMessage?: string;
   executeOnce?: boolean;
   notExecute?: boolean;
@@ -17,10 +18,10 @@ export const usePostCqrs = <T extends unknown>( endpoint: string, config?: UsePo
   const [ executed, setExecuted ] = useState( false );
   const [ isPending, setIsPending ] = useState( false );
 
-  const { cqrsBody, dataMapper, errorMessage, executeOnce, notExecute } = config || {};
+  const { cqrsBody, dataMapper, errorMessage, executeOnce, notExecute, params } = config || {};
 
   const execute = useCallback( async () => {
-    if ( notExecute ) {
+    if ( notExecute === true ) {
       return;
     }
 
@@ -33,7 +34,7 @@ export const usePostCqrs = <T extends unknown>( endpoint: string, config?: UsePo
 
     setIsPending( true );
     try {
-      const { data: fetchedData } = await Axios.post<T>( endpoint, cqrsBody, {} );
+      const { data: fetchedData } = await Axios.post<T>( endpoint, cqrsBody, { params } );
       const resultData = dataMapper?.( fetchedData ) || fetchedData;
       setData( resultData );
     } catch ( e ) {
@@ -41,7 +42,7 @@ export const usePostCqrs = <T extends unknown>( endpoint: string, config?: UsePo
     } finally {
       setIsPending( false );
     }
-  }, [ setData, dataMapper, endpoint, cqrsBody, errorMessage, notExecute, executed, executeOnce ] );
+  }, [ setData, dataMapper, endpoint, cqrsBody, params, errorMessage, notExecute, executed, executeOnce ] );
 
   useEffect( () => {
     execute().catch();

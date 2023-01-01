@@ -1,5 +1,5 @@
 import CardPhoto from "../../assets/images/product_avatar.png"
-import { CardDetailsModel } from "../../interfaces/models/CardDetailsModel";
+import { CardDetailsModel } from "../../interfaces/models/product/CardDetailsModel";
 
 export const CardInitialValues: CardDetailsModel = {
   boostCoreClock: 0,
@@ -22,6 +22,7 @@ export const CardInitialValues: CardDetailsModel = {
   productPhoto: CardPhoto,
   title: "",
   memoryBus: 123,
-  technology: ""
+  technology: "",
+  maxNumberOfUnitsInSLI: 1
 
 }

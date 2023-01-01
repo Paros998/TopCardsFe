@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useEffect } from 'react';
+import React, { FC, useCallback, useEffect, useMemo } from 'react';
 import { Col, Row, Spinner } from "react-bootstrap";
 import { EmojiFrown } from "react-bootstrap-icons";
 import { useFetchData } from "../../hooks/useFetchData";
@@ -6,13 +6,22 @@ import { StoreOffer } from "../../interfaces/models/StoreOffer";
 import RecordsNotFound from "../../assets/images/records-not-found.png";
 import { ProductProps } from "../../interfaces/models/Product";
 import Offer from "./Offer";
+import { useCurrentUser } from "../../contexts/UserContext/UserContext";
 
-interface LocalStoresProps extends ProductProps {
+interface StoresOffersProps extends ProductProps {
 }
 
-const StoresOffers: FC<LocalStoresProps> = ( { productId } ) => {
+const StoresOffers: FC<StoresOffersProps> = ( { productId } ) => {
 
-  const [ offers, fetchOffers, isPending ] = useFetchData<StoreOffer[]>( `products/offers/${ productId }` );
+  const { currentUser } = useCurrentUser();
+
+  const params = useMemo( () => {
+    return {
+      userId: currentUser ? currentUser.userId : null
+    }
+  }, [ currentUser ] );
+
+  const [ offers, fetchOffers, isPending ] = useFetchData<StoreOffer[]>( `products/offers/${ productId }`, { params } );
 
   const availability: number = offers?.length;
 
@@ -124,6 +133,7 @@ const StoresOffers: FC<LocalStoresProps> = ( { productId } ) => {
       offers?.map( ( offer, index ) =>
         <Offer
           offer={ offer }
+          productId={ productId }
           key={ index }
           lastStore={ offers.length - 1 === index }
           firstStore={ index === 0 }

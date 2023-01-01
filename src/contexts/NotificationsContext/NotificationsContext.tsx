@@ -14,11 +14,16 @@ interface ProviderProps {
 
 let firstUpdate: boolean = true;
 
-const NotificationsProvider: FC<ProviderProps> = ( { children } ) => {
+function filter( data: Notifications, isRead: boolean ) {
+  return data.filter( value => value.isRead === isRead );
+}
 
+const NotificationsProvider: FC<ProviderProps> = ( { children } ) => {
   const { currentUser } = useCurrentUser();
 
-  const [ notifications, setNotifications ] = useState<Notifications>();
+  const [ readNotifications, setReadNotifications ] = useState<Notifications>( [] );
+  const [ unReadNotifications, setUnReadNotifications ] = useState<Notifications>( [] );
+
   const [ isPending, setIsPending ] = useState( false );
   const [ showCanvas, setShowCanvas ] = useState( false );
 
@@ -30,8 +35,11 @@ const NotificationsProvider: FC<ProviderProps> = ( { children } ) => {
 
     try {
 
-      const { data } = await Axios.get<Notifications>( `/users/${ currentUser?.userId }/notifications` );
-      setNotifications( data );
+      const { data } = await Axios.get<Notifications>( `/notifications/${ currentUser?.userId }` );
+
+      setReadNotifications( filter( data, true ) );
+      setUnReadNotifications( filter( data, false ) );
+
       setIsPending( false );
 
     } catch ( e: any ) {
@@ -45,6 +53,20 @@ const NotificationsProvider: FC<ProviderProps> = ( { children } ) => {
     }
 
   }, [ currentUser ] );
+
+  const readNotification = async ( notificationId: string ) => {
+    if ( !currentUser ) {
+      return;
+    }
+
+    try {
+      await Axios.put( `/notifications/${ notificationId }/read` )
+    } catch ( e: any ) {
+      toast.error( e );
+    } finally {
+      await fetchNotifications();
+    }
+  }
 
   const updateNotifications = useCallback( async () => {
     fetchNotifications().catch();
@@ -62,8 +84,10 @@ const NotificationsProvider: FC<ProviderProps> = ( { children } ) => {
     }
   }, [ fetchNotifications, currentUser ] )
 
-  const contextData = {
-    notifications,
+  const contextData: Partial<NotificationContextInterface> = {
+    readNotification,
+    readNotifications,
+    unReadNotifications,
     isPending,
     fetchNotifications,
     showCanvas,

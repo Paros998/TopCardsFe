@@ -1,23 +1,29 @@
-import React, { useMemo, useState } from 'react';
+import React, { CSSProperties, useMemo, useState } from 'react';
 import TopNavbar from "../../components/TopNavbar/TopNavbar";
 import MainContainer from "../../components/MainContainer/MainContainer";
-import UserCard from "../../components/Card/UserCard";
 import Footer from "../../components/Footer/Footer";
 import BackButtonArrowCircle from "../../components/BackButton/BackButtonArrowCircle";
 import { useNavigate, useParams } from "react-router-dom";
 import ProductNotFound from "../../components/NotFound/ProductNotFound";
-import { Button, Spinner } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { ProductType } from "../../interfaces/enums/ProductType";
-import CardDetails from "./Card/CardDetails";
+import CardDetails from "./CardDetails";
 import { usePostCqrs } from "../../hooks/usePostCqrs";
+import Pending from "../../components/Pending/Pending";
+import ConsoleDetails from "./ConsoleDetails";
+import ProcessorDetails from "./ProcessorDetails";
+import PcDetails from "./PcDetails";
+import LaptopDetails from "./LaptopDetails";
+import { useBackground } from "../../contexts/BackgroundContext";
+import CardTemplate from '../../components/Card/CardTemplate';
 
 const EditProduct = () => {
+  const navigate = useNavigate();
+  const { background } = useBackground();
 
   const [ editable, setEditable ] = useState<boolean>( false );
 
   const { productId, productType } = useParams<{ productId: string, productType: ProductType }>();
-
-  const navigate = useNavigate();
 
   const query = useMemo( () => {
     return {
@@ -29,26 +35,32 @@ const EditProduct = () => {
   const [ productExists, , isPending ] = usePostCqrs<boolean>( `products/ProductExistsQuery`, { cqrsBody: query } );
 
   if ( isPending )
-    return <div className={ `d-flex align-items-center justify-content-center h-100 w-100` }>
-      <Spinner animation={ "border" } variant={ 'light' }/>
-    </div>
+    return <Pending/>;
 
   if ( !productExists )
     return (
       <ProductNotFound productId={ productId as string } type={ productId as ProductType }/>
     );
 
+  const style: CSSProperties = background ? {
+    backgroundImage: `url(${ background })`,
+    backgroundRepeat: 'no-repeat',
+    backgroundBlendMode: "overlay",
+    backgroundSize: "cover",
+    backgroundAttachment: "fixed"
+  } : {};
+
   return (
     <div className={ 'vh-100 vw-100' }>
       <TopNavbar/>
 
-      <MainContainer className={ `` }>
+      <MainContainer style={ style } className={ `bg-secondary-dark  overflow-y-scroll thumb-slim thumb-light ` }>
 
-        <UserCard className={ `vstack bg-secondary-dark pt-2` }>
+        <CardTemplate className={ `d-flex flex-column pt-2 pb-4 mnh-95 ` }>
 
           <div className={ `h-5 hstack` }>
 
-            <BackButtonArrowCircle/>
+            <BackButtonArrowCircle className={ `ms-1` }/>
 
             <span className={ `w-80 fs-3 fw-light ps-4 align-items-center d-flex mt-1` }>
                 Edit Card
@@ -74,14 +86,17 @@ const EditProduct = () => {
           {
             {
               GPU: <CardDetails productId={ productId as string } editable={ editable } setEditable={ setEditable }/>,
-              CONSOLE: 'Console ',
-              CPU: 'Processor ',
-              PC: 'Personal Computer ',
-              LAPTOP: 'Laptop '
+              CONSOLE: <ConsoleDetails productId={ productId as string } editable={ editable }
+                                       setEditable={ setEditable }/>,
+              CPU: <ProcessorDetails productId={ productId as string } editable={ editable }
+                                     setEditable={ setEditable }/>,
+              PC: <PcDetails productId={ productId as string } editable={ editable } setEditable={ setEditable }/>,
+              LAPTOP: <LaptopDetails productId={ productId as string } editable={ editable }
+                                     setEditable={ setEditable }/>
             }[ productType as ProductType ]
           }
 
-        </UserCard>
+        </CardTemplate>
 
         <Footer/>
       </MainContainer>
