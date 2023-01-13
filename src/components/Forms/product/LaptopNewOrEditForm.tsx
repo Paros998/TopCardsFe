@@ -5,20 +5,20 @@ import { PlusCircleFill, XCircleFill } from "react-bootstrap-icons";
 import SubmitButton from "../../SubmitButton/SubmitButton";
 import BasicCardPhoto from "../../../assets/images/product_avatar.png";
 import { ProductFormProps } from "../../../interfaces/ProductFormProps";
-import { PcDetailsModel } from "../../../interfaces/models/product/PcDetailsModel";
 import { MapType } from "../../../interfaces/MapType";
 import { useNavigate } from "react-router-dom";
 import { ProductType } from "../../../interfaces/enums/ProductType";
+import { LaptopDetailsModel } from "../../../interfaces/models/product/LaptopDetailsModel";
 
-const PcNewOrEditForm: FC<ProductFormProps> = ( {
-                                                  isNewProduct,
-                                                  editable,
-                                                  setEditable,
-                                                  inDetails,
-                                                  className
-                                                } ) => {
+const LaptopNewOrEditForm: FC<ProductFormProps> = ( {
+                                                      isNewProduct,
+                                                      editable,
+                                                      setEditable,
+                                                      inDetails,
+                                                      className
+                                                    } ) => {
 
-    const { values, setFieldValue, handleChange, errors, touched, resetForm } = useFormikContext<PcDetailsModel>();
+    const { values, setFieldValue, handleChange, errors, touched, resetForm } = useFormikContext<LaptopDetailsModel>();
     const navigate = useNavigate();
     const handleFileUpload = ( e: ChangeEvent<HTMLElement> ) => {
       const file = ( e.target as HTMLInputElement ).files![ 0 ];
@@ -458,13 +458,11 @@ const PcNewOrEditForm: FC<ProductFormProps> = ( {
               }
             </FieldArray>
 
-            {
-              renderMapType( values.backPanelConnectors, "Back Panel Connectors" )
-            }
 
             {
-              renderMapType( values.frontPanelConnectors, "Front Panel Connectors" )
+              renderMapType( values.leftPanelConnectors, "Left Side Connectors" )
             }
+
 
           </div>
 
@@ -654,12 +652,14 @@ const PcNewOrEditForm: FC<ProductFormProps> = ( {
               renderMapType( values.ssdDrives, "SSD Drives" )
             }
 
+
             {
               renderMapType( values.additionalAccessories, "Additional accessories" )
             }
 
+
             {
-              renderMapType( values.freeInternalPorts, "Free internal ports" )
+              renderMapType( values.rightPanelConnectors, "Right Side Connectors" )
             }
 
           </div>
@@ -892,4 +892,4 @@ const PcNewOrEditForm: FC<ProductFormProps> = ( {
   }
 ;
 
-export default PcNewOrEditForm;
+export default LaptopNewOrEditForm;

@@ -92,6 +92,7 @@ const ProfileCardForm = () => {
             </FormBoot.Label>
             <Col className={ `pe-0` }>
               <FormBoot.Control
+                id={ 'username-input' }
                 className={ formClassName }
                 type={ `text` }
                 name={ `username` }

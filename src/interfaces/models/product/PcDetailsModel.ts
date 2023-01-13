@@ -1,6 +1,7 @@
 import { ProductDetailsModel } from "./ProductDetailsModel";
 import { GpuData } from "./CardDetailsModel";
 import { ProcessorData } from "./CpuDetailsModel";
+import { MapType } from "../../MapType";
 
 export interface PcDetailsModel extends ProductDetailsModel {
   gpuCard: GpuData;
@@ -8,19 +9,19 @@ export interface PcDetailsModel extends ProductDetailsModel {
   ramAmount: number;
   ramType: string;
   ramClock: number;
-  hddDrives: Record<string, number>;
-  ssdDrives: Record<string, number>;
+  hddDrives: MapType;
+  ssdDrives: MapType;
   chipset: string;
   diskDrive: boolean;
   sound: string;
   connectivity: string[];
-  backPanelConnectors: Record<string, number>;
-  frontPanelConnectors: Record<string, number>;
-  freeInternalPorts: Record<string, number>;
+  backPanelConnectors: MapType;
+  frontPanelConnectors: MapType;
+  freeInternalPorts: MapType;
   psu: string;
   psuPower: number;
   psuEfficiency: string;
-  additionalAccessories: Record<string, number>;
+  additionalAccessories: MapType;
   system: string;
   height: string;
   width: string;

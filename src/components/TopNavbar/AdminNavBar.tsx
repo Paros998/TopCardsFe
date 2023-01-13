@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import Avatar from "../../assets/images/user_avatar.png";
 import { Button, Container, Nav, Navbar, NavDropdown, NavLink } from "react-bootstrap";
-import TopCardsFe from "../../assets/images/logo.png";
+import TopCardsFe from "../../assets/images/logo/logo_300.png";
 import ImageButtonDropdown from "../Buttons/ImageButtonDropdown";
 
 import Admin from "../../assets/images/admin_avatar.png";

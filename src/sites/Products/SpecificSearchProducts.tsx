@@ -9,6 +9,7 @@ import BasicCard from "../../components/Card/BasicCard";
 import { Col } from "react-bootstrap";
 import NotFound from "../../components/NotFound/NotFound";
 import ForGamers from "../../components/ForGamers/ForGamers";
+import ForMiners from "../../components/ForMiners/ForMiners";
 
 const SpecificSearchProducts = () => {
 
@@ -23,7 +24,7 @@ const SpecificSearchProducts = () => {
 
   const ProductUsage =
     {
-      'crypto-miners': 'Graphic Card ',
+      'crypto-miners': <ForMiners/>,
       'gamers': <ForGamers/>,
       'common-work-study': 'Processor '
     }[ usage as EndUserProductUsage ];

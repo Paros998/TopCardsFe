@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Nav, Navbar, NavDropdown, NavLink } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import TopCardsFe from "../../assets/images/logo.png";
+import TopCardsFe from "../../assets/images/logo/logo_300.png";
 import { InfoCircle } from "react-bootstrap-icons";
 
 const UnauthorizedNavBar = () => {

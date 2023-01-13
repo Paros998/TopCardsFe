@@ -84,6 +84,12 @@
   color: $dark;
 }
 
+.dark-light:disabled {
+  background-color: $secondary-dark;
+  border: 1px solid $dark;
+  color: $secondary-light;
+}
+
 .light-dark {
   background-color: $light;
   border: 1px solid $dark;
@@ -118,4 +124,16 @@
   background-color: $dark;
   border: 1px solid $success;
   color: $success;
+}
+
+.info-dark {
+  background-color: $info;
+  border: 1px solid $dark;
+  color: $dark;
+}
+
+.info-dark:hover {
+  background-color: $dark;
+  border: 1px solid $info;
+  color: $info;
 }

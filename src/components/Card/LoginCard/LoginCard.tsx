@@ -32,7 +32,8 @@ const LoginCard: FC<LoginCardProps> = ( { className } ) => {
       Axios.defaults.headers.common.Authorization = accessToken;
       localStorage.setItem( "JWT_USER_TOKEN", accessToken );
 
-      const refreshToken = headers[ 'Authorization-Refresh' ];
+      const refreshToken = headers[ 'authorization-refresh' ];
+
       Axios.defaults.headers[ "Authorization-Refresh" ] = refreshToken;
       localStorage.setItem( "JWT_REFRESH_TOKEN", refreshToken );
 

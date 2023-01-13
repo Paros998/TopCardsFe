@@ -24,7 +24,9 @@
     "react": "^17.0.2",
     "react-bootstrap": "^2.2.3",
     "react-bootstrap-icons": "^1.8.1",
+    "react-charts": "^3.0.0-beta.51",
     "react-dom": "^17.0.2",
+    "react-numeric-input": "^2.2.3",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.0",
     "react-star-ratings": "^2.3.0",
@@ -60,6 +62,7 @@
   "devDependencies": {
     "@types/google.maps": "^3.48.7",
     "@types/react-star-rating-component": "^1.4.1",
-    "@types/react-star-ratings": "^2.3.0"
+    "@types/react-star-ratings": "^2.3.0",
+    "cypress": "^12.3.0"
   }
 }

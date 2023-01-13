@@ -25,17 +25,35 @@ const CurrentUserProvider: FC<ProviderProps> = ( { children } ) => {
   const [ userPhoto, setUserPhoto ] = useState<string>( '' );
   const [ isPending, setIsPending ] = useState( false );
 
-  const onClearUser = () => setCurrentUser( undefined );
+  const onClearUser = async () => {
+    setCurrentUser( undefined );
+
+    await onLogOut()
+  };
 
   const fetchUser = useCallback( async () => {
 
     setIsPending( true );
 
     const token = localStorage.getItem( 'JWT_USER_TOKEN' );
+    const refreshToken = localStorage.getItem( 'JWT_REFRESH_TOKEN' );
+
+    if ( !token && !refreshToken ) {
+      setIsPending( false )
+      setCurrentUser( undefined );
+    }
 
     if ( !token ) {
       setIsPending( false )
       return;
+    }
+
+    if ( Axios.defaults.headers.common.Authorization === undefined ) {
+      Axios.defaults.headers.common.Authorization = token;
+    }
+
+    if ( Axios.defaults.headers[ "Authorization-Refresh" ] === undefined ) {
+      Axios.defaults.headers[ "Authorization-Refresh" ] = refreshToken;
     }
 
     const { userId }: JwtUser = jwtDecode( token );
@@ -97,7 +115,7 @@ const CurrentUserProvider: FC<ProviderProps> = ( { children } ) => {
 
     toast.info( "We hope to see you again soon" );
 
-    navigate('/');
+    navigate( '/' );
 
     await fetchUser();
 

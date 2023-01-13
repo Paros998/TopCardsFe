@@ -65,95 +65,110 @@ const DisplayProductsWithPerformance = () => {
         { checkingForPcStuff && hr }
       </Row>
 
-      <Row className={ `${ suggested + displayPc }` }>
-        <Col xs={ 2 } sm={ 1 } className={ iconClass }>
-          <PcDisplay style={ style }/>
+      {
+        checkingForPcStuff &&
+          <Row className={ `${ suggested + displayPc }` }>
+              <Col xs={ 2 } sm={ 1 } className={ iconClass }>
+                  <PcDisplay style={ style }/>
 
-          <span className={ iconDesc }>
+                  <span className={ iconDesc }>
               { ProductType.PC }
             </span>
-        </Col>
+              </Col>
 
-        <Col xs={ 10 } sm={ 11 }>
-          <ProductsByGames productType={ ProductType.PC } fetchData={ true }/>
-        </Col>
-        { hr }
-      </Row>
+              <Col xs={ 10 } sm={ 11 }>
+                  <ProductsByGames productType={ ProductType.PC } fetchData={ true }/>
+              </Col>
+            { hr }
+          </Row>
+      }
 
-      <Row className={ " p-0 ps-md-4 mx-2 mx-md-4 mb-2 align-items-center mnh-100px mh-700px" + displayPc }>
-        <Col xs={ 2 } sm={ 1 } className={ iconClass }>
-          <Laptop style={ style }/>
+      { checkingForPcStuff &&
+          <Row className={ " p-0 ps-md-4 mx-2 mx-md-4 mb-2 align-items-center mnh-100px mh-700px" + displayPc }>
+              <Col xs={ 2 } sm={ 1 } className={ iconClass }>
+                  <Laptop style={ style }/>
 
-          <span className={ iconDesc }>
+                  <span className={ iconDesc }>
               { ProductType.LAPTOP }
             </span>
-        </Col>
+              </Col>
 
-        <Col xs={ 10 } sm={ 11 }>
-          <ProductsByGames productType={ ProductType.LAPTOP } fetchData={ true }/>
-        </Col>
-        { hr }
-      </Row>
+              <Col xs={ 10 } sm={ 11 }>
+                  <ProductsByGames productType={ ProductType.LAPTOP } fetchData={ true }/>
+              </Col>
+            { hr }
+          </Row>
+      }
 
-      <Row
-        className={ `p-0 ps-md-4 mx-2 mx-md-4 align-items-center mb-4 ${ displayPc }` }>
-        <Col xs={ 2 }/>
-        <Col xs={ 4 } className={ switchClass }>
+      {
+        checkingForPcStuff &&
+          <Row
+              className={ `p-0 ps-md-4 mx-2 mx-md-4 align-items-center mb-4 ${ displayPc }` }>
+              <Col xs={ 2 }/>
+              <Col xs={ 4 } className={ switchClass }>
           <span>
             Search also for individual CPU
           </span>
 
-          <FormBoot.Switch
-            className={ `switch-pointer` }
-            checked={ filterAndFetchCpus }
-            onChange={ () => setFilterAndFetchCpus( !filterAndFetchCpus ) }
-          />
-        </Col>
+                  <FormBoot.Switch
+                      className={ `switch-pointer` }
+                      checked={ filterAndFetchCpus }
+                      onChange={ () => setFilterAndFetchCpus( !filterAndFetchCpus ) }
+                  />
+              </Col>
 
-        <Col xs={ 4 } className={ switchClass }>
+              <Col xs={ 4 } className={ switchClass }>
           <span>
             Search also for individual GPU
           </span>
 
-          <FormBoot.Switch
-            className={ `switch-pointer` }
-            checked={ filterAndFetchGpus }
-            onChange={ () => setFilterAndFetchGpus( !filterAndFetchGpus ) }
-          />
-        </Col>
+                  <FormBoot.Switch
+                      className={ `switch-pointer` }
+                      checked={ filterAndFetchGpus }
+                      onChange={ () => setFilterAndFetchGpus( !filterAndFetchGpus ) }
+                  />
+              </Col>
 
-      </Row>
+          </Row>
+      }
 
-      <Row className={ `${ suggested } ${ filterAndFetchCpus ? 'd-flex' : 'd-none' }` }>
-        <Col xs={ 2 } sm={ 1 } className={ iconClass }>
-          <CpuFill style={ style }/>
+      {
+        checkingForPcStuff &&
+          <Row className={ `${ suggested } ${ filterAndFetchCpus ? 'd-flex' : 'd-none' }` }>
+              <Col xs={ 2 } sm={ 1 } className={ iconClass }>
+                  <CpuFill style={ style }/>
 
-          <span className={ iconDesc }>
+                  <span className={ iconDesc }>
               { ProductType.CPU }
             </span>
-        </Col>
+              </Col>
 
-        <Col xs={ 10 } sm={ 11 }>
-          <ProductsByGames productType={ ProductType.CPU } fetchData={ filterAndFetchCpus }/>
-        </Col>
+              <Col xs={ 10 } sm={ 11 }>
+                  <ProductsByGames productType={ ProductType.CPU } fetchData={ filterAndFetchCpus }/>
+              </Col>
 
-        { hr }
-      </Row>
+            { hr }
+          </Row>
+      }
 
-      <Row className={ `${ suggested } ${ filterAndFetchGpus ? 'd-flex' : 'd-none' }` }>
-        <Col xs={ 2 } sm={ 1 } className={ iconClass }>
-          <PciCard style={ style }/>
+      {
+        checkingForPcStuff &&
+          <Row className={ `${ suggested } ${ filterAndFetchGpus ? 'd-flex' : 'd-none' }` }>
+              <Col xs={ 2 } sm={ 1 } className={ iconClass }>
+                  <PciCard style={ style }/>
 
-          <span className={ iconDesc }>
+                  <span className={ iconDesc }>
               { ProductType.GPU }
             </span>
-        </Col>
+              </Col>
 
-        <Col xs={ 10 } sm={ 11 }>
-          <ProductsByGames productType={ ProductType.GPU } fetchData={ filterAndFetchGpus }/>
-        </Col>
+              <Col xs={ 10 } sm={ 11 }>
+                  <ProductsByGames productType={ ProductType.GPU } fetchData={ filterAndFetchGpus }/>
+              </Col>
 
-      </Row>
+          </Row>
+      }
+
     </>
   );
 };
